@@ -1,9 +1,8 @@
-"use client";
 import AuthLayout from "@/components/layouts/AuthLayout";
 import React from "react";
 
-const LoginPage = () => {
+const ForgetPasswordPage = () => {
   return <AuthLayout />;
 };
 
-export default LoginPage;
+export default ForgetPasswordPage;

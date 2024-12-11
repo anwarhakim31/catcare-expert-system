@@ -7,10 +7,10 @@ interface FormValues {
   sandi: string;
 }
 
+const isBrowser = typeof window !== "undefined";
+
 const RememberMe = ({ form }: { form: UseFormReturn<FormValues> }) => {
-  const [remember, setRemember] = React.useState(
-    localStorage.getItem("remember") ? true : false
-  );
+  const [remember, setRemember] = React.useState(false);
   const handleRemember = () => {
     if (!remember) {
       localStorage.setItem(
@@ -29,7 +29,8 @@ const RememberMe = ({ form }: { form: UseFormReturn<FormValues> }) => {
   };
 
   React.useEffect(() => {
-    if (remember) {
+    if (isBrowser && localStorage.getItem("remember")) {
+      setRemember(true);
       localStorage.setItem(
         "remember",
         JSON.stringify({
