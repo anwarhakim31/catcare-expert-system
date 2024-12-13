@@ -6,48 +6,79 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
+
+import { LoadingButton } from "@/components/ui/button-loading";
+import useForget from "@/hooks/auth/useForget";
+import { ResponseError } from "@/lib/ResponseError";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 const FormSchema = z.object({
-  namaPengguna: z.string(),
-  namaLengkap: z.string(),
-  sandi: z.string(),
+  username: z.string().min(1, { message: "Nama pengguna harus diisi" }),
+  fullname: z.string().min(1, { message: "Nama lengkap harus diisi" }),
+  password: z
+    .string()
+    .min(5, { message: "Kata sandi Baru minimal 5 karakter" }),
 });
 
 const ForgetPasswordView = () => {
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
-    defaultValues: { namaPengguna: "", sandi: "" },
+    defaultValues: { username: "", password: "", fullname: "" },
   });
+  const router = useRouter();
+  const { mutate, isPending } = useForget();
+
+  const onSubmit = (data: z.infer<typeof FormSchema>) => {
+    mutate(data, {
+      onSuccess: () => {
+        form.reset();
+        router.replace("/login");
+        toast.success("Kata sandi berhasil diubah");
+      },
+      onError: (err) => {
+        return ResponseError(err);
+      },
+    });
+  };
 
   return (
     <Form {...form}>
-      <form>
+      <form onSubmit={form.handleSubmit(onSubmit)}>
         <FormField
           control={form.control}
-          name="namaPengguna"
+          name="username"
           render={({ field }) => (
             <AuthFormControl type="text" field={field} label="Nama Pengguna" />
           )}
         />
         <FormField
           control={form.control}
-          name="namaLengkap"
+          name="fullname"
           render={({ field }) => (
             <AuthFormControl type="text" field={field} label="Nama Lengkap" />
           )}
         />
         <FormField
           control={form.control}
-          name="sandi"
+          name="password"
           render={({ field }) => (
-            <AuthFormControl type="password" field={field} label="Kata Sandi" />
+            <AuthFormControl
+              type="password"
+              field={field}
+              label="Kata Sandi Baru"
+            />
           )}
         />
 
-        <Button type="submit" aria-label="Masuk" className="w-full mt-4">
+        <LoadingButton
+          loading={isPending}
+          type="submit"
+          aria-label="Masuk"
+          className="w-full mt-4"
+        >
           Daftar
-        </Button>
+        </LoadingButton>
         <div className="flex items-center justify-center mt-4 gap-2">
           <p className="text-xs">Sudah punya akun?</p>{" "}
           <Link

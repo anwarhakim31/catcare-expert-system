@@ -6,45 +6,98 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
 import RememberMe from "@/components/fragments/RememberMe";
+import { ResponseError } from "@/lib/ResponseError";
+import { useRouter } from "next/navigation";
+import { LoadingButton } from "@/components/ui/button-loading";
+
+import { useAuthContext } from "@/context/AuthContext";
+import useLogin from "@/hooks/auth/useLogin";
 
 const FormSchema = z.object({
-  namaPengguna: z.string(),
-  sandi: z.string(),
+  username: z.string().min(1, { message: "Nama pengguna harus diisi" }),
+  password: z.string().min(1, { message: "Kata sandi harus diisi" }),
 });
 const isBrowser = typeof window !== "undefined";
 
 const LoginView = () => {
+  const router = useRouter();
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: isBrowser
       ? {
-          namaPengguna: localStorage.getItem("remember")
-            ? JSON.parse(localStorage.getItem("remember")!).namaPengguna
+          username: localStorage.getItem("remember")
+            ? JSON.parse(localStorage.getItem("remember")!).username
             : "",
-          sandi: localStorage.getItem("remember")
-            ? JSON.parse(localStorage.getItem("remember")!).sandi
+          password: localStorage.getItem("remember")
+            ? JSON.parse(localStorage.getItem("remember")!).password
             : "",
         }
-      : { namaPengguna: "", sandi: "" },
+      : { username: "", password: "" },
   });
+  const context = useAuthContext();
+  const { mutate, isPending } = useLogin();
+
+  const onSumbit = (data: z.infer<typeof FormSchema>) => {
+    mutate(data, {
+      onSuccess: (value) => {
+        context?.setUserData(value.data);
+        router.replace("/");
+        form.reset();
+      },
+      onError: (err) => {
+        return ResponseError(err);
+      },
+    });
+  };
 
   return (
     <Form {...form}>
-      <form>
+      <form onSubmit={form.handleSubmit(onSumbit)}>
         <FormField
           control={form.control}
-          name="namaPengguna"
+          name="username"
           render={({ field }) => (
-            <AuthFormControl type="text" field={field} label="Nama Pengguna" />
+            <AuthFormControl
+              type="text"
+              field={{
+                ...field,
+                onChange: (e) => {
+                  field.onChange(e.target.value);
+                  localStorage.setItem(
+                    "remember",
+                    JSON.stringify({
+                      username: e.target.value,
+                      password: form.getValues("password"),
+                    })
+                  );
+                },
+              }}
+              label="Nama Pengguna"
+            />
           )}
         />
         <FormField
           control={form.control}
-          name="sandi"
+          name="password"
           render={({ field }) => (
-            <AuthFormControl type="password" field={field} label="Kata Sandi" />
+            <AuthFormControl
+              type="password"
+              field={{
+                ...field,
+                onChange: (e) => {
+                  field.onChange(e.target.value);
+                  localStorage.setItem(
+                    "remember",
+                    JSON.stringify({
+                      username: form.getValues("username"),
+                      password: e.target.value,
+                    })
+                  );
+                },
+              }}
+              label="Kata Sandi"
+            />
           )}
         />
         <div className="flex items-center justify-between mt-8">
@@ -56,9 +109,14 @@ const LoginView = () => {
             Lupa Kata Sandi
           </Link>
         </div>
-        <Button type="submit" aria-label="Masuk" className="w-full mt-4">
+        <LoadingButton
+          loading={isPending}
+          type="submit"
+          aria-label="Masuk"
+          className="w-full mt-4"
+        >
           Masuk
-        </Button>
+        </LoadingButton>
         <div className="flex items-center justify-center mt-4 gap-2">
           <p className="text-xs">Belum punya akun?</p>{" "}
           <Link

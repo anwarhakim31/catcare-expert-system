@@ -3,8 +3,8 @@ import { UseFormReturn } from "react-hook-form";
 import { Checkbox } from "../ui/checkbox";
 
 interface FormValues {
-  namaPengguna: string;
-  sandi: string;
+  username: string;
+  password: string;
 }
 
 const isBrowser = typeof window !== "undefined";
@@ -16,14 +16,13 @@ const RememberMe = ({ form }: { form: UseFormReturn<FormValues> }) => {
       localStorage.setItem(
         "remember",
         JSON.stringify({
-          namaPengguna: form.getValues("namaPengguna"),
-          sandi: form.getValues("sandi"),
+          username: form.getValues("username"),
+          password: form.getValues("password"),
         })
       );
       setRemember(true);
     } else {
       localStorage.removeItem("remember");
-      form.reset();
       setRemember(false);
     }
   };
@@ -31,15 +30,8 @@ const RememberMe = ({ form }: { form: UseFormReturn<FormValues> }) => {
   React.useEffect(() => {
     if (isBrowser && localStorage.getItem("remember")) {
       setRemember(true);
-      localStorage.setItem(
-        "remember",
-        JSON.stringify({
-          namaPengguna: form.watch("namaPengguna"),
-          sandi: form.watch("sandi"),
-        })
-      );
     }
-  }, [remember, form]);
+  }, [remember]);
 
   return (
     <div className="flex items-center space-x-2 ">
