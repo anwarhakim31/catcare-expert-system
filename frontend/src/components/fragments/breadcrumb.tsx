@@ -24,7 +24,7 @@ const BreadCrumb = () => {
             <Fragment key={pathToSegment}>
               <BreadcrumbItem>
                 <BreadcrumbLink
-                  className="text-white hover:text-purple-100"
+                  className="text-white hover:text-orange-50"
                   href={`${pathToSegment}`}
                 >
                   {item}

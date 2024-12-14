@@ -66,13 +66,13 @@ const HeaderAdmin = ({
             <Separator />
 
             <Link
-              className="text-sm w-full p-2 block hover:bg-orange-100 transition-all duration-200 ease-in-out"
+              className="text-sm w-full p-2 block hover:bg-orange-50 transition-all duration-200 ease-in-out"
               href={"/admin/profile"}
             >
               Profile
             </Link>
             <button
-              className="text-sm text-left w-full p-2 block hover:bg-orange-100 transition-all duration-200 ease-in-out"
+              className="text-sm text-left w-full p-2 block hover:bg-orange-50 transition-all duration-200 ease-in-out"
               aria-label="Logout"
               type="button"
               onClick={() => mutate()}

@@ -1,5 +1,5 @@
 "use client";
-import { Box, LayoutDashboard, X } from "lucide-react";
+import { Biohazard, LayoutDashboard, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -16,9 +16,9 @@ const NavItem = [
   },
   {
     id: 2,
-    name: "Products",
-    path: "/admin/products",
-    icon: <Box size={20} strokeWidth={1.5} className="flex-shrink-0 " />,
+    name: "Penyakit",
+    path: "/admin/penyakit",
+    icon: <Biohazard size={20} strokeWidth={1.5} className="flex-shrink-0 " />,
   },
 ];
 
@@ -55,10 +55,8 @@ const SidebarLayout = ({
     <aside
       ref={sideRef}
       className={` ${
-        !isOpen
-          ? "left-0 w-[250px] md:w-[60px]"
-          : "-left-[250px] w-[250px] md:w-[180px]"
-      } transition-[width left] duration-300 fixed md:static  bg-white z-20  ease-in-out`}
+        !isOpen ? "left-0  md:w-[60px]" : "-left-[250px]  md:w-[200px]"
+      } transition-[width left] duration-300 w-[250px] fixed md:static  bg-white z-20  ease-in-out`}
     >
       <div className="md:fixed  min-h-screen top-0 left-0 w-[inherit] shadow-md bg-white">
         <div className="flex items-center justify-between gap-2 p-1 bg-orange-500 h-[60px] overflow-hidden">
@@ -84,7 +82,7 @@ const SidebarLayout = ({
                 className={`${
                   pathname === item.path
                     ? "bg-orange-600 text-white"
-                    : "text-black hover:bg-orange-100"
+                    : "text-black hover:bg-orange-50"
                 } flex items-center  text-sm px-3 py-2  gap-2 rounded-md relative`}
                 onMouseEnter={() => setHover(item.name)}
                 onMouseLeave={() => setHover("")}

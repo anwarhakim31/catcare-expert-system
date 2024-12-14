@@ -6,3 +6,12 @@ export interface User {
   password?: string;
   createdAt?: Date;
 }
+
+export interface Disease {
+  id?: string;
+  name: string;
+  image: string;
+  description: string;
+  solution: string;
+  createdAt?: Date;
+}

@@ -7,3 +7,7 @@ export function formatSplitName(name: string) {
     return splitName[0].charAt(0);
   }
 }
+
+export function formatImageName(value: string) {
+  return value.split("/")[9];
+}

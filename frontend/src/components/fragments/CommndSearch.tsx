@@ -29,7 +29,7 @@ export function CommandSearch() {
     <>
       <button
         aria-label="search"
-        className="hidden text-sm md:flex items-center gap-2 bg-white hover:bg-orange-100 w-[220px] h-8 rounded-md border px-2"
+        className="hidden text-sm md:flex items-center gap-2 bg-white hover:bg-orange-50 w-[220px] h-8 rounded-md border px-2"
         onClick={() => setOpen(true)}
       >
         <Search size={18} strokeWidth={1.5} />

@@ -92,3 +92,9 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center gap-2  disabled:cursor-not-allowed whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-orange-500 text-primary-foreground shadow hover:bg-orange-500/90 py-1.5 px-4;
+  }
+}

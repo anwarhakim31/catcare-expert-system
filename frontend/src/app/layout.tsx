@@ -50,7 +50,7 @@ export default async function RootLayout({
         <html lang="en">
           <body className={openSans.className}>
             {children}
-            <Toaster theme="light" position="top-center" />
+            <Toaster theme="light" position="top-center" richColors />
           </body>
         </html>
       </AuthProvider>
