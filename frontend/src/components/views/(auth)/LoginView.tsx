@@ -1,14 +1,14 @@
 "use client";
 import AuthFormControl from "@/components/fragments/AuthFormControl";
 import { Form, FormField } from "@/components/ui/form";
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
 import RememberMe from "@/components/fragments/RememberMe";
 import { ResponseError } from "@/lib/ResponseError";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { LoadingButton } from "@/components/ui/button-loading";
 
 import { useAuthContext } from "@/context/AuthContext";
@@ -18,31 +18,26 @@ const FormSchema = z.object({
   username: z.string().min(1, { message: "Nama pengguna harus diisi" }),
   password: z.string().min(1, { message: "Kata sandi harus diisi" }),
 });
-const isBrowser = typeof window !== "undefined";
 
 const LoginView = () => {
   const router = useRouter();
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
-    defaultValues: isBrowser
-      ? {
-          username: localStorage.getItem("remember")
-            ? JSON.parse(localStorage.getItem("remember")!).username
-            : "",
-          password: localStorage.getItem("remember")
-            ? JSON.parse(localStorage.getItem("remember")!).password
-            : "",
-        }
-      : { username: "", password: "" },
+    defaultValues: { username: "", password: "" },
   });
   const context = useAuthContext();
   const { mutate, isPending } = useLogin();
+  const searchParams = useSearchParams().get("callbackUrl");
 
   const onSumbit = (data: z.infer<typeof FormSchema>) => {
     mutate(data, {
       onSuccess: (value) => {
         context?.setUserData(value.data);
-        router.replace("/");
+        const redirectUrl = value.data.isAdmin
+          ? searchParams || "/admin/dashboard"
+          : searchParams || "/";
+
+        router.replace(redirectUrl);
         form.reset();
       },
       onError: (err) => {
@@ -50,6 +45,14 @@ const LoginView = () => {
       },
     });
   };
+
+  useEffect(() => {
+    if (localStorage.getItem("remember")) {
+      const remember = JSON.parse(localStorage.getItem("remember")!);
+      form.setValue("username", remember.username);
+      form.setValue("password", remember.password);
+    }
+  }, [form]);
 
   return (
     <Form {...form}>
