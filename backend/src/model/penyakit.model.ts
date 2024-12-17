@@ -1,4 +1,5 @@
 export class ReqCreatePenyakit {
+  id: string;
   name: string;
   image: string;
   description: string;
@@ -9,11 +10,10 @@ export class ReqGetPenyakit {
   page?: number;
   search?: string;
   limit?: number;
-  total?: number;
-  totalPage?: number;
 }
 
 export class ReqPutPenyakit {
+  id: string;
   name: string;
   image: string;
   description: string;

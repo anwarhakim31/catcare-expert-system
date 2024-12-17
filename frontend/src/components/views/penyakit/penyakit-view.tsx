@@ -1,15 +1,8 @@
 "use client";
 
-import {
-  ColumnDef,
-  getCoreRowModel,
-  getFilteredRowModel,
-  getPaginationRowModel,
-  getSortedRowModel,
-  useReactTable,
-} from "@tanstack/react-table";
+import { ColumnDef } from "@tanstack/react-table";
 import SectionLayout from "@/components/layouts/SectionLayout";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import InputSearch from "@/components/ui/input-search";
 import { Trash } from "lucide-react";
 import Link from "next/link";
@@ -17,13 +10,13 @@ import { Disease } from "@/types/model";
 import TablePagination from "@/components/fragments/TablePagination";
 import { Paging } from "@/types/api";
 import TableFragment from "@/components/fragments/Table";
-import { ModalDelete } from "@/components/fragments/ModalDelete";
+import { ModalDelete } from "@/components/fragments/modal-delete";
 import useDeleteDisease from "@/hooks/penyakit/useDeleteDisease";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { ResponseError } from "@/lib/ResponseError";
 import TableSkeleton from "@/components/fragments/TableSkeleton";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import useDataTableDisease from "@/hooks/penyakit/useDataTableDisease";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -39,60 +32,13 @@ export function PenyakitView<TData extends Disease, TValue>({
   isLoading,
 }: DataTableProps<TData, TValue>) {
   const query = useQueryClient();
-  const router = useRouter();
-  const searchParams = useSearchParams();
-  const pathname = usePathname();
 
-  const [rowSelection, setRowSelection] = React.useState({});
-  const [page, setPage] = React.useState({
-    page: 1,
-    limit: 10,
-    total: 0,
-    totalPage: 0,
-  });
-  const [paginationState, setPaginationState] = useState({
-    pageIndex: Number(searchParams.get("page") || "1") - 1 || 0,
-    pageSize: Number(searchParams.get("limit") || "10"),
-  });
   const [isOpen, setIsOpen] = useState(false);
 
-  useEffect(() => {
-    if (paging) {
-      setPage(paging);
-    }
-  }, [paging]);
-
-  const table = useReactTable({
-    data,
+  const { table, rowSelection } = useDataTableDisease({
     columns,
-    getCoreRowModel: getCoreRowModel(),
-    getSortedRowModel: getSortedRowModel(),
-    getFilteredRowModel: getFilteredRowModel(),
-    onRowSelectionChange: setRowSelection,
-    getPaginationRowModel: getPaginationRowModel(),
-    manualPagination: true,
-    pageCount: paging?.totalPage || 0,
-    state: {
-      rowSelection,
-      pagination: paginationState,
-    },
-
-    onPaginationChange: (updater) => {
-      const nextPagination =
-        typeof updater === "function" ? updater(paginationState) : updater;
-
-      setPaginationState(nextPagination);
-
-      const param = new URLSearchParams(searchParams);
-      param.set("page", `${nextPagination.pageIndex + 1}`);
-
-      if (nextPagination.pageSize !== 10) {
-        param.set("limit", `${nextPagination.pageSize}`);
-      }
-
-      router.replace(`${pathname}?${param.toString()}`);
-    },
-    getRowId: (row) => row.id as string,
+    data,
+    paging,
   });
 
   const { mutate, isPending } = useDeleteDisease();
@@ -128,7 +74,12 @@ export function PenyakitView<TData extends Disease, TValue>({
             colSpan={Object.values(columns).length}
             table={table}
           />
-          <TablePagination pagination={page} table={table} />
+          <TablePagination
+            pagination={
+              paging || { page: 1, limit: 10, total: 0, totalPage: 0 }
+            }
+            table={table}
+          />
         </>
       )}
 

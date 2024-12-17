@@ -86,6 +86,16 @@ export class PenyakitService {
       request,
     );
 
+    const totalDiseaseWithSameId = await this.prismaService.disease.count({
+      where: {
+        id: penyakitRequest.id,
+      },
+    });
+
+    if (totalDiseaseWithSameId > 0) {
+      throw new HttpException('ID penyakit sudah digunakan', 400);
+    }
+
     const totalDiseaseWithSameName = await this.prismaService.disease.count({
       where: {
         name: penyakitRequest.name,
@@ -108,6 +118,32 @@ export class PenyakitService {
       PenyakitValidation.PUT,
       request,
     );
+
+    const totalDiseaseWithSameId = await this.prismaService.disease.count({
+      where: {
+        id: penyakitRequest.id,
+        NOT: {
+          id: id,
+        },
+      },
+    });
+
+    if (totalDiseaseWithSameId > 0) {
+      throw new HttpException('ID penyakit sudah digunakan', 400);
+    }
+
+    const totalDiseaseWithSameName = await this.prismaService.disease.count({
+      where: {
+        name: penyakitRequest.name,
+        NOT: {
+          id: id,
+        },
+      },
+    });
+
+    if (totalDiseaseWithSameName > 0) {
+      throw new HttpException('Nama penyakit sudah digunakan', 400);
+    }
 
     const disease = await this.prismaService.disease.update({
       where: {

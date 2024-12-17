@@ -3,11 +3,10 @@
 import { ColumnDef } from "@tanstack/react-table";
 
 import { Checkbox } from "@/components/ui/checkbox";
-import { Disease } from "@/types/model";
-import Image from "next/image";
-import CellActionPenyakit from "./cell-action-penyakit";
+import { Symptom } from "@/types/model";
+import CellActionGejala from "./cell-action-gejala";
 
-export const columns: ColumnDef<Disease>[] = [
+export const columns: ColumnDef<Symptom>[] = [
   {
     id: "select",
     header: ({ table }) => (
@@ -16,7 +15,7 @@ export const columns: ColumnDef<Disease>[] = [
           table.getIsAllPageRowsSelected() ||
           (table.getIsSomePageRowsSelected() && "indeterminate")
         }
-        className="data-[state=checked]:bg-orange-500 data-[state=checked]:text-white border-white"
+        className="data-[state=checked]:bg-orange-500  data-[state=checked]:text-white border-white"
         onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
         aria-label="Select all"
       />
@@ -37,41 +36,20 @@ export const columns: ColumnDef<Disease>[] = [
   {
     accessorKey: "id",
     header: "ID",
+    cell: ({ row }) => (
+      <div className="uppercase py-2">{row.getValue("id")}</div>
+    ),
     enableHiding: false,
   },
   {
-    accessorKey: "image",
-    header: "GAMBAR",
-    cell: ({ row }) => {
-      return (
-        <div className="relative aspect-square max-w-12 h-12">
-          <Image
-            src={row.getValue("image")}
-            alt={row.getValue("name")}
-            fill
-            className="rounded-sm object-cover"
-            priority
-          />
-        </div>
-      );
-    },
-  },
-  {
-    accessorKey: "name",
-    header: "NAMA PENYAKIT",
+    accessorKey: "symptom",
+    header: "GEJALA",
     enableHiding: false,
   },
-  {
-    accessorKey: "description",
-    header: "DESKRIPSI",
-  },
-  {
-    accessorKey: "solution",
-    header: "SOLUSI",
-  },
+
   {
     id: "Aksi",
-    cell: ({ row }) => <CellActionPenyakit data={row.original} />,
+    cell: ({ row }) => <CellActionGejala data={row.original} />,
     enableHiding: false,
   },
 ];

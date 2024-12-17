@@ -1,6 +1,6 @@
 "use client";
-import HeaderAdmin from "@/components/layouts/header-admin";
-import SidebarLayout from "@/components/layouts/SidebarLayout";
+import HeaderAdmin from "@/components/fragments/header-admin";
+import Sidebar from "@/components/fragments/sidebar";
 
 import React from "react";
 
@@ -9,7 +9,7 @@ const AdminLayout = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <div className="flex min-h-screen">
-      <SidebarLayout isOpen={IsOpen} setIsOpen={setIsOpen} />
+      <Sidebar isOpen={IsOpen} setIsOpen={setIsOpen} />
       <main className="flex-1 flex flex-col overflow-hidden">
         <HeaderAdmin isOpen={IsOpen} setIsOpen={setIsOpen} />
         {children}

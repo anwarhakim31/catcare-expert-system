@@ -1,5 +1,5 @@
 export interface User {
-  id?: number;
+  id?: string;
   username: string;
   fullname: string;
   photo?: string;
@@ -13,5 +13,11 @@ export interface Disease {
   image: string;
   description: string;
   solution: string;
+  createdAt?: Date;
+}
+
+export interface Symptom {
+  id?: string;
+  symptom: string;
   createdAt?: Date;
 }

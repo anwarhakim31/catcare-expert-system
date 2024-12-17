@@ -25,7 +25,7 @@ const TableSkeleton = <T,>({
         <Table className="overflow-hidden" defaultValue={"true"}>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
-              <TableRow key={headerGroup.id}>
+              <TableRow key={headerGroup.id} className="bg-orange-500">
                 {Array.from({ length: headerGroup.headers.length }).map(
                   (_, i) => {
                     return (

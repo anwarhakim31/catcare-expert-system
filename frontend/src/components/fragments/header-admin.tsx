@@ -8,8 +8,8 @@ import { Avatar } from "../ui/avatar";
 import { formatSplitName } from "@/utils/helpers";
 import Image from "next/image";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
-import { CommandSearch } from "../fragments/CommndSearch";
-import BreadCrumb from "../fragments/breadcrumb";
+import { CommandSearch } from "./CommndSearch";
+import BreadCrumb from "./breadcrumb";
 import { Separator } from "../ui/separator";
 import Link from "next/link";
 import useLogout from "@/hooks/auth/useLogout";
@@ -25,7 +25,11 @@ const HeaderAdmin = ({
   const { mutate, isPending } = useLogout();
 
   return (
-    <header className="absolute w-full left-0 top-0 bg-orange-600 shadow-md px-4 py-3.5 flex justify-between items-center">
+    <header
+      className={`${
+        isOpen ? "md:pl-[248px]" : "md:pl-[90px]"
+      } fixed w-full left-0 top-0 z-10 bg-orange-600 shadow-md px-4 py-3.5 md:pr-8 flex justify-between items-center transition-all duration-300 ease-in-out`}
+    >
       <div className="flex gap-2 items-center ">
         <button className="text-white p-1" onClick={() => setIsOpen(!isOpen)}>
           {isOpen ? (

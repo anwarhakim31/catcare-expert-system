@@ -14,8 +14,6 @@ const getData = async (idPenyakit: string, catcare: string) => {
     }
   );
 
-  console.log(res);
-
   if (!res.ok) {
     return redirect("/admin/penyakit");
   }

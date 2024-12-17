@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Open_Sans } from "next/font/google";
+import { Inter_Tight } from "next/font/google";
 
 import "./globals.css";
 import ReactQueryProvider from "@/components/Providers/ReactQueryProvider";
@@ -24,7 +24,7 @@ const fetchUserData = async (token: string | null) => {
   }
 };
 
-const openSans = Open_Sans({
+const openSans = Inter_Tight({
   weight: ["400", "500", "600", "700", "800"],
   subsets: ["latin"],
 });

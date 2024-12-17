@@ -1,5 +1,5 @@
 "use client";
-import { Disease } from "@/types/model";
+import { Symptom } from "@/types/model";
 import React from "react";
 import { MoreHorizontal } from "lucide-react";
 
@@ -14,20 +14,22 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 import { ModalDelete } from "@/components/fragments/modal-delete";
-import useDeleteDisease from "@/hooks/penyakit/useDeleteDisease";
+
 import { toast } from "sonner";
 import { ResponseError } from "@/lib/ResponseError";
-import { useRouter } from "next/navigation";
+
 import { useQueryClient } from "@tanstack/react-query";
+import { ModalFormGejala } from "./modal-form-gejala";
+import useDeleteSymptom from "@/hooks/gejala/useDeleteSymptom";
 
 interface CellActionProps {
-  data: Disease;
+  data: Symptom;
 }
 
-const CellActionPenyakit: React.FC<CellActionProps> = ({ data }) => {
-  const router = useRouter();
-  const [isOpen, setIsOpen] = React.useState(false);
-  const { mutate, isPending } = useDeleteDisease();
+const CellActionGejala: React.FC<CellActionProps> = ({ data }) => {
+  const [isEditing, setIsEditing] = React.useState(false);
+  const [isDeleting, setIsDeleting] = React.useState(false);
+  const { mutate, isPending } = useDeleteSymptom();
 
   const query = useQueryClient();
 
@@ -36,9 +38,9 @@ const CellActionPenyakit: React.FC<CellActionProps> = ({ data }) => {
       { selected: [data.id as string] },
       {
         onSuccess: () => {
-          setIsOpen(false);
-          query.invalidateQueries({ queryKey: ["disease"] });
-          toast.success("Berhasil menghapus penyakit" + data.name);
+          setIsDeleting(false);
+          query.invalidateQueries({ queryKey: ["symptom"] });
+          toast.success("Berhasil menghapus gejala " + data.id?.toUpperCase());
         },
         onError: (err) => {
           ResponseError(err);
@@ -50,11 +52,16 @@ const CellActionPenyakit: React.FC<CellActionProps> = ({ data }) => {
   return (
     <>
       <ModalDelete
-        isOpen={isOpen}
-        onClose={() => setIsOpen(false)}
+        isOpen={isDeleting}
+        onClose={() => setIsDeleting(false)}
         onConfirm={onConfirm}
         loading={isPending}
-        desc={`Dengan menghapus  penyakit ini, semua data penyakit yang berkaitan dengan penyakit ini akan terhapus. Apakah anda yakin?`}
+        desc={`Dengan menghapus gejala ini, semua data gejala yang berkaitan dengan gejala ini akan terhapus. Apakah anda yakin?`}
+      />
+      <ModalFormGejala
+        open={isEditing}
+        setOpen={() => setIsEditing(false)}
+        dataEdit={data}
       />
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
@@ -67,13 +74,13 @@ const CellActionPenyakit: React.FC<CellActionProps> = ({ data }) => {
           <DropdownMenuLabel>Aksi</DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuItem
-            onClick={() => router.push(`/admin/penyakit/${data.id}`)}
+            onClick={() => setIsEditing(true)}
             className="cursor-pointer"
           >
             Edit
           </DropdownMenuItem>
           <DropdownMenuItem
-            onClick={() => setIsOpen(true)}
+            onClick={() => setIsDeleting(true)}
             className="cursor-pointer"
           >
             Hapus
@@ -84,4 +91,4 @@ const CellActionPenyakit: React.FC<CellActionProps> = ({ data }) => {
   );
 };
 
-export default CellActionPenyakit;
+export default CellActionGejala;

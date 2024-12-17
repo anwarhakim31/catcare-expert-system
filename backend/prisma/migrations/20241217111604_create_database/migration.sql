@@ -1,18 +1,20 @@
-/*
-  Warnings:
+-- CreateTable
+CREATE TABLE `users` (
+    `username` VARCHAR(100) NOT NULL,
+    `fullname` VARCHAR(191) NOT NULL,
+    `password` VARCHAR(191) NOT NULL,
+    `photo` VARCHAR(191) NULL,
+    `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+    `updatedAt` DATETIME(3) NOT NULL,
+    `isAdmin` BOOLEAN NOT NULL DEFAULT false,
 
-  - You are about to alter the column `photo` on the `users` table. The data in that column could be lost. The data in that column will be cast from `VarChar(255)` to `VarChar(191)`.
-
-*/
--- AlterTable
-ALTER TABLE `users` MODIFY `fullname` VARCHAR(191) NOT NULL,
-    MODIFY `password` VARCHAR(191) NOT NULL,
-    MODIFY `photo` VARCHAR(191) NULL;
+    UNIQUE INDEX `users_username_key`(`username`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
 CREATE TABLE `symptoms` (
     `id` VARCHAR(191) NOT NULL,
-    `name` VARCHAR(191) NOT NULL,
+    `symptom` VARCHAR(191) NOT NULL,
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
 
     PRIMARY KEY (`id`)

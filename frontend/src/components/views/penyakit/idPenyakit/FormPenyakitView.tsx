@@ -14,8 +14,10 @@ import usePostDisease from "@/hooks/penyakit/usePostDisease";
 import SectionLayout from "@/components/layouts/SectionLayout";
 import { Disease } from "@/types/model";
 import usePutDisease from "@/hooks/penyakit/usePutDisease";
+import { useRouter } from "next/navigation";
 
 const FormSchema = z.object({
+  id: z.string().min(1, { message: "ID harus diisi" }),
   image: z.string().min(1, { message: "Gambar harus diisi" }),
   name: z.string().min(1, { message: "Nama harus diisi" }),
   description: z.string().min(1, { message: "Deskripsi harus diisi" }),
@@ -23,9 +25,11 @@ const FormSchema = z.object({
 });
 
 const FormPenyakitView = ({ dataEdit }: { dataEdit: Disease }) => {
+  const router = useRouter();
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
+      id: dataEdit?.id || "",
       image: dataEdit?.image || "",
       name: dataEdit?.name || "",
       description: dataEdit?.description || "",
@@ -54,13 +58,25 @@ const FormPenyakitView = ({ dataEdit }: { dataEdit: Disease }) => {
         <form className="space-y-4" onSubmit={form.handleSubmit(onSubmit)}>
           <FormField
             control={form.control}
+            name="id"
+            render={({ field }) => (
+              <DataFormControl
+                field={field}
+                type="text"
+                label="ID"
+                placeholder="Masukkan ID "
+              />
+            )}
+          />
+          <FormField
+            control={form.control}
             name="name"
             render={({ field }) => (
               <DataFormControl
                 field={field}
                 type="text"
                 label="Nama Penyakit"
-                placeholder="Contoh: flu"
+                placeholder="Masukkan nama "
               />
             )}
           />
@@ -75,7 +91,7 @@ const FormPenyakitView = ({ dataEdit }: { dataEdit: Disease }) => {
             render={({ field }) => (
               <AreaFormControl
                 field={field}
-                placeholder="Deskripsi penyakit"
+                placeholder="Masukkan deskripsi"
                 label="Deskripsi"
               />
             )}
@@ -87,18 +103,29 @@ const FormPenyakitView = ({ dataEdit }: { dataEdit: Disease }) => {
             render={({ field }) => (
               <AreaFormControl
                 field={field}
-                placeholder="Solusi penyakit"
+                placeholder="Masukkan solusi"
                 label="Solution"
               />
             )}
           />
-          <LoadingButton
-            loading={pendingPost || pendingPut}
-            aria-label="simpan"
-            className="w-[150px] ml-auto flex items-center"
-          >
-            Simpan
-          </LoadingButton>
+          <div className="flex items-center justify-end gap-2">
+            <LoadingButton
+              loading={pendingPost || pendingPut}
+              aria-label="simpan"
+              className="w-[150px]  flex items-center bg-white text-gray-700 hover:bg-gray-100 transition-all duration-300 ease-in-out border border-gray-400"
+              type="button"
+              onClick={() => router.push("/admin/penyakit")}
+            >
+              Batal
+            </LoadingButton>
+            <LoadingButton
+              loading={pendingPost || pendingPut}
+              aria-label="simpan"
+              className="w-[150px]  flex items-center"
+            >
+              Simpan
+            </LoadingButton>
+          </div>
         </form>
       </Form>
     </SectionLayout>

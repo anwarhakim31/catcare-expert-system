@@ -19,10 +19,9 @@ model User{
    @@map("users")
 }
 
-
 model Symptom{
-    id String @id @default(uuid())      
-    name String 
+    id String @id       
+    symptom String 
     createdAt DateTime @default(now())
 
     @@map("symptoms")
@@ -30,7 +29,7 @@ model Symptom{
 
 
 model Disease{
-    id String @id @default(uuid())
+    id String @id 
     name String @unique 
     image String
     createdAt DateTime @default(now())

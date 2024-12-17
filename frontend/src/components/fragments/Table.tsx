@@ -21,12 +21,15 @@ const TableFragment = <T,>({
       <Table className="">
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (
-            <TableRow key={headerGroup.id}>
+            <TableRow
+              key={headerGroup.id}
+              className="bg-orange-500 hover:bg-orange-500 text-white"
+            >
               {headerGroup.headers.map((header) => {
                 return (
                   <TableHead
                     key={header.id}
-                    className="font-medium text-sm px-4 "
+                    className="font-medium text-sm px-4 text-white"
                   >
                     {header.isPlaceholder
                       ? null
@@ -46,15 +49,15 @@ const TableFragment = <T,>({
               <TableRow
                 key={row.id}
                 data-state={row.getIsSelected() && "selected"}
-                className={`${
-                  row.getIsSelected() ? "bg-orange-100" : ""
-                } h-fit`}
+                className={`${row.getIsSelected() ? "bg-orange-50" : ""} h-fit`}
               >
                 {row.getVisibleCells().map((cell) => (
                   <TableCell
                     key={cell.id}
                     className={
-                      row.getIsSelected() ? "bg-orange-100 px-4" : "px-4"
+                      row.getIsSelected()
+                        ? "bg-orange-50 px-4 py-1"
+                        : "px-4 py-1"
                     }
                   >
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
@@ -66,7 +69,7 @@ const TableFragment = <T,>({
             <TableRow className="border-b-0">
               <TableCell
                 colSpan={colSpan}
-                className="h-[calc(100vh-345px)] text-center "
+                className="h-[calc(100vh-345px)] text-center text-sm"
               >
                 Tidak ada data.
               </TableCell>

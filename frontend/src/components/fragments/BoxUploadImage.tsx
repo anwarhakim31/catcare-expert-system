@@ -11,6 +11,7 @@ import { formatImageName } from "@/utils/helpers";
 import { Progress } from "../ui/progress";
 
 interface FormValues {
+  id: string;
   image: string;
   name: string;
   description: string;

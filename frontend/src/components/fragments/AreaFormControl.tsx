@@ -19,11 +19,10 @@ const AreaFormControl: React.FC<PropsType> = ({
       <FormControl>
         <Textarea
           placeholder={placeholder}
-          className="resize-none"
+          className="resize-none p-2"
           {...field}
         />
       </FormControl>
-
       <FormMessage />
     </FormItem>
   );

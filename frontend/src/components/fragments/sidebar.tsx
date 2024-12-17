@@ -1,5 +1,14 @@
 "use client";
-import { Biohazard, LayoutDashboard, X } from "lucide-react";
+import {
+  Biohazard,
+  ClipboardList,
+  History,
+  LayoutDashboard,
+  MonitorCog,
+  SearchCheck,
+  Users,
+  X,
+} from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -16,13 +25,47 @@ const NavItem = [
   },
   {
     id: 2,
+    name: "Master Data",
+    path: "/admin/master-data",
+    icon: <MonitorCog size={20} strokeWidth={1.5} className="flex-shrink-0 " />,
+  },
+  {
+    id: 3,
     name: "Penyakit",
     path: "/admin/penyakit",
     icon: <Biohazard size={20} strokeWidth={1.5} className="flex-shrink-0 " />,
   },
+  {
+    id: 4,
+    name: "Gejala",
+    path: "/admin/gejala",
+    icon: (
+      <SearchCheck size={20} strokeWidth={1.5} className="flex-shrink-0 " />
+    ),
+  },
+  {
+    id: 5,
+    name: "Aturan",
+    path: "/admin/aturan",
+    icon: (
+      <ClipboardList size={20} strokeWidth={1.5} className="flex-shrink-0 " />
+    ),
+  },
+  {
+    id: 6,
+    name: "Pengguna",
+    path: "/admin/pengguna",
+    icon: <Users size={20} strokeWidth={1.5} className="flex-shrink-0 " />,
+  },
+  {
+    id: 7,
+    name: "Riwayat",
+    path: "/admin/riwayat",
+    icon: <History size={20} strokeWidth={1.5} className="flex-shrink-0 " />,
+  },
 ];
 
-const SidebarLayout = ({
+const Sidebar = ({
   isOpen,
   setIsOpen,
 }: {
@@ -55,11 +98,15 @@ const SidebarLayout = ({
     <aside
       ref={sideRef}
       className={` ${
-        !isOpen ? "left-0  md:w-[60px]" : "-left-[250px]  md:w-[200px]"
+        !isOpen ? "left-0  md:w-[60px]" : "-left-[250px] md:w-[220px]"
       } transition-[width left] duration-300 w-[250px] fixed md:static  bg-white z-20  ease-in-out`}
     >
       <div className="md:fixed  min-h-screen top-0 left-0 w-[inherit] shadow-md bg-white">
-        <div className="flex items-center justify-between gap-2 p-1 bg-orange-500 h-[60px] overflow-hidden">
+        <div
+          className={`${
+            isOpen ? "md:px-6" : "md:px-1"
+          } flex items-center justify-between gap-2 px-2 py-1 bg-orange-500 h-[60px] overflow-hidden transition-all duration-300 ease-in-out`}
+        >
           <div className="flex items-center gap-1.5  text-white justify-center ">
             <Image
               src={"/logo.png"}
@@ -74,7 +121,11 @@ const SidebarLayout = ({
             <X size={20} onClick={() => setIsOpen(!isOpen)} />
           </button>
         </div>
-        <ul className="space-y-2 p-2 mt-4">
+        <ul
+          className={`${
+            isOpen ? " md:px-6" : "md:px-2"
+          }  space-y-2 px-2 py-2 mt-4 transition-all duration-300 ease-in-out`}
+        >
           {NavItem.map((item) => (
             <li key={item.id}>
               <Link
@@ -103,4 +154,4 @@ const SidebarLayout = ({
   );
 };
 
-export default SidebarLayout;
+export default Sidebar;

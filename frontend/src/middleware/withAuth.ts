@@ -40,11 +40,8 @@ export default function withAuth(
 
     return mainMiddleware(req, ev);
   };
-
-  //      const encryptedToken = req.cookies.get("catcare")?.value || "";
-  //   const { pathname, origin } = req.nextUrl;
-  //   if (!encryptedToken) {
-  //     return NextResponse.next();
-  //   }
-  //   try {
 }
+
+export const config = {
+  matcher: ["/admin/:path*"],
+};
