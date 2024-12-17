@@ -10,7 +10,7 @@ const AdminLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className="flex min-h-screen">
       <SidebarLayout isOpen={IsOpen} setIsOpen={setIsOpen} />
-      <main className="flex-1 flex flex-col">
+      <main className="flex-1 flex flex-col overflow-hidden">
         <HeaderAdmin isOpen={IsOpen} setIsOpen={setIsOpen} />
         {children}
       </main>

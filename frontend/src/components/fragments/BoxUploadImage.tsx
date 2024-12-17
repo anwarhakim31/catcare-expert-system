@@ -26,7 +26,8 @@ const BoxUploadImage = ({
 }) => {
   const ref = React.useRef<HTMLInputElement>(null);
   const [proggress, setProggress] = useState(0);
-  const { mutate } = usePostImage((value) => setProggress(value));
+  const [onDrag, setOnDrag] = useState(false);
+  const { mutate, isPending } = usePostImage((value) => setProggress(value));
 
   const handleClick = () => {
     if (ref.current) {
@@ -49,13 +50,39 @@ const BoxUploadImage = ({
       });
     }
   };
+  const handleDropImage = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    const file = e.dataTransfer.files?.[0];
+    if (file) {
+      mutate(file, {
+        onSuccess: (value) => {
+          form.setValue("image", value.url);
+          e.dataTransfer.clearData();
+          setProggress(0);
+        },
+        onError: (err) => {
+          ResponseError(err);
+        },
+      });
+    }
+  };
 
   return (
     <FormItem>
       <FormLabel className=" text-gray-700">Gambar</FormLabel>
       <div
-        onClick={() => (field.value ? {} : handleClick())}
-        className={`${
+        onClick={() => (field.value ? {} : isPending ? {} : handleClick())}
+        onDragOver={(e) => e.preventDefault()}
+        onDragEnter={(e) => {
+          e.preventDefault();
+          setOnDrag(true);
+        }}
+        onDragLeave={(e) => {
+          e.preventDefault();
+          setOnDrag(false);
+        }}
+        onDrop={handleDropImage}
+        className={`${onDrag && "bg-orange-50"} ${
           field.value ? "" : "cursor-pointer"
         } hover:bg-orange-50 border h-[200px] mt-2 rounded-md  border-dashed border-gray-300 flex items-center justify-center flex-col`}
       >
@@ -78,13 +105,14 @@ const BoxUploadImage = ({
         )}
         {field.value && (
           <>
-            <figure className=" max-h-[120px]">
+            <figure className=" max-h-[120px] ">
               <Image
                 src={(field.value as string) || ""}
                 alt="image"
                 width={200}
                 height={200}
-                priority
+                loading="lazy"
+                className="w-full h-full object-contain"
               />
             </figure>
             <div className="flex items-center gap-2 mt-4">

@@ -25,7 +25,7 @@ const HeaderAdmin = ({
   const { mutate, isPending } = useLogout();
 
   return (
-    <header className="sticky w-full left-0 top-0 bg-orange-600 shadow-md px-4 py-3.5 flex justify-between items-center">
+    <header className="absolute w-full left-0 top-0 bg-orange-600 shadow-md px-4 py-3.5 flex justify-between items-center">
       <div className="flex gap-2 items-center ">
         <button className="text-white p-1" onClick={() => setIsOpen(!isOpen)}>
           {isOpen ? (
