@@ -8,7 +8,9 @@ import React from "react";
 const GejalaPage = () => {
   const searchParams = useSearchParams();
   const { isPending, data } = useFetchSymptom(
-    new URLSearchParams(searchParams)
+    new URLSearchParams(searchParams),
+    "1",
+    "10"
   );
 
   return (

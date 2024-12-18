@@ -8,13 +8,15 @@ datasource db {
 }
 
 model User{
-   username String @unique @db.VarChar(100) 
+   username String @id @unique @db.VarChar(100) 
    fullname String 
    password String 
    photo String? 
    createdAt DateTime @default(now())
    updatedAt DateTime @updatedAt
    isAdmin Boolean @default(false)
+
+   history Diagnosis[]
 
    @@map("users")
 }
@@ -23,6 +25,8 @@ model Symptom{
     id String @id       
     symptom String 
     createdAt DateTime @default(now())
+
+    rules Rule[]
 
     @@map("symptoms")
 }
@@ -36,5 +40,34 @@ model Disease{
     description String
     solution String
 
+    rules Rule[]
+
    @@map("diseases")
+}
+
+model Rule {
+  id          String    @id @default(cuid())
+  diseaseId   String
+  symptomId   String
+
+  
+  disease     Disease   @relation(fields: [diseaseId], references: [id])
+  symptom     Symptom   @relation(fields: [symptomId], references: [id])
+  createdAt   DateTime  @default(now())
+
+  @@map("rules")
+  @@unique([diseaseId, symptomId])
+}
+
+
+model Diagnosis{
+  id String @id @default(uuid())
+  answer Json
+  status String 
+  createdAt DateTime @default(now())
+
+  username String
+  user User @relation(fields: [username],references: [username])
+
+  @@map("diagnosis")
 }

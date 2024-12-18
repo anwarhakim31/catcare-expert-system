@@ -7,6 +7,7 @@ interface typeProps {
   label: string;
   type: string;
   placeholder: string;
+  classname?: string;
 }
 
 const DataFormControl: React.FC<typeProps> = ({
@@ -14,6 +15,7 @@ const DataFormControl: React.FC<typeProps> = ({
   label,
   type,
   placeholder,
+  classname,
 }) => {
   return (
     <FormItem>
@@ -24,6 +26,7 @@ const DataFormControl: React.FC<typeProps> = ({
           type={type}
           {...field}
           autoComplete="off"
+          className={classname}
         />
       </FormControl>
       <FormMessage />

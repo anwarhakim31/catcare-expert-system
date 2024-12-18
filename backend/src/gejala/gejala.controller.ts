@@ -34,10 +34,12 @@ export class GejalaController {
     @Query('page', new ParseIntPipe({ optional: true })) page?: number,
     @Query('limit', new ParseIntPipe({ optional: true })) limit?: number,
   ) {
+    console.log(search, page, limit);
+
     const request: ReqGetGejala = {
       search: search || '',
-      page: page || 1,
-      limit: limit || 10,
+      page: page,
+      limit: limit,
     };
 
     const result = await this.GejalaService.getAll(request);
@@ -68,7 +70,6 @@ export class GejalaController {
     @Body() request: ReqPutGejala,
     @Param() params: { id: string },
   ): Promise<WebResponse<GejalaRespnse>> {
-    console.log(request);
     const result = await this.GejalaService.put(
       request,
       (params?.id as string) || '',

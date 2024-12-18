@@ -22,7 +22,7 @@ export class PenyakitService {
 
   async getAll(
     request: ReqGetPenyakit,
-  ): Promise<{ data: PenyakitRespnse[]; paging: Paging }> {
+  ): Promise<{ data: PenyakitRespnse[]; paging?: Paging }> {
     const getReq: ReqGetPenyakit = this.validationService.validate(
       PenyakitValidation.GETALL,
       request,
@@ -36,6 +36,19 @@ export class PenyakitService {
           contains: getReq.search,
         },
       });
+    }
+
+    if (!getReq.limit) {
+      const gejala = await this.prismaService.disease.findMany({
+        where: {
+          AND: filter,
+        },
+        orderBy: {
+          id: 'asc',
+        },
+      });
+
+      return { data: gejala };
     }
 
     const penyakit = await this.prismaService.disease.findMany({
@@ -107,7 +120,10 @@ export class PenyakitService {
     }
 
     const disease = await this.prismaService.disease.create({
-      data: penyakitRequest,
+      data: {
+        ...penyakitRequest,
+        id: penyakitRequest.id.toUpperCase(),
+      },
     });
 
     return disease;
@@ -149,7 +165,10 @@ export class PenyakitService {
       where: {
         id: id,
       },
-      data: penyakitRequest,
+      data: {
+        ...penyakitRequest,
+        id: penyakitRequest.id.toUpperCase(),
+      },
     });
 
     if (!disease) {

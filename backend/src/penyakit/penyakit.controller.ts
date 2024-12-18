@@ -35,8 +35,8 @@ export class PenyakitController {
   ): Promise<WebResponse<PenyakitRespnse[]>> {
     const request: ReqGetPenyakit = {
       search: search || '',
-      page: page || 1,
-      limit: limit || 10,
+      page: page,
+      limit: limit,
     };
 
     const result = await this.penyakitService.getAll(request);

@@ -21,3 +21,10 @@ export interface Symptom {
   symptom: string;
   createdAt?: Date;
 }
+
+export interface Rule {
+  id?: string;
+  symptomId: string;
+  diseaseId: string;
+  createdAt?: Date;
+}

@@ -17,27 +17,26 @@ import {
   DrawerFooter,
   DrawerHeader,
 } from "@/components/ui/drawer";
-
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Form, FormField } from "@/components/ui/form";
-
-import DataFormControl from "@/components/fragments/DataFormControl";
-import AreaFormControl from "@/components/fragments/AreaFormControl";
 import { LoadingButton } from "@/components/ui/button-loading";
-import usePostSymptom from "@/hooks/gejala/usePostSymptom";
-import { Symptom } from "@/types/model";
-import usePutSymptom from "@/hooks/gejala/usePutSymptom";
+import { Disease, Rule, Symptom } from "@/types/model";
+import SelectFormControl from "@/components/fragments/select-form-control";
+import useFetchSymptom from "@/hooks/gejala/useFetchSymptom";
+import useGetDisease from "@/hooks/penyakit/useGetDisease";
+import usePostRule from "@/hooks/aturan/usePostRule";
+import usePutRules from "@/hooks/aturan/usePutRules";
 
-export function ModalFormGejala({
+export function ModalFromAturan({
   open,
   setOpen,
   dataEdit,
 }: {
   open: boolean;
   setOpen: () => void;
-  dataEdit?: Symptom;
+  dataEdit?: Rule;
 }) {
   const isDesktop = useMediaQuery("(min-width: 768px)");
 
@@ -46,10 +45,10 @@ export function ModalFormGejala({
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogContent className="sm:max-w-[425px]">
           <DialogHeader>
-            <DialogTitle className="text-base">Tambah Gejala</DialogTitle>
+            <DialogTitle className="text-base">Tambah Aturan</DialogTitle>
             <DialogDescription></DialogDescription>
           </DialogHeader>
-          <GejalaForm onClose={setOpen} dataEdit={dataEdit} />
+          <AturanForm onClose={setOpen} dataEdit={dataEdit} />
         </DialogContent>
       </Dialog>
     );
@@ -59,10 +58,10 @@ export function ModalFormGejala({
     <Drawer open={open} onOpenChange={setOpen}>
       <DrawerContent>
         <DrawerHeader className="text-left">
-          <DialogTitle className="text-base">Tambah Gejala</DialogTitle>
+          <DialogTitle className="text-base">Tambah Aturan</DialogTitle>
           <DialogDescription></DialogDescription>
         </DrawerHeader>
-        <GejalaForm className="px-4" onClose={setOpen} dataEdit={dataEdit} />
+        <AturanForm className="px-4" onClose={setOpen} dataEdit={dataEdit} />
         <DrawerFooter className="pt-2">
           <DrawerClose asChild>
             <Button variant="outline">Cancel</Button>
@@ -74,44 +73,47 @@ export function ModalFormGejala({
 }
 
 const FormSchema = z.object({
-  id: z.string().min(1, {
-    message: "Id harus diisi",
+  diseaseId: z.string().min(1, {
+    message: "Penyakit harus diisi",
   }),
-  symptom: z.string().min(1, {
+  symptomId: z.string().min(1, {
     message: "Gejala harus diisi",
   }),
 });
 
-function GejalaForm({
+function AturanForm({
   className,
   onClose,
   dataEdit,
 }: {
   className?: string;
   onClose: () => void;
-  dataEdit?: Symptom;
+  dataEdit?: Rule;
 }) {
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
-      id: dataEdit?.id || "",
-      symptom: dataEdit?.symptom || "",
+      diseaseId: dataEdit?.diseaseId || "",
+      symptomId: dataEdit?.symptomId || "",
     },
   });
 
-  const { mutate: Post, isPending: PostPending } = usePostSymptom(onClose);
-  const { mutate: Put, isPending: PutPending } = usePutSymptom(
+  const { mutate: Post, isPending: PostPending } = usePostRule(onClose);
+  const { mutate: Put, isPending: PutPending } = usePutRules(
     dataEdit?.id || "",
     onClose
   );
   async function onSubmit(values: z.infer<typeof FormSchema>) {
     if (dataEdit) {
       Put(values);
+      onClose();
     } else {
       Post(values);
-      onClose();
     }
   }
+
+  const { data: dataSymptom, isLoading: isLoadingSymptom } = useFetchSymptom();
+  const { data: dataDisease, isLoading: isLoadingDisease } = useGetDisease();
 
   return (
     <Form {...form}>
@@ -121,25 +123,33 @@ function GejalaForm({
       >
         <FormField
           control={form.control}
-          name="id"
+          name="diseaseId"
           render={({ field }) => (
-            <DataFormControl
+            <SelectFormControl
               field={field}
-              type="text"
-              label="ID"
-              placeholder="Masukkan ID"
-              classname="uppercase placeholder:capitalize"
+              label="Penyakit"
+              placeholder="Pilih Penyakit"
+              isLoading={isLoadingDisease}
+              data={dataDisease?.data?.map((item: Disease) => ({
+                id: item.id,
+                value: item.id,
+              }))}
             />
           )}
         />
         <FormField
           control={form.control}
-          name="symptom"
+          name="symptomId"
           render={({ field }) => (
-            <AreaFormControl
+            <SelectFormControl
               field={field}
               label="Gejala"
-              placeholder="Masukkan Gejala"
+              placeholder="Pilih Gejala"
+              isLoading={isLoadingSymptom}
+              data={dataSymptom?.data?.map((item: Symptom) => ({
+                id: item.id,
+                value: item.id,
+              }))}
             />
           )}
         />

@@ -10,6 +10,11 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+
+  .popover-content-width-full {
+    width: var(--radix-popover-trigger-width);
+    max-height: var(--radix-popover-content-available-height);
+  }
 }
 
 @layer base {

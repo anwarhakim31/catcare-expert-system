@@ -23,7 +23,7 @@ export class GejalaService {
 
   async getAll(
     request: ReqGetGejala,
-  ): Promise<{ data: GejalaRespnse[]; paging: Paging }> {
+  ): Promise<{ data: GejalaRespnse[]; paging?: Paging }> {
     const getReq: ReqGetGejala = this.validationService.validate(
       GejalaValidation.GETALL,
       request,
@@ -46,6 +46,19 @@ export class GejalaService {
           },
         ],
       });
+    }
+
+    if (!getReq.limit) {
+      const gejala = await this.prismaService.symptom.findMany({
+        where: {
+          AND: filter,
+        },
+        orderBy: {
+          id: 'asc',
+        },
+      });
+
+      return { data: gejala };
     }
 
     const gejala = await this.prismaService.symptom.findMany({
@@ -94,7 +107,7 @@ export class GejalaService {
 
     const symptom = await this.prismaService.symptom.create({
       data: {
-        id: gejalaRequest.id,
+        id: gejalaRequest.id.toUpperCase(),
         symptom: gejalaRequest.symptom,
       },
     });
@@ -125,7 +138,10 @@ export class GejalaService {
       where: {
         id: id,
       },
-      data: gejalaRequest,
+      data: {
+        id: gejalaRequest.id.toUpperCase(),
+        symptom: gejalaRequest.symptom,
+      },
     });
 
     if (!symptom) {

@@ -65,6 +65,7 @@ const FormPenyakitView = ({ dataEdit }: { dataEdit: Disease }) => {
                 type="text"
                 label="ID"
                 placeholder="Masukkan ID "
+                classname="placeholder:capitalize uppercase"
               />
             )}
           />

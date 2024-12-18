@@ -17,7 +17,7 @@ const TableFragment = <T,>({
   table: TableType<T>;
 }) => {
   return (
-    <div className="rounded-md border">
+    <div className="rounded-md border overflow-hidden">
       <Table className="">
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (

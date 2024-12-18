@@ -1,7 +1,7 @@
 import instance from "@/lib/interceptors";
 import { useQuery } from "@tanstack/react-query";
 
-const useFetchSymptom = (
+const useFetchRules = (
   searchParams?: URLSearchParams,
   customPage?: string,
   customLimit?: string
@@ -16,9 +16,9 @@ const useFetchSymptom = (
   if (limit) params.set("limit", limit);
 
   return useQuery({
-    queryKey: ["symptom", search, page, limit],
+    queryKey: ["rules", { search, page, limit }],
     queryFn: async () => {
-      const res = await instance.get(`/symptom?${params.toString()}`, {
+      const res = await instance.get(`/rules?${params.toString()}`, {
         withCredentials: true,
       });
       return res.data;
@@ -28,4 +28,4 @@ const useFetchSymptom = (
   });
 };
 
-export default useFetchSymptom;
+export default useFetchRules;

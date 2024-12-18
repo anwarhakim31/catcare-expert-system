@@ -10,7 +10,11 @@ import { useSearchParams } from "next/navigation";
 
 const PenyakitPage = () => {
   const searchParams = useSearchParams();
-  const { data, isLoading } = useGetDisease(new URLSearchParams(searchParams));
+  const { data, isLoading } = useGetDisease(
+    new URLSearchParams(searchParams),
+    "1",
+    "10"
+  );
 
   return (
     <PenyakitView
