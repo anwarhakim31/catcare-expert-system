@@ -28,3 +28,14 @@ export interface Rule {
   diseaseId: string;
   createdAt?: Date;
 }
+
+export interface Diagnosis {
+  id?: string;
+  symptoms?: { id?: string; symptom?: string; answer?: boolean }[];
+  scor?: number;
+  disease?: string[];
+  expired: number;
+  status?: string;
+  createdAt?: Date;
+  username?: string;
+}

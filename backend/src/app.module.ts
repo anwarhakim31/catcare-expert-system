@@ -5,6 +5,7 @@ import { CommonModule } from './common/common.module';
 import { PenyakitModule } from './penyakit/penyakit.module';
 import { GejalaModule } from './gejala/gejala.module';
 import { AturanModule } from './aturan/aturan.module';
+import { DiagnosisModule } from './diagnosis/diagnosis.module';
 
 @Module({
   controllers: [],
@@ -15,6 +16,7 @@ import { AturanModule } from './aturan/aturan.module';
     PenyakitModule,
     GejalaModule,
     AturanModule,
+    DiagnosisModule,
   ],
 })
 export class AppModule {}

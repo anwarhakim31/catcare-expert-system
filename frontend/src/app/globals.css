@@ -15,6 +15,10 @@ body {
     width: var(--radix-popover-trigger-width);
     max-height: var(--radix-popover-content-available-height);
   }
+
+  .scroll-hidden::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 @layer base {

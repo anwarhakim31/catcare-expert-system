@@ -84,8 +84,6 @@ export class AuthController {
   async update(
     @Body() request: UpdateRequest,
   ): Promise<WebResponse<AuthResponse>> {
-    console.log(request);
-
     await this.authService.update(request);
 
     return {

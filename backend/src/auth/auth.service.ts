@@ -1,8 +1,7 @@
-import { HttpException, Inject, Injectable } from '@nestjs/common';
+import { HttpException, Injectable } from '@nestjs/common';
 
 import * as bcrypt from 'bcrypt';
-import { Logger } from '@nestjs/common';
-import { WINSTON_MODULE_PROVIDER } from 'nest-winston';
+
 import { ValidationService } from 'src/common/validation.service';
 import { PrismaService } from 'src/common/prisma.service';
 import {
@@ -17,12 +16,11 @@ import { AuthValidation } from './auth.validation';
 export class AuthService {
   constructor(
     private validationService: ValidationService,
-    @Inject(WINSTON_MODULE_PROVIDER) private logger: Logger,
+
     private prismaService: PrismaService,
   ) {}
 
   async register(request: RegisterRequest): Promise<AuthResponse> {
-    this.logger.debug(`Register new user ${JSON.stringify(request)}`);
     const registerRequest: RegisterRequest = this.validationService.validate(
       AuthValidation.REGISTER,
       request,
@@ -53,7 +51,6 @@ export class AuthService {
   }
 
   async login(request: LoginRequest): Promise<AuthResponse> {
-    this.logger.debug(`Loign n ${JSON.stringify(request)}`);
     const LoginRequest: LoginRequest = this.validationService.validate(
       AuthValidation.LOGIN,
       request,

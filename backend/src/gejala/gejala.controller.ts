@@ -56,11 +56,13 @@ export class GejalaController {
   @UseGuards(AuthGuard, AdminGuard)
   async create(
     @Body() request: ReqCreateGejala,
-  ): Promise<WebResponse<{ name: string }>> {
-    await this.GejalaService.create(request);
+  ): Promise<WebResponse<GejalaRespnse>> {
+    const result = await this.GejalaService.create(request);
+
     return {
       success: true,
       message: 'Berhasil menambahkan penyakit',
+      data: result,
     };
   }
 

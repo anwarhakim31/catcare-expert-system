@@ -59,15 +59,22 @@ model Rule {
   @@unique([diseaseId, symptomId])
 }
 
-
 model Diagnosis{
   id String @id @default(uuid())
-  answer Json
-  status String 
+  symptoms Json 
+  scor Int? @default(0)
+  expired Int
+  disease Json? 
+  status  DiagnosisStatus @default(pending)
   createdAt DateTime @default(now())
-
   username String
   user User @relation(fields: [username],references: [username])
 
   @@map("diagnosis")
+}
+
+enum DiagnosisStatus {
+  pending
+  cancel
+  finish
 }
