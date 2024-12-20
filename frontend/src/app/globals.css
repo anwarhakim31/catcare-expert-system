@@ -19,6 +19,12 @@ body {
   .scroll-hidden::-webkit-scrollbar {
     display: none;
   }
+
+  @media print {
+    .no-print {
+      display: none !important;
+    }
+  }
 }
 
 @layer base {

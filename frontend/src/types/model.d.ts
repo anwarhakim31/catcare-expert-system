@@ -33,7 +33,7 @@ export interface Diagnosis {
   id?: string;
   symptoms?: { id?: string; symptom?: string; answer?: boolean }[];
   scor?: number;
-  disease?: string[];
+  disease?: Disease[];
   expired: number;
   status?: string;
   createdAt?: Date;

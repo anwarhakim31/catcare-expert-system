@@ -11,3 +11,12 @@ export function formatSplitName(name: string) {
 export function formatImageName(value: string) {
   return value.split("/")[9];
 }
+
+export function formatDateIndo(value: Date) {
+  return new Date(value).toLocaleDateString("id-ID", {
+    weekday: "long",
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
+}

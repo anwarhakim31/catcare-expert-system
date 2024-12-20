@@ -2,6 +2,7 @@ import instance from "@/lib/interceptors";
 import { ResponseError } from "@/lib/ResponseError";
 import { Diagnosis } from "@/types/model";
 import { useMutation } from "@tanstack/react-query";
+import { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
 
 const usePostDiagnosis = () => {
@@ -23,6 +24,8 @@ const usePostDiagnosis = () => {
       router.push(`/diagnosis/${data.id}`);
     },
     onError: (err) => {
+      if (err instanceof AxiosError && err?.response?.data.code === 401)
+        return router.push("/login");
       ResponseError(err);
     },
   });
