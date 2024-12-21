@@ -5,7 +5,8 @@ import { Diagnosis } from "@/types/model";
 import { formatDateIndo } from "@/utils/helpers";
 import { Printer } from "lucide-react";
 import Link from "next/link";
-import React from "react";
+import React, { Fragment } from "react";
+import { ModalDetailDisease } from "./ModalDetailDisease";
 
 const DiagnosisFinishView = ({ diagnosis }: { diagnosis: Diagnosis }) => {
   const handlePrint = () => {
@@ -62,30 +63,26 @@ const DiagnosisFinishView = ({ diagnosis }: { diagnosis: Diagnosis }) => {
             ) : diagnosis?.disease?.length === 2 ? (
               diagnosis?.disease?.map((disease, index) => {
                 return (
-                  <>
-                    <span key={disease.id} className="font-bold capitalize">
-                      {disease.name}
-                    </span>
+                  <Fragment key={disease.id}>
+                    <span className="font-bold capitalize">{disease.name}</span>
                     {diagnosis?.disease &&
                       index !== diagnosis?.disease?.length - 1 &&
                       " dan "}
-                  </>
+                  </Fragment>
                 );
               })
             ) : (
               diagnosis?.disease?.map((disease, index) => {
                 return (
-                  <>
-                    <span key={disease.id} className="font-bold capitalize">
-                      {disease.name}
-                    </span>
+                  <Fragment key={disease.id}>
+                    <span className="font-bold capitalize">{disease.name}</span>
                     {diagnosis?.disease &&
                       index < diagnosis?.disease?.length - 1 &&
                       ", "}
                     {diagnosis?.disease &&
                       index !== diagnosis?.disease?.length - 1 &&
                       " dan "}
-                  </>
+                  </Fragment>
                 );
               })
             )}{" "}
@@ -105,9 +102,12 @@ const DiagnosisFinishView = ({ diagnosis }: { diagnosis: Diagnosis }) => {
         >
           {diagnosis?.disease?.map((disease) => (
             <div className="w-full" key={disease.id}>
-              <h5 className="font-semibold my-2 text-base capitalize text-orange-500">
-                {disease.name}
-              </h5>
+              <div className="flex gap-2 items-center">
+                <h5 className="font-semibold my-2 text-base capitalize text-orange-500">
+                  {disease.name}
+                </h5>
+                <ModalDetailDisease disease={disease} />
+              </div>
               <p className="text-gray-700 text-sm whitespace-pre-line">
                 {disease.solution}
               </p>

@@ -5,6 +5,7 @@ import LoginView from "../views/(auth)/LoginView";
 import { usePathname } from "next/navigation";
 import RegisterView from "../views/(auth)/RegisterView";
 import ForgetPasswordView from "../views/(auth)/ForgetPasswordView";
+import Link from "next/link";
 
 const AuthLayout = () => {
   const pathname = usePathname();
@@ -16,9 +17,12 @@ const AuthLayout = () => {
           <figure>
             <Image src="/logo.png" alt="logo" width={75} height={75} priority />
           </figure>
-          <h3 className="text-xl text-gray-900 md:text-white font-bold">
+          <Link
+            href="/"
+            className="text-xl text-gray-900 md:text-white font-bold"
+          >
             Catcare.
-          </h3>
+          </Link>
         </div>
       </header>
       <div className="w-screen h-screen md:bg-orange-300 flex justify-center items-center">
@@ -44,7 +48,7 @@ const AuthLayout = () => {
               <Image
                 src={"/DSC00950.jpeg"}
                 alt="DSC00950"
-                width={400}
+                width={300}
                 height={300}
                 className="object-cover w-full h-full"
                 priority
