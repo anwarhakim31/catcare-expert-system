@@ -26,7 +26,6 @@ import { AdminGuard } from 'src/guards/adminGuard';
 export class PenyakitController {
   constructor(private penyakitService: PenyakitService) {}
 
-  @UseGuards(AuthGuard)
   @Get()
   async getAll(
     @Query('search') search?: string,

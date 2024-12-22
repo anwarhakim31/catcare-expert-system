@@ -1,6 +1,6 @@
 "use client";
-import { AturanView } from "@/components/views/aturan/aturan-view";
-import { columns } from "@/components/views/aturan/column-aturan";
+import { AturanView } from "@/components/views/admin/aturan/aturan-view";
+import { columns } from "@/components/views/admin/aturan/column-aturan";
 import useFetchRules from "@/hooks/aturan/useFetchRule";
 import { useSearchParams } from "next/navigation";
 import React from "react";

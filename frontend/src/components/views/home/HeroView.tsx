@@ -49,7 +49,7 @@ const HeroView = () => {
         width={500}
         height={500}
         priority
-        className="absolute top-0 object-left object-cover left-0 h-full w-[21vw] bg-black hidden md:block "
+        className="absolute top-0 object-left object-cover left-0 h-full w-[21vw]  hidden md:block "
       />
       <Image
         src={"/right.jpg"}
@@ -57,7 +57,7 @@ const HeroView = () => {
         width={500}
         height={500}
         priority
-        className="absolute top-0 object-right object-cover right-0 h-full w-[21vw] bg-black hidden md:block"
+        className="absolute top-0 object-right object-cover right-0 h-full w-[21vw]  hidden md:block"
       />
     </section>
   );

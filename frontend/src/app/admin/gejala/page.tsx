@@ -1,6 +1,6 @@
 "use client";
-import { columns } from "@/components/views/gejala/column-gejala";
-import { GejalaView } from "@/components/views/gejala/gejala-view";
+import { columns } from "@/components/views/admin/gejala/column-gejala";
+import { GejalaView } from "@/components/views/admin/gejala/gejala-view";
 import useFetchSymptom from "@/hooks/gejala/useFetchSymptom";
 import { useSearchParams } from "next/navigation";
 import React from "react";

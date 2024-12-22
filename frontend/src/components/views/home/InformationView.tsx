@@ -10,8 +10,8 @@ const rubik = Rubik({
 const InformationView = () => {
   return (
     <section className="pt-36 pb-30 container ">
-      <h3 style={rubik.style} className="text-3xl text-center mb-8  ">
-        <span className="bg-gradient-to-l from-white via-white to-orange-500 px-4 ">
+      <h3 style={rubik.style} className="text-2xl text-center mb-14  ">
+        <span className="bg-gradient-to-l from-white via-white to-orange-500 px-4 py-1 ">
           Tentang Sistem
         </span>
       </h3>

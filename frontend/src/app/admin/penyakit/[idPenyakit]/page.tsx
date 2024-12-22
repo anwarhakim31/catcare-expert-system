@@ -1,4 +1,4 @@
-import FormPenyakitView from "@/components/views/penyakit/idPenyakit/FormPenyakitView";
+import FormPenyakitView from "@/components/views/admin/penyakit/idPenyakit/FormPenyakitView";
 import { Disease } from "@/types/model";
 import { redirect } from "next/navigation";
 import React from "react";

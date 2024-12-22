@@ -36,6 +36,10 @@ export default function withAuth(
       if (!payload.isAdmin && pathname === "admin") {
         return NextResponse.redirect(new URL("/", req.url));
       }
+
+      if (payload.exp < Date.now() / 1000) {
+        return NextResponse.redirect(new URL("/login", req.url));
+      }
     }
 
     return mainMiddleware(req, ev);

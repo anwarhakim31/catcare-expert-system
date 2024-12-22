@@ -11,12 +11,12 @@ const data = [
   {
     id: 1,
     image: "/home/owner.png",
-    text: "Pemilik kucing harus mengetahui gejala penyakit kulit kucing terlebih dahulu.",
+    text: "Pemilik kucing mengetahui gejala penyakit kulit kucing terlebih dahulu.",
   },
   {
     id: 2,
     image: "/home/diagnosis.png",
-    text: "Pemilik kucing harus melakukan diagnosis bedasrkan gejala yang didapatkan.",
+    text: "Pemilik kucing melakukan diagnosis bedasarkan gejala yang didapatkan.",
   },
   {
     id: 3,
@@ -28,8 +28,8 @@ const data = [
 const IntructionView = () => {
   return (
     <section className="pt-36 pb-30 container ">
-      <h3 style={rubik.style} className="text-3xl text-center mb-8">
-        <span className="bg-gradient-to-l from-white via-white to-orange-500 px-4 ">
+      <h3 style={rubik.style} className="text-2xl text-center mb-14  ">
+        <span className="bg-gradient-to-l from-white via-white to-orange-500 px-4 py-1 ">
           Intruksi Penggunaan
         </span>
       </h3>
