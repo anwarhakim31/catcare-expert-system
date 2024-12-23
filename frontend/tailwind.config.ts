@@ -7,7 +7,6 @@ const config: Config = {
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
-
   screens: {
     xs: "480px",
   },
@@ -20,6 +19,7 @@ const config: Config = {
         xl: "1200px",
       },
     },
+
     extend: {
       colors: {
         background: "hsl(var(--background))",

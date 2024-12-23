@@ -15,11 +15,13 @@ export default function withAuth(
     const cookie = req.cookies.get("catcare")?.value || "";
     const pathname = req.nextUrl.pathname.split("/")[1];
 
-    if (!cookie && requireAuth.includes(pathname)) {
-      const url = new URL("/login", req.url);
-      url.searchParams.set("callbackUrl", encodeURI(req.url));
+    if (!cookie) {
+      if (requireAuth.includes(pathname)) {
+        const url = new URL("/login", req.url);
+        url.searchParams.set("callbackUrl", encodeURI(req.url));
 
-      return NextResponse.redirect(url);
+        return NextResponse.redirect(url);
+      }
     }
 
     if (cookie) {
@@ -35,10 +37,6 @@ export default function withAuth(
 
       if (!payload.isAdmin && pathname === "admin") {
         return NextResponse.redirect(new URL("/", req.url));
-      }
-
-      if (payload.exp < Date.now() / 1000) {
-        return NextResponse.redirect(new URL("/login", req.url));
       }
     }
 

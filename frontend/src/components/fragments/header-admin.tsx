@@ -13,6 +13,8 @@ import BreadCrumb from "./breadcrumb";
 import { Separator } from "../ui/separator";
 import Link from "next/link";
 import useLogout from "@/hooks/auth/useLogout";
+import { AxiosError } from "axios";
+import { useRouter } from "next/navigation";
 
 const HeaderAdmin = ({
   isOpen,
@@ -22,6 +24,7 @@ const HeaderAdmin = ({
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const context = useAuthContext();
+  const router = useRouter();
   const { mutate, isPending } = useLogout();
 
   return (
@@ -79,7 +82,17 @@ const HeaderAdmin = ({
               className="text-sm text-left w-full p-2 block hover:bg-orange-50 transition-all duration-200 ease-in-out"
               aria-label="Logout"
               type="button"
-              onClick={() => mutate()}
+              onClick={() => {
+                mutate(undefined, {
+                  onError: (err) => {
+                    if (
+                      err instanceof AxiosError &&
+                      err?.response?.data.code === 401
+                    )
+                      return router.push("/login");
+                  },
+                });
+              }}
               disabled={isPending}
             >
               Keluar

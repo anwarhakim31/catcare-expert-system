@@ -23,11 +23,11 @@ const TentangMainView = () => {
         Sistem ini dapat membantu seorang pakar atau pemilik kucing dalam
         menentukan penyakit kulit kucing yang mungkin terjadi pada kucing.
         Metode yang digunakan dalam sistem ini adalah metode forward chaining,
-        dimana pengetahuan dan aturan yang telah dikumpulkan oleh pakar atau
-        pemilik kucing digunakan untuk membuat solusi, rekomendasi, atau
-        kesimpulan terhadap suatu masalah.
+        dimana pengetahuan dan aturan yang telah dikumpulkan oleh pakar
+        digunakan untuk membuat solusi, rekomendasi, atau kesimpulan terhadap
+        suatu masalah.
       </p>
-      <div className="w-full aspect-[2/1] max-h-[400px] overflow-hidden bg-black bg-[url('/tentang.jpg')] mt-28  bg-[position:center_-100px] lg:bg-[position:center_-300px] bg-no-repeat bg-cover"></div>
+      <div className="w-full aspect-[2/1] max-h-[400px] overflow-hidden  bg-[url('/tentang.jpg')] mt-28  bg-[position:center_-100px] lg:bg-[position:center_-300px] bg-no-repeat bg-cover"></div>
     </main>
   );
 };

@@ -108,7 +108,6 @@ export class AuthController {
   }
 
   @Delete('/logout')
-  @UseGuards(AuthGuard)
   @HttpCode(200)
   async delete(@Res() res: Response): Promise<void> {
     res.clearCookie('catcare');

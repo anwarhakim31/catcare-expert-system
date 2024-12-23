@@ -32,17 +32,21 @@ const AuthLayout = () => {
               <div className=" mb-8">
                 <h1 className="text-lg font-semibold">Selamat Datang</h1>
                 <p className="text-sm text-gray-700">
-                  {pathname === "/login" &&
-                    "Silahkan masuk dengan akun terdaftar"}
-                  {pathname === "/register" &&
-                    "Silahkan daftar untuk membuat akun"}
-                  {pathname === "/forget-password" &&
-                    "Silahkan ganti kata sandi anda dengan akun terdaftar"}
+                  {pathname === "/register"
+                    ? "Silahkan daftar untuk membuat akun"
+                    : pathname === "/forget-password"
+                    ? "Silahkan ganti kata sandi anda dengan akun terdaftar"
+                    : "Silahkan masuk dengan akun terdaftar"}
                 </p>
               </div>
-              {pathname === "/login" && <LoginView />}
-              {pathname === "/register" && <RegisterView />}
-              {pathname === "/forget-password" && <ForgetPasswordView />}
+
+              {pathname === "/register" ? (
+                <RegisterView />
+              ) : pathname === "/forget-password" ? (
+                <ForgetPasswordView />
+              ) : (
+                <LoginView />
+              )}
             </div>
             <figure className="w-[250px] hidden md:block">
               <Image

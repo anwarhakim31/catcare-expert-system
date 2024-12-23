@@ -4,6 +4,7 @@ import { formatSplitName } from "@/utils/helpers";
 import { AlignJustify, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import React, { useEffect } from "react";
 
 const nav = [
@@ -25,6 +26,7 @@ const nav = [
 ];
 
 const Header = () => {
+  const pathname = usePathname();
   const context = useAuthContext();
   const [isOpen, setIsOpen] = React.useState(false);
   const [delay, setDelay] = React.useState(false);
@@ -85,13 +87,17 @@ const Header = () => {
               <Link
                 key={item.id}
                 href={item.path}
-                className="block text-sm  font-medium text-gray-700 hover:text-orange-500  transition-colors duration-300 ease-in-out py-0.5 relative px-2 after:h-0.5 after:w-0 after:bg-orange-500 after:absolute after:bottom-0 after:left-0 after:transition-all after:duration-300 after:ease-in-out hover:after:w-full"
+                className={`${
+                  pathname === item.path
+                    ? "text-orange-500"
+                    : "  transition-colors duration-300 ease-in-out  after:h-0.5 after:w-0 after:bg-orange-500 after:absolute after:bottom-0 after:left-0 after:transition-all after:duration-300 after:ease-in-out hover:after:w-full text-gray-700"
+                } block text-sm  font-medium  px-2 py-0.5 relative `}
               >
                 {item.name}
               </Link>
             ))}
           </nav>
-          <div className="flex gap-4">
+          <div className="flex gap-4 items-center">
             {context?.userData ? (
               <Link
                 href="/profil"

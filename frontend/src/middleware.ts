@@ -5,4 +5,4 @@ function middleware() {
   return NextResponse.next();
 }
 
-export default withAuth(middleware, ["admin"]);
+export default withAuth(middleware, ["admin", "profil", "riwayat"]);
