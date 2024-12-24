@@ -26,7 +26,7 @@ const AuthLayout = () => {
         </div>
       </header>
       <div className="w-screen h-screen md:bg-orange-300 flex justify-center items-center">
-        <div className="w-full max-w-[650px] bg-white  md:rounded-md md:shadow-md  overflow-hidden">
+        <div className="w-full max-w-[700px] min-h-[400px] bg-white  md:rounded-md md:shadow-md  overflow-hidden">
           <div className="flex  justify-between">
             <div className="py-14 px-10 flex-1">
               <div className=" mb-8">
@@ -48,7 +48,7 @@ const AuthLayout = () => {
                 <LoginView />
               )}
             </div>
-            <figure className="w-[250px] min-h-[250px] hidden md:block">
+            <figure className="w-[300px] h-full  hidden md:block">
               <Image
                 src={"/DSC00950.jpeg"}
                 alt="DSC00950"

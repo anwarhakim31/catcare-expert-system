@@ -48,7 +48,7 @@ const LoginView = () => {
   };
 
   useEffect(() => {
-    if (localStorage.getItem("remember")) {
+    if (localStorage.getItem("check") && localStorage.getItem("remember")) {
       const remember = JSON.parse(localStorage.getItem("remember")!);
       form.setValue("username", remember.username);
       form.setValue("password", remember.password);
