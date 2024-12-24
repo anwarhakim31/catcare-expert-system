@@ -47,7 +47,7 @@ const IntructionView = () => {
               quality={100}
               priority
             />
-            <p className="text-center">{item.text}</p>
+            <p className="text-center text-sm md:text-base">{item.text}</p>
           </div>
         ))}
       </div>

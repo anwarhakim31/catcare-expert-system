@@ -7,6 +7,13 @@ export class UserValidation {
     limit: z.number().min(10).optional(),
   });
 
+  static readonly PUT: ZodType = z.object({
+    fullname: z.string().min(1),
+    username: z.string().min(1),
+    password: z.string().optional(),
+    photo: z.string().optional(),
+  });
+
   static readonly EditProfie: ZodType = z.object({
     fullname: z.string().min(1),
     username: z.string().min(1),

@@ -45,6 +45,7 @@ const ProfilePhoto = ({
     if (file) {
       mutatePhoto(file, {
         onSuccess: (data) => {
+          console.log(data);
           form.setValue("photo", data.url);
           e.target.value = "";
 

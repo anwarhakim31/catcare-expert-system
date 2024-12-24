@@ -1,5 +1,5 @@
-import { HttpException, Inject, Injectable, Logger } from '@nestjs/common';
-import { WINSTON_MODULE_PROVIDER } from 'nest-winston';
+import { HttpException, Injectable } from '@nestjs/common';
+
 import { PrismaService } from 'src/common/prisma.service';
 import { ValidationService } from 'src/common/validation.service';
 import {
@@ -16,7 +16,7 @@ import { Paging } from 'src/model/web.model';
 export class PenyakitService {
   constructor(
     private validationService: ValidationService,
-    @Inject(WINSTON_MODULE_PROVIDER) private logger: Logger,
+
     private prismaService: PrismaService,
   ) {}
 

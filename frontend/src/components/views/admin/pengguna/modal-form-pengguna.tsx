@@ -24,20 +24,20 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Form, FormField } from "@/components/ui/form";
 
 import DataFormControl from "@/components/fragments/DataFormControl";
-import AreaFormControl from "@/components/fragments/AreaFormControl";
-import { LoadingButton } from "@/components/ui/button-loading";
-import usePostSymptom from "@/hooks/gejala/usePostSymptom";
-import { Symptom } from "@/types/model";
-import usePutSymptom from "@/hooks/gejala/usePutSymptom";
 
-export function ModalFormGejala({
+import { LoadingButton } from "@/components/ui/button-loading";
+import { User } from "@/types/model";
+import usePutUser from "@/hooks/user/usePutUser";
+import ProfilePhoto from "@/components/fragments/profile-photo";
+
+export function ModalFormPengguna({
   open,
   setOpen,
   dataEdit,
 }: {
   open: boolean;
   setOpen: () => void;
-  dataEdit?: Symptom;
+  dataEdit?: User;
 }) {
   const isDesktop = useMediaQuery("(min-width: 768px)");
 
@@ -47,11 +47,11 @@ export function ModalFormGejala({
         <DialogContent className="sm:max-w-[425px]">
           <DialogHeader>
             <DialogTitle className="text-base">
-              {dataEdit ? "Edit" : "Tambah"} Gejala
+              {dataEdit ? "Edit" : "Tambah"} Pengguna
             </DialogTitle>
             <DialogDescription></DialogDescription>
           </DialogHeader>
-          <GejalaForm onClose={setOpen} dataEdit={dataEdit} />
+          <PenggunaForm onClose={setOpen} dataEdit={dataEdit} />
         </DialogContent>
       </Dialog>
     );
@@ -62,11 +62,11 @@ export function ModalFormGejala({
       <DrawerContent>
         <DrawerHeader className="text-left">
           <DialogTitle className="text-base">
-            {dataEdit ? "Edit" : "Tambah"} Gejala
+            {dataEdit ? "Edit" : "Tambah"} Pengguna
           </DialogTitle>
           <DialogDescription></DialogDescription>
         </DrawerHeader>
-        <GejalaForm className="px-4" onClose={setOpen} dataEdit={dataEdit} />
+        <PenggunaForm className="px-4" onClose={setOpen} dataEdit={dataEdit} />
         <DrawerFooter className="pt-2">
           <DrawerClose asChild>
             <Button variant="outline">Cancel</Button>
@@ -78,43 +78,40 @@ export function ModalFormGejala({
 }
 
 const FormSchema = z.object({
-  id: z.string().min(1, {
-    message: "Id harus diisi",
+  username: z.string().min(1, {
+    message: "Nama panggilan harus diisi",
   }),
-  symptom: z.string().min(1, {
-    message: "Gejala harus diisi",
+  fullname: z.string().min(1, {
+    message: "Nama lengkap harus diisi",
   }),
+  photo: z.string().optional(),
+  password: z.string().optional(),
 });
 
-function GejalaForm({
+function PenggunaForm({
   className,
   onClose,
   dataEdit,
 }: {
   className?: string;
   onClose: () => void;
-  dataEdit?: Symptom;
+  dataEdit?: User;
 }) {
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
-      id: dataEdit?.id || "",
-      symptom: dataEdit?.symptom || "",
+      username: dataEdit?.username || "",
+      fullname: dataEdit?.fullname || "",
+      photo: dataEdit?.photo || "",
+      password: dataEdit?.password || "",
     },
   });
+  const [loading, setLoading] = React.useState(false);
 
-  const { mutate: Post, isPending: PostPending } = usePostSymptom(onClose);
-  const { mutate: Put, isPending: PutPending } = usePutSymptom(
-    dataEdit?.id || "",
-    onClose
-  );
+  const { mutate: Put, isPending: PutPending } = usePutUser(onClose);
   async function onSubmit(values: z.infer<typeof FormSchema>) {
-    if (dataEdit) {
-      Put(values);
-    } else {
-      Post(values);
-      onClose();
-    }
+    Put(values);
+    onClose();
   }
 
   return (
@@ -123,33 +120,46 @@ function GejalaForm({
         className={cn("grid items-start gap-4", className)}
         onSubmit={form.handleSubmit(onSubmit)}
       >
+        <ProfilePhoto form={form} setLoading={setLoading} isEdit={true} />
         <FormField
           control={form.control}
-          name="id"
+          name="username"
           render={({ field }) => (
             <DataFormControl
               field={field}
               type="text"
-              label="ID"
-              placeholder="Masukkan ID"
-              classname="uppercase placeholder:capitalize"
+              label="Nama Pengguna"
+              placeholder="Masukkan Nama Pengguna"
             />
           )}
         />
         <FormField
           control={form.control}
-          name="symptom"
+          name="fullname"
           render={({ field }) => (
-            <AreaFormControl
+            <DataFormControl
               field={field}
-              label="Gejala"
-              placeholder="Masukkan Gejala"
+              type="text"
+              label="Nama Lengkap"
+              placeholder="Masukkan Nama Lengkap"
+            />
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="password"
+          render={({ field }) => (
+            <DataFormControl
+              type="password"
+              field={field}
+              label="kata Sandi"
+              placeholder="Masukkan Kata Sandi"
             />
           )}
         />
         <LoadingButton
           type="submit"
-          loading={PostPending || PutPending}
+          loading={PutPending || loading}
           className="w-full mt-4"
         >
           Simpan

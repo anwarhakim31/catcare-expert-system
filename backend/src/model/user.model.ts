@@ -15,6 +15,17 @@ export class ReqGetAllUser {
   limit?: number;
 }
 
+export class ReqPutPengguna {
+  username: string;
+  password: string;
+  fullname: string;
+  photo?: string;
+}
+
+export class ReqDeletePengguna {
+  selected: string[];
+}
+
 export class UserResponse {
   fullname: string;
   username: string;

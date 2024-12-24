@@ -45,7 +45,9 @@ export function ModalFromAturan({
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogContent className="sm:max-w-[425px]">
           <DialogHeader>
-            <DialogTitle className="text-base">Tambah Aturan</DialogTitle>
+            <DialogTitle className="text-base">
+              {dataEdit ? "Edit" : "Tambah"} Aturan
+            </DialogTitle>
             <DialogDescription></DialogDescription>
           </DialogHeader>
           <AturanForm onClose={setOpen} dataEdit={dataEdit} />
@@ -58,7 +60,9 @@ export function ModalFromAturan({
     <Drawer open={open} onOpenChange={setOpen}>
       <DrawerContent>
         <DrawerHeader className="text-left">
-          <DialogTitle className="text-base">Tambah Aturan</DialogTitle>
+          <DialogTitle className="text-base">
+            {dataEdit ? "Edit" : "Tambah"} Aturan
+          </DialogTitle>
           <DialogDescription></DialogDescription>
         </DrawerHeader>
         <AturanForm className="px-4" onClose={setOpen} dataEdit={dataEdit} />

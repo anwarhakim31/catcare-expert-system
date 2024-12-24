@@ -26,6 +26,7 @@ const DataFormControl: React.FC<typeProps> = ({
           type={type}
           {...field}
           autoComplete="off"
+          disabled={label === "Nama Pengguna" ? true : false}
           className={classname}
         />
       </FormControl>

@@ -13,6 +13,7 @@ import { LoadingButton } from "@/components/ui/button-loading";
 
 import { useAuthContext } from "@/context/AuthContext";
 import useLogin from "@/hooks/auth/useLogin";
+import { useQueryClient } from "@tanstack/react-query";
 
 const FormSchema = z.object({
   username: z.string().min(1, { message: "Nama pengguna harus diisi" }),
@@ -28,6 +29,7 @@ const LoginView = () => {
   const context = useAuthContext();
   const { mutate, isPending } = useLogin();
   const searchParams = useSearchParams().get("callbackUrl");
+  const query = useQueryClient();
 
   const onSumbit = (data: z.infer<typeof FormSchema>) => {
     mutate(data, {
@@ -38,6 +40,7 @@ const LoginView = () => {
           : searchParams || "/";
 
         router.replace(redirectUrl);
+        query.invalidateQueries({ queryKey: ["user"] });
         form.reset();
       },
       onError: (err) => {

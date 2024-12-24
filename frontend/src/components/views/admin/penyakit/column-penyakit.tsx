@@ -31,6 +31,7 @@ export const columns: ColumnDef<Disease>[] = [
         aria-label="Select row"
       />
     ),
+
     enableSorting: false,
     enableHiding: false,
   },

@@ -29,7 +29,7 @@ const TableFragment = <T,>({
                 return (
                   <TableHead
                     key={header.id}
-                    className="font-medium text-sm px-4 text-white"
+                    className="font-medium text-sm px-4 text-white truncate"
                   >
                     {header.isPlaceholder
                       ? null
