@@ -2,6 +2,7 @@ import {
   Body,
   Controller,
   Get,
+  HttpCode,
   Param,
   Patch,
   Post,
@@ -17,7 +18,20 @@ import { WebResponse } from 'src/model/web.model';
 @Controller('api/diagnosis')
 export class DiagnosisController {
   constructor(private readonly dignosisService: DiagnosisService) {}
+  @Get('user')
+  @HttpCode(200)
+  @UseGuards(AuthGuard)
+  async getDianosisUser(
+    @User() user: AuthResponse,
+  ): Promise<WebResponse<DiagnosisRespnse[]>> {
+    const result = await this.dignosisService.getDiagnosis(user);
 
+    return {
+      success: true,
+      message: 'Berhasil mengambil data diagnosis user',
+      data: result,
+    };
+  }
   @Post()
   @UseGuards(AuthGuard)
   async create(

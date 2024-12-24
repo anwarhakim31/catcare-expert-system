@@ -29,7 +29,7 @@ const ProfileLayout = ({ children }: { children: React.ReactNode }) => {
               ? "bg-orange-500 text-white hover:bg-orange-500 hover:border-orange-500"
               : "text-gray-700 hover:bg-orange-100 hover:border-orange-100"
           } px-4 py-2.5 rounded-md  transition-all ease-in-out duration-300  border w-full flex item-center gap-2 text-center text-sm`}
-          href="/profil"
+          href="/riwayat"
         >
           <History size={20} />
           Riwayat

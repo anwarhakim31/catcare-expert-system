@@ -7,8 +7,10 @@ import { Printer } from "lucide-react";
 import Link from "next/link";
 import React, { Fragment } from "react";
 import { ModalDetailDisease } from "./ModalDetailDisease";
+import { usePathname } from "next/navigation";
 
 const DiagnosisFinishView = ({ diagnosis }: { diagnosis: Diagnosis }) => {
+  const pathname = usePathname();
   const handlePrint = () => {
     window.print();
   };
@@ -122,22 +124,26 @@ const DiagnosisFinishView = ({ diagnosis }: { diagnosis: Diagnosis }) => {
             bgColor="white"
           >
             <Link
-              href="/"
+              href={
+                pathname.startsWith("/riwayat/") ? "/riwayat" : "/diagnosis"
+              }
               className=" w-full h-8 flex items-center justify-center"
               replace
             >
               Kembali
             </Link>
           </PushButton>
-          <PushButton
-            loading={isPending}
-            className="no-print flex items-center border justify-center h-8 border-orange-500"
-            shadowColor="shadow-orange-500"
-            bgColor="white"
-            onClick={() => mutate()}
-          >
-            <span className="">Diagnosis</span>
-          </PushButton>
+          {pathname.startsWith("/diagnosis") && (
+            <PushButton
+              loading={isPending}
+              className="no-print flex items-center border justify-center h-8 border-orange-500"
+              shadowColor="shadow-orange-500"
+              bgColor="white"
+              onClick={() => mutate()}
+            >
+              <span className="">Diagnosis</span>
+            </PushButton>
+          )}
         </div>
       </div>
     </section>

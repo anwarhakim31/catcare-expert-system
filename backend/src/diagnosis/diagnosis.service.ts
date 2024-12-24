@@ -102,6 +102,45 @@ export class DiagnosisService {
     };
   }
 
+  async getDiagnosis(user: AuthResponse): Promise<DiagnosisRespnse[]> {
+    try {
+      const diagnosis = await this.prismaService.diagnosis.findMany({
+        where: {
+          username: user.username,
+          status: 'finish',
+        },
+
+        orderBy: {
+          createdAt: 'desc',
+        },
+      });
+
+      return Promise.all(
+        diagnosis.map(async (d) => {
+          const disease = await this.prismaService.disease.findMany({
+            where: {
+              id: {
+                in: d.disease as string[],
+              },
+            },
+          });
+
+          return {
+            ...d,
+            disease: disease as unknown as JSON,
+            symptoms: d.symptoms as unknown as [] | jsonDiagnosis[],
+            expired: d.expired,
+            status: d.status,
+            createdAt: d.createdAt,
+            username: d.username,
+          };
+        }),
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   async patch(
     id: string,
     request: ReqPatchDiagnosis,
