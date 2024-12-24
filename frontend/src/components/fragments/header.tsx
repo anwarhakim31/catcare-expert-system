@@ -69,6 +69,7 @@ const Header = () => {
         <div className="container flex justify-between items-center w-full gap-4 flex-wrap">
           <Link
             href="/"
+            prefetch
             className="flex gap-2 items-center"
             onClick={handleToggle}
           >

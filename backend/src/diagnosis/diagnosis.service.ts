@@ -1,27 +1,103 @@
-import {
-  HttpException,
-  Inject,
-  Injectable,
-  LoggerService,
-} from '@nestjs/common';
+import { HttpException, Injectable } from '@nestjs/common';
 import { DiagnosisValidation } from './dignosis.validation';
 import { PrismaService } from 'src/common/prisma.service';
 import {
   DiagnosisRespnse,
   jsonDiagnosis,
+  ReqDeleteDiagnosis,
+  ReqGetDiagnosis,
   ReqPatchDiagnosis,
 } from 'src/model/diagnosis.model';
 import { AuthResponse } from 'src/model/auth.model';
 import { ValidationService } from 'src/common/validation.service';
-import { WINSTON_MODULE_PROVIDER } from 'nest-winston';
+
+import { Paging } from 'src/model/web.model';
 
 @Injectable()
 export class DiagnosisService {
   constructor(
     private validationService: ValidationService,
     private prismaService: PrismaService,
-    @Inject(WINSTON_MODULE_PROVIDER) private logger: LoggerService,
   ) {}
+
+  async getAll(
+    request: ReqGetDiagnosis,
+  ): Promise<{ data: DiagnosisRespnse[]; paging?: Paging }> {
+    const ReqDiagnos: ReqGetDiagnosis = this.validationService.validate(
+      DiagnosisValidation.GETALL,
+      request,
+    );
+
+    const filter = [];
+
+    if (ReqDiagnos.search) {
+      filter.push({
+        OR: [
+          {
+            username: {
+              contains: ReqDiagnos.search,
+            },
+          },
+        ],
+      });
+    }
+
+    if (ReqDiagnos.status) {
+      filter.push({
+        status: ReqDiagnos.status,
+      });
+    }
+
+    const diagnosis = await this.prismaService.diagnosis.findMany({
+      where: {
+        user: {
+          isAdmin: false,
+        },
+        AND: filter,
+      },
+      skip: (ReqDiagnos.page - 1) * ReqDiagnos.limit,
+      take: ReqDiagnos.limit,
+      orderBy: {
+        createdAt: 'desc',
+      },
+    });
+
+    const total = await this.prismaService.diagnosis.count({
+      where: {
+        AND: filter,
+      },
+    });
+
+    return {
+      data: diagnosis.map((d) => ({
+        ...d,
+        disease: d.disease as unknown as JSON,
+        symptoms: d.symptoms as unknown as [] | jsonDiagnosis[],
+      })),
+      paging: {
+        page: ReqDiagnos.page,
+        limit: ReqDiagnos.limit,
+        total: total,
+        totalPage: Math.ceil(total / ReqDiagnos.limit),
+      },
+    };
+  }
+
+  async delete(request: ReqDeleteDiagnosis) {
+    const disease = await this.prismaService.diagnosis.deleteMany({
+      where: {
+        id: {
+          in: request.selected,
+        },
+      },
+    });
+
+    if (disease.count == 0 || disease.count < request.selected.length) {
+      throw new HttpException('Diagnosis tidak ditemukan', 404);
+    }
+
+    return disease;
+  }
 
   async create(user: AuthResponse): Promise<DiagnosisRespnse> {
     const expired = Math.floor(new Date().getTime() / 1000) + 10 * 60;

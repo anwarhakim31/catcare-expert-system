@@ -1,7 +1,7 @@
 import instance from "@/lib/interceptors";
 import { useQuery } from "@tanstack/react-query";
 
-const useFetchUser = (
+const useFetchDiagnosis = (
   searchParams?: URLSearchParams,
   customPage?: string,
   customLimit?: string
@@ -10,15 +10,17 @@ const useFetchUser = (
   const search = searchParams?.get("search");
   const page = searchParams?.get("page") || customPage;
   const limit = searchParams?.get("limit") || customLimit;
+  const status = searchParams?.get("status");
 
   if (search) params.set("search", search);
   if (page) params.set("page", page);
   if (limit) params.set("limit", limit);
+  if (status) params.set("status", status);
 
   return useQuery({
-    queryKey: ["user", { search, page, limit }],
+    queryKey: ["diagnosis", { search, page, limit, status }],
     queryFn: async () => {
-      const res = await instance.get(`/user?${params.toString()}`, {
+      const res = await instance.get(`/diagnosis?${params.toString()}`, {
         withCredentials: true,
       });
       return res.data;
@@ -28,4 +30,4 @@ const useFetchUser = (
   });
 };
 
-export default useFetchUser;
+export default useFetchDiagnosis;

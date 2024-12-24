@@ -1,5 +1,5 @@
 "use client";
-import { User } from "@/types/model";
+import { Diagnosis } from "@/types/model";
 import React from "react";
 import { MoreHorizontal } from "lucide-react";
 
@@ -19,28 +19,28 @@ import { toast } from "sonner";
 import { ResponseError } from "@/lib/ResponseError";
 
 import { useQueryClient } from "@tanstack/react-query";
-import { ModalFormPengguna } from "./modal-form-pengguna";
-import useDeleteUser from "@/hooks/user/useDeleteUser";
+
+import useDeleteDiagnosis from "@/hooks/diagnosis/useDeleteDiagnosis";
 
 interface CellActionProps {
-  data: User;
+  data: Diagnosis;
 }
 
-const CellActionPengguna: React.FC<CellActionProps> = ({ data }) => {
-  const [isEditing, setIsEditing] = React.useState(false);
+const CellActionDiagnosis: React.FC<CellActionProps> = ({ data }) => {
+  // const [isEditing, setIsEditing] = React.useState(false);
   const [isDeleting, setIsDeleting] = React.useState(false);
-  const { mutate, isPending } = useDeleteUser();
+  const { mutate, isPending } = useDeleteDiagnosis();
 
   const query = useQueryClient();
 
   const onConfirm = () => {
     mutate(
-      { selected: [data.username as string] },
+      { selected: [data.id as string] },
       {
         onSuccess: () => {
           setIsDeleting(false);
-          query.invalidateQueries({ queryKey: ["user"] });
-          toast.success("Berhasil menghapus pengguna " + data.username);
+          query.invalidateQueries({ queryKey: ["diagnosis"] });
+          toast.success("Berhasil menghapus diagnosis");
         },
         onError: (err: Error) => {
           ResponseError(err);
@@ -56,12 +56,7 @@ const CellActionPengguna: React.FC<CellActionProps> = ({ data }) => {
         onClose={() => setIsDeleting(false)}
         onConfirm={onConfirm}
         loading={isPending}
-        desc={`Dengan menghapus pengguna ini, semua data pengguna yang berkaitan dengan pengguna ini akan terhapus. Apakah anda yakin?`}
-      />
-      <ModalFormPengguna
-        open={isEditing}
-        setOpen={() => setIsEditing(false)}
-        dataEdit={data}
+        desc={`Apakah anda yakin menghapus diagnosis?`}
       />
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
@@ -74,12 +69,6 @@ const CellActionPengguna: React.FC<CellActionProps> = ({ data }) => {
           <DropdownMenuLabel>Aksi</DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuItem
-            onClick={() => setIsEditing(true)}
-            className="cursor-pointer"
-          >
-            Edit
-          </DropdownMenuItem>
-          <DropdownMenuItem
             onClick={() => setIsDeleting(true)}
             className="cursor-pointer"
           >
@@ -91,4 +80,4 @@ const CellActionPengguna: React.FC<CellActionProps> = ({ data }) => {
   );
 };
 
-export default CellActionPengguna;
+export default CellActionDiagnosis;

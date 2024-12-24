@@ -124,9 +124,7 @@ const DiagnosisFinishView = ({ diagnosis }: { diagnosis: Diagnosis }) => {
             bgColor="white"
           >
             <Link
-              href={
-                pathname.startsWith("/riwayat/") ? "/riwayat" : "/diagnosis"
-              }
+              href={pathname.startsWith("/riwayat/") ? "/riwayat" : "/"}
               className=" w-full h-8 flex items-center justify-center"
               replace
             >

@@ -21,14 +21,16 @@ const RememberMe = ({ form }: { form: UseFormReturn<FormValues> }) => {
         })
       );
       setRemember(true);
+      localStorage.setItem("check", "true");
     } else {
       localStorage.removeItem("remember");
       setRemember(false);
+      localStorage.removeItem("check");
     }
   };
 
   React.useEffect(() => {
-    if (isBrowser && localStorage.getItem("remember")) {
+    if (isBrowser && localStorage.getItem("check")) {
       setRemember(true);
     }
   }, [remember]);

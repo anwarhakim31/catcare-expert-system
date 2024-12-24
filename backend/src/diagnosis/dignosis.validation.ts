@@ -5,7 +5,8 @@ export class DiagnosisValidation {
   static readonly GETALL: ZodType = z.object({
     search: z.string().optional(),
     page: z.number().min(1).optional(),
-    limit: z.number().min(10).optional(),
+    limit: z.number().min(10).max(50).optional(),
+    status: z.string().min(1).optional(),
   });
 
   static readonly PATCH: ZodType = z.object({

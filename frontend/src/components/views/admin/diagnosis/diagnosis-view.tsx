@@ -6,7 +6,7 @@ import SectionLayout from "@/components/layouts/SectionLayout";
 import InputSearch from "@/components/ui/input-search";
 
 import { Paging } from "@/types/api";
-import { User } from "@/types/model";
+import { Diagnosis } from "@/types/model";
 import { ColumnDef } from "@tanstack/react-table";
 import { Trash } from "lucide-react";
 import { Fragment, useState } from "react";
@@ -15,7 +15,6 @@ import { ModalDelete } from "@/components/fragments/modal-delete";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { ResponseError } from "@/lib/ResponseError";
-import useDataTablePengguna from "@/hooks/user/useDataTablePengguna";
 import useDeleteUser from "@/hooks/user/useDeleteUser";
 import { DropdownMenu } from "@radix-ui/react-dropdown-menu";
 import {
@@ -24,6 +23,8 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
+import useDataTableDiagnosis from "@/hooks/diagnosis/useDataTableDiagnosis";
+import FilterStatusDiagnosis from "./FilterStatusDiagnosis";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -32,14 +33,14 @@ interface DataTableProps<TData, TValue> {
   isLoading: boolean;
 }
 
-export function PenggunaView<TData extends User, TValue>({
+export function DiagnosisView<TData extends Diagnosis, TValue>({
   columns,
   data,
   paging,
   isLoading,
 }: DataTableProps<TData, TValue>) {
   const [isDeleting, setIsDeleting] = useState(false);
-  const { rowSelection, table } = useDataTablePengguna({
+  const { rowSelection, table } = useDataTableDiagnosis({
     columns,
     data,
     paging,
@@ -60,10 +61,10 @@ export function PenggunaView<TData extends User, TValue>({
             },
             {
               onSuccess: () => {
-                query.invalidateQueries({ queryKey: ["user"] });
+                query.invalidateQueries({ queryKey: ["diagnosis"] });
                 setIsDeleting(false);
                 table.resetRowSelection();
-                toast.success("Berhasil menghapus pengguna");
+                toast.success("Berhasil menghapus riwayat diagnosis");
               },
               onError: (err) => {
                 ResponseError(err);
@@ -78,10 +79,10 @@ export function PenggunaView<TData extends User, TValue>({
       />
       <SectionLayout>
         <h3 className="text-base font-medium ">
-          Kelola dan lihat data pengguna
+          Kelola dan lihat data riwayat diagnosis
         </h3>
         <div className="flex justify-between items-center mb-8 mt-4 md:flex-nowrap flex-wrap gap-4">
-          <InputSearch placeholder="Cari Nama Pengguna dan Nama Lengkap..." />
+          <InputSearch placeholder="Cari Nama Pengguna..." />
           <div className="w-full md:w-fit flex justify-between items-center gap-2">
             <button
               disabled={Object.values(rowSelection).length === 0 || isPending}
@@ -94,6 +95,7 @@ export function PenggunaView<TData extends User, TValue>({
             >
               <Trash size={16} strokeWidth={1.5} className="" />
             </button>
+            <FilterStatusDiagnosis />
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button

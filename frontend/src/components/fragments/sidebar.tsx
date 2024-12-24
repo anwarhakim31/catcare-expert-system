@@ -2,9 +2,8 @@
 import {
   Biohazard,
   ClipboardList,
-  History,
   LayoutDashboard,
-  MonitorCog,
+  ListChecksIcon,
   SearchCheck,
   Users,
   X,
@@ -22,12 +21,6 @@ const NavItem = [
     icon: (
       <LayoutDashboard size={20} strokeWidth={1.5} className="flex-shrink-0 " />
     ),
-  },
-  {
-    id: 2,
-    name: "Master Data",
-    path: "/admin/master-data",
-    icon: <MonitorCog size={20} strokeWidth={1.5} className="flex-shrink-0 " />,
   },
   {
     id: 3,
@@ -59,9 +52,11 @@ const NavItem = [
   },
   {
     id: 7,
-    name: "Riwayat",
-    path: "/admin/riwayat",
-    icon: <History size={20} strokeWidth={1.5} className="flex-shrink-0 " />,
+    name: "Diagnosis",
+    path: "/admin/diagnosis",
+    icon: (
+      <ListChecksIcon size={20} strokeWidth={1.5} className="flex-shrink-0 " />
+    ),
   },
 ];
 

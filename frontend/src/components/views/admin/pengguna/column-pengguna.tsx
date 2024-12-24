@@ -39,13 +39,12 @@ export const columns: ColumnDef<User>[] = [
   {
     accessorKey: "username",
     header: "Nama Pengguna",
-    id: "Nama Pengguna",
+
     enableHiding: false,
   },
   {
     accessorKey: "photo",
     header: "Foto",
-    id: "Foto",
     cell: ({ row }) => {
       return row.getValue("photo") ? (
         <figure className="w-[35px] h-[35px] rounded-full overflow-hidden bg-orange-300">
@@ -69,14 +68,12 @@ export const columns: ColumnDef<User>[] = [
     enableHiding: true,
   },
   {
-    id: "Nama Lengkap",
     accessorKey: "fullname",
     header: "Nama Lengkap",
     enableHiding: true,
   },
   {
     accessorKey: "createdAt",
-    id: "Tanggal",
     header: "Tanggal Dibuat",
     cell: ({ row }) => (
       <div className="">{formatDateIndo(row.getValue("createdAt"))}</div>

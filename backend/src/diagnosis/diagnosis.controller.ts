@@ -1,23 +1,73 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   HttpCode,
   Param,
+  ParseIntPipe,
   Patch,
   Post,
+  Query,
   UseGuards,
 } from '@nestjs/common';
 import { DiagnosisService } from './diagnosis.service';
-import { DiagnosisRespnse, ReqPatchDiagnosis } from 'src/model/diagnosis.model';
+import {
+  DiagnosisRespnse,
+  ReqDeleteDiagnosis,
+  ReqGetDiagnosis,
+  ReqPatchDiagnosis,
+} from 'src/model/diagnosis.model';
 import { AuthGuard } from 'src/guards/authGuard';
 import { User } from 'src/decorators/user.decorator';
 import { AuthResponse } from 'src/model/auth.model';
 import { WebResponse } from 'src/model/web.model';
+import { AdminGuard } from 'src/guards/adminGuard';
 
 @Controller('api/diagnosis')
 export class DiagnosisController {
   constructor(private readonly dignosisService: DiagnosisService) {}
+
+  @UseGuards(AuthGuard, AdminGuard)
+  @HttpCode(200)
+  @Get()
+  async getAll(
+    @Query('search') search?: string,
+    @Query(`status`) status?: string,
+    @Query('page', new ParseIntPipe({ optional: true })) page?: number,
+    @Query('limit', new ParseIntPipe({ optional: true })) limit?: number,
+  ): Promise<WebResponse<DiagnosisRespnse[]>> {
+    const request: ReqGetDiagnosis = {
+      search: search || '',
+      page: page,
+      limit: limit,
+      status: status,
+    };
+
+    const result = await this.dignosisService.getAll(request);
+
+    return {
+      success: true,
+      message: 'Berhasil mengambil data penyakit',
+      data: result.data,
+      paging: result.paging,
+    };
+  }
+
+  @UseGuards(AuthGuard, AdminGuard)
+  @HttpCode(200)
+  @Delete()
+  async delete(
+    @Body() request: ReqDeleteDiagnosis,
+  ): Promise<WebResponse<{ name: string }>> {
+    await this.dignosisService.delete(request);
+
+    return {
+      success: true,
+      message: 'Berhasil mengedit data penyakit',
+    };
+  }
+
   @Get('user')
   @HttpCode(200)
   @UseGuards(AuthGuard)

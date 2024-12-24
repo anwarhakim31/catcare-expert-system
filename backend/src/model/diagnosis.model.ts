@@ -5,6 +5,7 @@ export class ReqGetDiagnosis {
   page?: number;
   search?: string;
   limit?: number;
+  status?: string;
 }
 
 export class ReqPatchDiagnosis {
