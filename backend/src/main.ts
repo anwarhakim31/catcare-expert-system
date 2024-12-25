@@ -14,10 +14,11 @@ async function bootstrap() {
   const origin = process.env.ORIGIN || 'http://localhost:3000';
 
   app.enableCors({
-    origin: origin,
-    methods: ['GET', 'PUT', 'PATCH', 'POST', 'DELETE', 'OPTIONS'],
-    allowedHeaders: '*',
+    origin: ['https://catcare-delta.vercel.app', 'http://localhost:3000'],
+    methods: 'GET, HEAD, PUT, POST, DELETE, OPTIONS, PATCH',
     credentials: true,
+    allowedHeaders:
+      'Origin, X-Requested-With, Content-Type, Accept, Authentication, Access-control-allow-credentials, Access-control-allow-headers, Access-control-allow-methods, Access-control-allow-origin, User-Agent, Referer, Accept-Encoding, Accept-Language, Access-Control-Request-Headers, Cache-Control, Pragma',
   });
   await app.listen(4000);
 }
