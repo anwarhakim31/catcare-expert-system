@@ -52,8 +52,8 @@ const AuthLayout = () => {
               <Image
                 src={"/DSC00950.jpeg"}
                 alt="DSC00950"
-                width={300}
-                height={300}
+                width={500}
+                height={500}
                 className="object-cover w-full h-full"
                 priority
               />
