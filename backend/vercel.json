@@ -1,7 +1,6 @@
 {
   "version": 2,
   "name": "backend",
-  "description": "Diagnosis Penyakit Hewan",
   "main": "dist/main.ts",
   "builds": [
     {
