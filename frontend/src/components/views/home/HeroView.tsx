@@ -2,10 +2,10 @@
 import PushButton from "@/components/ui/push-button";
 import usePostDiagnosis from "@/hooks/diagnosis/usePostDiagnosis";
 import React from "react";
-import { Rubik } from "next/font/google";
+import { Inter } from "next/font/google";
 import Image from "next/image";
 
-const inter = Rubik({
+const inter = Inter({
   weight: ["400", "500", "600", "700", "800"],
   subsets: ["latin"],
 });
@@ -18,14 +18,14 @@ const HeroView = () => {
       <div className="relative md:h-[600px] py-40 flex justify-center z-10 items-center flex-col ">
         <h3
           style={inter.style}
-          className="text-xl sm:text-3xl font-normal text-gray-900 tracking-wider px-4 "
+          className="text-xl sm:text-3xl font-medium text-gray-900 tracking-wider px-4 "
         >
           Memperkenalkan{" "}
           <span className="text-orange-500 font-medium">Catcare.</span>
         </h3>
         <h1
           style={inter.style}
-          className="text-3xl sm:text-5xl font-medium mt-3 text-center sm:max-w-[700px] 
+          className="text-3xl sm:text-5xl font-bold mt-3 text-center sm:max-w-[700px] 
          tracking-wider"
         >
           Sistem Pakar Diagnosis Penyakit Kulit Kucing

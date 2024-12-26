@@ -7,6 +7,7 @@ import { GejalaModule } from './gejala/gejala.module';
 import { AturanModule } from './aturan/aturan.module';
 import { DiagnosisModule } from './diagnosis/diagnosis.module';
 import { UserModule } from './user/user.module';
+import { StatisticModule } from './statistic/statistic.module';
 
 @Module({
   controllers: [],
@@ -19,6 +20,7 @@ import { UserModule } from './user/user.module';
     AturanModule,
     DiagnosisModule,
     UserModule,
+    StatisticModule,
   ],
 })
 export class AppModule {}

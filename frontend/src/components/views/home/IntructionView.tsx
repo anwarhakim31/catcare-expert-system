@@ -1,8 +1,8 @@
 import Image from "next/image";
 import React from "react";
-import { Rubik } from "next/font/google";
+import { Inter } from "next/font/google";
 
-const rubik = Rubik({
+const inter = Inter({
   weight: ["400", "500", "600", "700", "800"],
   subsets: ["latin"],
 });
@@ -28,11 +28,15 @@ const data = [
 const IntructionView = () => {
   return (
     <section className="pt-36 pb-30 container ">
-      <h3 style={rubik.style} className="text-2xl text-center mb-14  ">
-        <span className="bg-gradient-to-l from-white via-white to-orange-500 px-4 py-1 ">
-          Intruksi Penggunaan
-        </span>
+      <h3
+        style={inter.style}
+        className="text-3xl  text-gray-900 tracking-wider px-4 text-center mb-4 font-bold"
+      >
+        Intruksi Penggunaan
       </h3>
+      <p className="text-center mb-14 text-gray-500 text-xs tracking-wider">
+        Intruksi penggunaan dalam menggunakan aplikasi Catcare.
+      </p>
       <div className="grid grid-cols-1 md:grid-cols-3  gap-4 ">
         {data.map((item) => (
           <div

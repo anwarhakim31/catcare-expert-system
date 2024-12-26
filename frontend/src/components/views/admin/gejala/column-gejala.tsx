@@ -43,7 +43,7 @@ export const columns: ColumnDef<Symptom>[] = [
   },
   {
     accessorKey: "symptom",
-    header: "GEJALA",
+    header: "Gejala",
     enableHiding: false,
   },
 

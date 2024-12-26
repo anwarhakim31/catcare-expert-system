@@ -35,8 +35,8 @@ const ProfileFormControl: React.FC<typeProps> = ({
             type={type}
             {...field}
             autoComplete="off"
-            readOnly={label === "Nama Panggilan" ? true : false}
-            disabled={label === "Nama Panggilan" ? true : false}
+            readOnly={label === "Nama Pengguna" ? true : false}
+            disabled={label === "Nama Pengguna" ? true : false}
             className={`${
               isEdit
                 ? "pointer-events-auto border shadow "

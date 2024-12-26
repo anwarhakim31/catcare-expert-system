@@ -94,6 +94,7 @@ export function PenyakitView<TData extends Disease, TValue>({
                 setIsOpen(false);
                 table.resetRowSelection();
                 query.invalidateQueries({ queryKey: ["disease"] });
+                query.invalidateQueries({ queryKey: ["rules"] });
                 toast.success("Berhasil menghapus penyakit");
               },
               onError: (err) => {

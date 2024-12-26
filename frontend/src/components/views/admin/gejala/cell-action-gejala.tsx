@@ -40,6 +40,7 @@ const CellActionGejala: React.FC<CellActionProps> = ({ data }) => {
         onSuccess: () => {
           setIsDeleting(false);
           query.invalidateQueries({ queryKey: ["symptom"] });
+          query.invalidateQueries({ queryKey: ["rules"] });
           toast.success("Berhasil menghapus gejala " + data.id?.toUpperCase());
         },
         onError: (err) => {

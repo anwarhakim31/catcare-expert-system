@@ -4,6 +4,7 @@ import { Form, FormField } from "@/components/ui/form";
 import useChangePassword from "@/hooks/user/useChangePassword";
 import { ResponseError } from "@/lib/ResponseError";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { usePathname } from "next/navigation";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
@@ -31,6 +32,7 @@ const ProfileChangePassView = ({
 }: {
   setIsPassword: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
+  const pathaname = usePathname();
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
@@ -97,7 +99,9 @@ const ProfileChangePassView = ({
         <LoadingButton
           loading={isPending}
           disabled={isPending}
-          className="ml-auto text-sm h-10 mt-6 w-full md:w-[200px] "
+          className={`${
+            pathaname.startsWith("/admin/") ? "" : "md:w-[200px]   "
+          } ml-auto text-sm h-10 mt-6 w-full `}
         >
           Simpan
         </LoadingButton>

@@ -75,7 +75,7 @@ const Sidebar = ({
     const handleClickOutside = (event: MouseEvent) => {
       if (
         sideRef.current &&
-        window.innerWidth < 768 &&
+        window.innerWidth < 960 &&
         !sideRef.current.contains(event.target as Node)
       ) {
         setIsOpen(true);
@@ -93,13 +93,13 @@ const Sidebar = ({
     <aside
       ref={sideRef}
       className={` ${
-        !isOpen ? "left-0  md:w-[60px]" : "-left-[250px] md:w-[220px]"
-      } transition-[width left] duration-300 w-[250px] fixed md:static  bg-white z-20  ease-in-out`}
+        !isOpen ? "left-0  lg:w-[60px]" : "-left-[250px] lg:w-[220px]"
+      } transition-[width left] duration-300 w-[250px] fixed lg:static  bg-white z-20  ease-in-out`}
     >
-      <div className="md:fixed  min-h-screen top-0 left-0 w-[inherit] shadow-md bg-white">
+      <div className="lg:fixed  min-h-screen top-0 left-0 w-[inherit] shadow-md bg-white">
         <div
           className={`${
-            isOpen ? "md:px-6" : "md:px-1"
+            isOpen ? "lg:px-6" : "lg:px-1"
           } flex items-center justify-between gap-2 px-2 py-1 bg-orange-500 h-[60px] overflow-hidden transition-all duration-300 ease-in-out`}
         >
           <div className="flex items-center gap-1.5  text-white justify-center ">
@@ -112,7 +112,7 @@ const Sidebar = ({
             />
             <span className="font-medium truncate">Catcare.</span>
           </div>
-          <button className="block md:hidden text-white">
+          <button className="block lg:hidden text-white">
             <X size={20} onClick={() => setIsOpen(!isOpen)} />
           </button>
         </div>
@@ -136,7 +136,7 @@ const Sidebar = ({
                 {item.icon}
                 <span className="truncate ">{item.name}</span>
                 {!isOpen && hover === item.name && (
-                  <span className="absolute hidden md:block -right-[110px] w-[100px] p-2.5 rounded-md text-xs font-medium  bg-orange-500 text-white before:absolute before:-left-3 before:top-0  before:w-3 before:h-full">
+                  <span className="absolute hidden lg:block -right-[110px] w-[100px] p-2.5 rounded-md text-xs font-medium  bg-orange-500 text-white before:absolute before:-left-3 before:top-0  before:w-3 before:h-full">
                     {item.name}
                   </span>
                 )}

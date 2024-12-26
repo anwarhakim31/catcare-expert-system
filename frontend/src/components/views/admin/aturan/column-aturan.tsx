@@ -35,14 +35,14 @@ export const columns: ColumnDef<Rule>[] = [
   },
   {
     accessorKey: "diseaseId",
-    header: "PENYAKIT",
+    header: "Penyakit",
     cell: ({ row }) => (
       <div className="uppercase py-2">{row.getValue("diseaseId")}</div>
     ),
   },
   {
     accessorKey: "symptomId",
-    header: "GEJALA",
+    header: "Gejala",
   },
 
   {

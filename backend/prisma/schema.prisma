@@ -51,8 +51,8 @@ model Rule {
   symptomId   String
 
   
-  disease     Disease   @relation(fields: [diseaseId], references: [id])
-  symptom     Symptom   @relation(fields: [symptomId], references: [id])
+  disease     Disease   @relation(fields: [diseaseId], references: [id], onDelete: Cascade)
+  symptom   Symptom  @relation(fields: [symptomId], references: [id], onDelete: Cascade)
   createdAt   DateTime  @default(now())
 
   @@map("rules")
@@ -68,7 +68,7 @@ model Diagnosis{
   status  DiagnosisStatus @default(pending)
   createdAt DateTime @default(now())
   username String
-  user User @relation(fields: [username],references: [username])
+  user User @relation(fields: [username],references: [username],onDelete: Cascade)
 
   @@map("diagnosis")
 }

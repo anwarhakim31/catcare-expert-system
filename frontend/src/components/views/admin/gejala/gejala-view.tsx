@@ -55,6 +55,7 @@ export function GejalaView<TData extends Symptom, TValue>({
             {
               onSuccess: () => {
                 query.invalidateQueries({ queryKey: ["symptom"] });
+                query.invalidateQueries({ queryKey: ["rules"] });
                 setIsDeleting(false);
                 table.resetRowSelection();
                 toast.success("Berhasil menghapus gejala");

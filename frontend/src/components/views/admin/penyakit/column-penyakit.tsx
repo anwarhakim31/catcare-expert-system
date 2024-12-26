@@ -42,7 +42,7 @@ export const columns: ColumnDef<Disease>[] = [
   },
   {
     accessorKey: "image",
-    header: "GAMBAR",
+    header: "Gambar",
     cell: ({ row }) => {
       return (
         <div className="relative aspect-square max-w-12 h-12">
@@ -59,16 +59,16 @@ export const columns: ColumnDef<Disease>[] = [
   },
   {
     accessorKey: "name",
-    header: "NAMA PENYAKIT",
+    header: "Nama Penyakit",
     enableHiding: false,
   },
   {
     accessorKey: "description",
-    header: "DESKRIPSI",
+    header: "Deskripsi",
   },
   {
     accessorKey: "solution",
-    header: "SOLUSI",
+    header: "Solusi",
   },
   {
     id: "Aksi",

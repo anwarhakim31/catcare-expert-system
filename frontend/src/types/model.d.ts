@@ -39,3 +39,27 @@ export interface Diagnosis {
   createdAt?: Date;
   username?: string;
 }
+
+export interface Rule {
+  id?: string;
+  symptomId: string;
+  diseaseId: string;
+  createdAt?: Date;
+}
+
+export interface Statistic {
+  total: {
+    user: number;
+    disease: number;
+    symptom: number;
+    diagnosis: number;
+  };
+  last3month: {
+    month: string;
+    count: number;
+  }[];
+  detailedSymptoms: {
+    disease: string;
+    symptoms: string[];
+  }[];
+}

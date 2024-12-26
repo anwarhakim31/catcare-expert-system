@@ -11,10 +11,11 @@ import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 import { CommandSearch } from "./CommndSearch";
 import BreadCrumb from "./breadcrumb";
 import { Separator } from "../ui/separator";
-import Link from "next/link";
+
 import useLogout from "@/hooks/auth/useLogout";
 import { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
+import { ProfileSheet } from "../views/admin/profile/ProfileSheet";
 
 const HeaderAdmin = ({
   isOpen,
@@ -30,8 +31,8 @@ const HeaderAdmin = ({
   return (
     <header
       className={`${
-        isOpen ? "md:pl-[248px]" : "md:pl-[90px]"
-      } fixed w-full left-0 top-0 z-10 bg-orange-600 shadow-md px-4 py-3.5 md:pr-8 flex justify-between items-center transition-all duration-300 ease-in-out`}
+        isOpen ? "lg:pl-[248px]" : "lg:pl-[90px]"
+      } fixed w-full left-0 top-0 z-10 bg-orange-600 shadow-md px-4 py-3.5 lg:pr-8 flex justify-between items-center transition-all duration-300 ease-in-out`}
     >
       <div className="flex gap-2 items-center ">
         <button className="text-white p-1" onClick={() => setIsOpen(!isOpen)}>
@@ -72,12 +73,7 @@ const HeaderAdmin = ({
 
             <Separator />
 
-            <Link
-              className="text-sm w-full p-2 block hover:bg-orange-50 transition-all duration-200 ease-in-out"
-              href={"/admin/profile"}
-            >
-              Profile
-            </Link>
+            <ProfileSheet />
             <button
               className="text-sm text-left w-full p-2 block hover:bg-orange-50 transition-all duration-200 ease-in-out"
               aria-label="Logout"

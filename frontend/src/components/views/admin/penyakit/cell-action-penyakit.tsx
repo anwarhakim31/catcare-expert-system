@@ -38,6 +38,7 @@ const CellActionPenyakit: React.FC<CellActionProps> = ({ data }) => {
         onSuccess: () => {
           setIsOpen(false);
           query.invalidateQueries({ queryKey: ["disease"] });
+          query.invalidateQueries({ queryKey: ["rules"] });
           toast.success("Berhasil menghapus penyakit" + data.name);
         },
         onError: (err) => {

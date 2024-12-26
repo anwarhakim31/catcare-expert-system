@@ -1,8 +1,8 @@
 import Image from "next/image";
 import React from "react";
-import { Rubik } from "next/font/google";
+import { Inter } from "next/font/google";
 
-const rubik = Rubik({
+const inter = Inter({
   weight: ["400", "500", "600", "700", "800"],
   subsets: ["latin"],
 });
@@ -10,15 +10,19 @@ const rubik = Rubik({
 const InformationView = () => {
   return (
     <section className="pt-36 pb-30 container ">
-      <h3 style={rubik.style} className="text-2xl text-center mb-14  ">
-        <span className="bg-gradient-to-l from-white via-white to-orange-500 px-4 py-1 ">
-          Tentang Sistem
-        </span>
+      <h3
+        style={inter.style}
+        className="text-3xl  text-gray-900 tracking-wider px-4 text-center mb-4 font-bold"
+      >
+        Tentang Sistem
       </h3>
+      <p className="text-center mb-14 text-gray-500 text-xs tracking-wider">
+        Sistem Pakar Diagnosis Penyakit Kulit Kucing
+      </p>
       <div className="flex items flex-wrap justify-center md:flex-nowrap ">
         <figure className="w-[500px] max-h-[500px] ">
           <Image
-            src="/home/expert-system.webp"
+            src="/home/expert-system.png"
             alt="expert-system"
             width={500}
             height={500}
@@ -28,7 +32,7 @@ const InformationView = () => {
           />
         </figure>
 
-        <p className="pt-10 max-w-[400px] mx-auto leading-7 text-sm md:text-base ">
+        <p className="pt-8 max-w-[400px] mx-auto leading-7 text-sm md:text-base ">
           <span className="font-semibold ">Sistem Pakar </span>
           adalah sebuah program komputer yang dirancang untuk meniru kemampuan
           seorang pakar dalam suatu bidang tertentu. Sistem ini menggunakan

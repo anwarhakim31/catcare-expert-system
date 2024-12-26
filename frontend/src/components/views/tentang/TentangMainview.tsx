@@ -1,8 +1,8 @@
 import React from "react";
 
-import { Rubik } from "next/font/google";
+import { Inter } from "next/font/google";
 
-const rubik = Rubik({
+const inter = Inter({
   weight: ["400", "500", "600", "700", "800"],
   subsets: ["latin"],
 });
@@ -10,7 +10,10 @@ const rubik = Rubik({
 const TentangMainView = () => {
   return (
     <main className="w-full min-h-[calc(100vh-92px)]  py-32">
-      <h3 style={rubik.style} className="text-2xl text-center mb-14  ">
+      <h3
+        style={inter.style}
+        className="text-3xl  text-gray-900 tracking-wider px-4 text-center mb-4 font-semibold"
+      >
         <span className="bg-gradient-to-l from-white via-white to-orange-500 px-4 py-1 ">
           Tentang Kami
         </span>
