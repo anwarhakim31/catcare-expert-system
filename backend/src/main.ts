@@ -13,12 +13,8 @@ async function bootstrap() {
 
   const origin = process.env.ORIGIN || 'http://localhost:3000';
 
-  console.log(origin);
-
   app.enableCors({
-    origin: [origin],
-    methods: ['GET', 'PUT', 'PATCH', 'POST', 'DELETE'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
+    origin: origin,
     credentials: true,
   });
   await app.listen(4000);

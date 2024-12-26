@@ -33,6 +33,7 @@ let AuthController = class AuthController {
             secure: true,
             httpOnly: true,
             maxAge: 1 * 60 * 60 * 1000,
+            sameSite: 'none',
         });
         response.json({
             success: true,
@@ -47,6 +48,7 @@ let AuthController = class AuthController {
             secure: true,
             httpOnly: true,
             maxAge: 8 * 60 * 60 * 1000,
+            sameSite: 'none',
         });
         response.json({
             success: true,
