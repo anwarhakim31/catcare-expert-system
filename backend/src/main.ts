@@ -11,8 +11,10 @@ async function bootstrap() {
   app.useLogger(logger);
   app.use(cookieParser());
 
+  const origin = process.env.ORIGIN || 'http://localhost:3000';
+
   app.enableCors({
-    origin: [process.env.ORIGIN || 'http://localhost:3000'],
+    origin: [origin],
     methods: ['GET', 'PUT', 'PATCH', 'POST', 'DELETE'],
     credentials: true,
   });
