@@ -6,7 +6,7 @@ import { PrismaService } from './prisma.service';
 import { APP_FILTER } from '@nestjs/core';
 import { ErrorFilter } from './error.filter';
 import { ValidationService } from './validation.service';
-import { CommonController } from './common.controller';
+import { CommonController } from '../common/common.controller';
 
 @Global()
 @Module({
