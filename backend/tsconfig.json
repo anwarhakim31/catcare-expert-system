@@ -18,6 +18,7 @@
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
     "strict": true,
+    "esModuleInterop": true,
     "rootDir": "./src"
   },
   "include": ["src/**/*.ts"]
