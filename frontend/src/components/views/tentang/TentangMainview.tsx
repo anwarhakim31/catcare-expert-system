@@ -12,7 +12,7 @@ const TentangMainView = () => {
     <main className="w-full min-h-[calc(100vh-92px)]  py-32">
       <h3
         style={inter.style}
-        className="text-3xl  text-gray-900 tracking-wider px-4 text-center mb-4 font-semibold"
+        className="text-2xl  text-gray-900 tracking-wider px-4 text-center mb-4 font-semibold"
       >
         <span className="bg-gradient-to-l from-white via-white to-orange-500 px-4 py-1 ">
           Tentang Kami

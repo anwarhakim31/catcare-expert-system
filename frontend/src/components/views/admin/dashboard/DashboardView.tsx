@@ -7,6 +7,7 @@ import React, { Fragment } from "react";
 import { LineChartComp } from "./LineChart";
 import { Separator } from "@/components/ui/separator";
 import { Statistic } from "@/types/model";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 const DashboardView = ({ data }: { data: Statistic }) => {
   const context = useAuthContext();
@@ -54,7 +55,7 @@ const DashboardView = ({ data }: { data: Statistic }) => {
           <div className="rounded-md h-[160px] col-span-2  p-3 shadow-md bg-gradient-to-tr from-blue-400 via-blue-500 to-blue-700">
             <h3 className="text-sm text-white">Gejala Pada Setiap Penyakit</h3>
             <Separator className="my-2" />
-            <div className="grid grid-cols-1 xs:grid-cols-2">
+            <ScrollArea className="min-h-full grid grid-cols-1 xs:grid-cols-2">
               {data.detailedSymptoms.map((item) => (
                 <div
                   key={item.disease}
@@ -66,7 +67,7 @@ const DashboardView = ({ data }: { data: Statistic }) => {
                   </p>
                 </div>
               ))}
-            </div>
+            </ScrollArea>
           </div>
         </div>
         <div className="w-full  xl:flex-row ">

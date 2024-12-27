@@ -1,29 +1,12 @@
 "use client";
 import { useAuthContext } from "@/context/AuthContext";
+import { navheader } from "@/utils/constant";
 import { formatSplitName } from "@/utils/helpers";
 import { AlignJustify, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React, { useEffect } from "react";
-
-const nav = [
-  {
-    id: 1,
-    name: "Beranda",
-    path: "/",
-  },
-  {
-    id: 2,
-    name: "Penyakit",
-    path: "/penyakit",
-  },
-  {
-    id: 3,
-    name: "Tentang",
-    path: "/tentang",
-  },
-];
 
 const Header = () => {
   const pathname = usePathname();
@@ -73,7 +56,13 @@ const Header = () => {
             className="flex gap-2 items-center"
             onClick={handleToggle}
           >
-            <Image src={"/logo.png"} alt="logo" width={50} height={50} />
+            <Image
+              src={"/logo.png"}
+              alt="logo"
+              width={50}
+              height={50}
+              priority
+            />
             <h3 className="text-xl text-gray-700  font-bold">Catcare.</h3>
           </Link>
 
@@ -84,7 +73,7 @@ const Header = () => {
                 : "fixed top-[58px] -left-full   flex-col "
             } fixed w-full flex justify-center items-center  h-[calc(100vh-64px)] gap-8 ml-auto sm:h-auto sm:w-auto order-3 sm:static sm:flex-row  sm:order-none  sm:gap-4 transition-all duration-500 ease-in-out sm:transition-none`}
           >
-            {nav.map((item) => (
+            {navheader.map((item) => (
               <Link
                 key={item.id}
                 href={item.path}

@@ -2,6 +2,29 @@ import { User, Biohazard, SearchCheck, CheckSquare } from "lucide-react";
 
 export const ALLOW_FILE_TYPE = ["image/jpeg", "image/png", "image/jpg"];
 
+export const navheader = [
+  {
+    id: 1,
+    name: "Beranda",
+    path: "/",
+  },
+  {
+    id: 2,
+    name: "Penyakit",
+    path: "/penyakit",
+  },
+  {
+    id: 3,
+    name: "Tentang",
+    path: "/tentang",
+  },
+  {
+    id: 4,
+    name: "Klinik",
+    path: "/klinik",
+  },
+];
+
 export const accordionItems = [
   {
     value: "item-1",
@@ -23,9 +46,9 @@ export const accordionItems = [
   },
   {
     value: "item-5",
-    title: "Penyakit apa yang paling sering terdeteksi oleh Catcare?",
+    title: "Penyakit apa yang paling sering terdeteksi di dunia?",
     content:
-      "Berdasarkan data sistem, penyakit yang paling sering terdeteksi adalah flu kucing (feline upper respiratory infection) dan penyakit kulit seperti dermatofitosis. Data ini dihasilkan dari analisis banyaknya gejala yang terkait dengan penyakit tersebut.",
+      "Berdasarkan data, penyakit yang paling sering terdeteksi adalah infestasi kutu. ",
   },
   {
     value: "item-6",

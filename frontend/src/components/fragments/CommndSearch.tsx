@@ -1,15 +1,7 @@
 "use client";
 
 import * as React from "react";
-import {
-  Calculator,
-  Calendar,
-  CreditCard,
-  Search,
-  Settings,
-  Smile,
-  User,
-} from "lucide-react";
+import { Search } from "lucide-react";
 
 import {
   CommandDialog,
@@ -18,9 +10,9 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-  CommandSeparator,
-  CommandShortcut,
 } from "@/components/ui/command";
+import { NavItem } from "./sidebar";
+import Link from "next/link";
 
 export function CommandSearch() {
   const [open, setOpen] = React.useState(false);
@@ -40,36 +32,18 @@ export function CommandSearch() {
         <CommandList>
           <CommandEmpty>No results found.</CommandEmpty>
           <CommandGroup heading="Suggestions">
-            <CommandItem>
-              <Calendar />
-              <span>Calendar</span>
-            </CommandItem>
-            <CommandItem>
-              <Smile />
-              <span>Search Emoji</span>
-            </CommandItem>
-            <CommandItem>
-              <Calculator />
-              <span>Calculator</span>
-            </CommandItem>
-          </CommandGroup>
-          <CommandSeparator />
-          <CommandGroup heading="Settings">
-            <CommandItem>
-              <User />
-              <span>Profile</span>
-              <CommandShortcut>⌘P</CommandShortcut>
-            </CommandItem>
-            <CommandItem>
-              <CreditCard />
-              <span>Billing</span>
-              <CommandShortcut>⌘B</CommandShortcut>
-            </CommandItem>
-            <CommandItem>
-              <Settings />
-              <span>Settings</span>
-              <CommandShortcut>⌘S</CommandShortcut>
-            </CommandItem>
+            {NavItem.map((item) => (
+              <CommandItem key={item.id}>
+                <Link
+                  href={item.path}
+                  className="flex items-center gap-2 w-full"
+                  onClick={() => setOpen(false)}
+                >
+                  {item.icon}
+                  <span>{item.name}</span>
+                </Link>
+              </CommandItem>
+            ))}
           </CommandGroup>
         </CommandList>
       </CommandDialog>

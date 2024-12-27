@@ -13,7 +13,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React, { useEffect, useRef } from "react";
 
-const NavItem = [
+export const NavItem = [
   {
     id: 1,
     name: "Dashboard",
