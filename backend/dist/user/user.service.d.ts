@@ -1,7 +1,7 @@
-import { PrismaService } from 'src/common/prisma.service';
-import { ValidationService } from 'src/common/validation.service';
-import { ReqDeletePengguna, ReqEditPassword, ReqEditUser, ReqGetAllUser, ReqPutPengguna, UserResponse } from 'src/model/user.model';
-import { Paging } from 'src/model/web.model';
+import { PrismaService } from '../common/prisma.service';
+import { ValidationService } from '../common/validation.service';
+import { ReqDeletePengguna, ReqEditPassword, ReqEditUser, ReqGetAllUser, ReqPutPengguna, UserResponse } from '../model/user.model';
+import { Paging } from '../model/web.model';
 export declare class UserService {
     private validationService;
     private prismaService;

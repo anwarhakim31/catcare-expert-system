@@ -1,6 +1,6 @@
 import { AturanService } from './aturan.service';
-import { AturanRespnse, ReqCreateAturan, ReqDeleteAturan, ReqPutAturan } from 'src/model/aturan.model';
-import { WebResponse } from 'src/model/web.model';
+import { AturanRespnse, ReqCreateAturan, ReqDeleteAturan, ReqPutAturan } from '../model/aturan.model';
+import { WebResponse } from '../model/web.model';
 export declare class AturanController {
     private aturanService;
     constructor(aturanService: AturanService);

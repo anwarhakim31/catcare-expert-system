@@ -1,6 +1,6 @@
 import { PenyakitService } from './penyakit.service';
-import { PenyakitRespnse, ReqCreatePenyakit, ReqDeletePenyakit, ReqPutPenyakit } from 'src/model/penyakit.model';
-import { WebResponse } from 'src/model/web.model';
+import { PenyakitRespnse, ReqCreatePenyakit, ReqDeletePenyakit, ReqPutPenyakit } from '../model/penyakit.model';
+import { WebResponse } from '../model/web.model';
 export declare class PenyakitController {
     private penyakitService;
     constructor(penyakitService: PenyakitService);

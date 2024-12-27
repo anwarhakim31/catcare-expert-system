@@ -1,7 +1,7 @@
-import { PrismaService } from 'src/common/prisma.service';
-import { ValidationService } from 'src/common/validation.service';
-import { PenyakitRespnse, ReqCreatePenyakit, ReqDeletePenyakit, ReqGetPenyakit, ReqPutPenyakit } from 'src/model/penyakit.model';
-import { Paging } from 'src/model/web.model';
+import { PrismaService } from '../common/prisma.service';
+import { ValidationService } from '../common/validation.service';
+import { PenyakitRespnse, ReqCreatePenyakit, ReqDeletePenyakit, ReqGetPenyakit, ReqPutPenyakit } from '../model/penyakit.model';
+import { Paging } from '../model/web.model';
 export declare class PenyakitService {
     private validationService;
     private prismaService;

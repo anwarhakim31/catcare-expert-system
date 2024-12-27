@@ -14,8 +14,8 @@ const config_1 = require("@nestjs/config");
 const prisma_service_1 = require("./prisma.service");
 const core_1 = require("@nestjs/core");
 const error_filter_1 = require("./error.filter");
-const validation_service_1 = require("./validation.service");
-const common_controller_1 = require("./common.controller");
+const validation_service_1 = require("../common/validation.service");
+const common_controller_1 = require("../common/common.controller");
 let CommonModule = class CommonModule {
 };
 exports.CommonModule = CommonModule;

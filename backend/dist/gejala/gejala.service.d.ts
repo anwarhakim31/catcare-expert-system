@@ -1,8 +1,8 @@
 import { Logger } from '@nestjs/common';
-import { PrismaService } from 'src/common/prisma.service';
-import { ValidationService } from 'src/common/validation.service';
-import { Paging } from 'src/model/web.model';
-import { GejalaRespnse, ReqCreateGejala, ReqDeleteGejala, ReqGetGejala, ReqPutGejala } from 'src/model/gejala.module';
+import { PrismaService } from '../common/prisma.service';
+import { ValidationService } from '../common/validation.service';
+import { Paging } from '../model/web.model';
+import { GejalaRespnse, ReqCreateGejala, ReqDeleteGejala, ReqGetGejala, ReqPutGejala } from '../model/gejala.module';
 export declare class GejalaService {
     private validationService;
     private logger;

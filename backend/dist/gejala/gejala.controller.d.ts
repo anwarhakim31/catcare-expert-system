@@ -1,7 +1,7 @@
 import { GejalaService } from './gejala.service';
-import { GejalaRespnse, ReqCreateGejala, ReqPutGejala } from 'src/model/gejala.module';
-import { WebResponse } from 'src/model/web.model';
-import { ReqDeletePenyakit } from 'src/model/penyakit.model';
+import { GejalaRespnse, ReqCreateGejala, ReqPutGejala } from '../model/gejala.module';
+import { WebResponse } from '../model/web.model';
+import { ReqDeletePenyakit } from '../model/penyakit.model';
 export declare class GejalaController {
     private GejalaService;
     constructor(GejalaService: GejalaService);
@@ -9,7 +9,7 @@ export declare class GejalaController {
         success: boolean;
         message: string;
         data: GejalaRespnse[];
-        paging: import("src/model/web.model").Paging;
+        paging: import("../model/web.model").Paging;
     }>;
     create(request: ReqCreateGejala): Promise<WebResponse<GejalaRespnse>>;
     put(request: ReqPutGejala, params: {

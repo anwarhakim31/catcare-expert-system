@@ -1,7 +1,7 @@
 import { DiagnosisService } from './diagnosis.service';
-import { DiagnosisRespnse, ReqDeleteDiagnosis, ReqPatchDiagnosis } from 'src/model/diagnosis.model';
-import { AuthResponse } from 'src/model/auth.model';
-import { WebResponse } from 'src/model/web.model';
+import { DiagnosisRespnse, ReqDeleteDiagnosis, ReqPatchDiagnosis } from '../model/diagnosis.model';
+import { AuthResponse } from '../model/auth.model';
+import { WebResponse } from '../model/web.model';
 export declare class DiagnosisController {
     private readonly dignosisService;
     constructor(dignosisService: DiagnosisService);

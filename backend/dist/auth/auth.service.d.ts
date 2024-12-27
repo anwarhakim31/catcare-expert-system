@@ -1,6 +1,6 @@
-import { ValidationService } from 'src/common/validation.service';
-import { PrismaService } from 'src/common/prisma.service';
-import { AuthResponse, LoginRequest, RegisterRequest, UpdateRequest } from 'src/model/auth.model';
+import { ValidationService } from '../common/validation.service';
+import { PrismaService } from '../common/prisma.service';
+import { AuthResponse, LoginRequest, RegisterRequest, UpdateRequest } from '../model/auth.model';
 export declare class AuthService {
     private validationService;
     private prismaService;

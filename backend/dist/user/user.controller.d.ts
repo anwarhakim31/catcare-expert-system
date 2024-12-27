@@ -1,7 +1,7 @@
 import { UserService } from './user.service';
-import { ReqDeletePengguna, ReqEditPassword, ReqEditUser, ReqPutPengguna, UserResponse } from 'src/model/user.model';
-import { AuthResponse } from 'src/model/auth.model';
-import { WebResponse } from 'src/model/web.model';
+import { ReqDeletePengguna, ReqEditPassword, ReqEditUser, ReqPutPengguna, UserResponse } from '../model/user.model';
+import { AuthResponse } from '../model/auth.model';
+import { WebResponse } from '../model/web.model';
 export declare class UserController {
     private userService;
     constructor(userService: UserService);

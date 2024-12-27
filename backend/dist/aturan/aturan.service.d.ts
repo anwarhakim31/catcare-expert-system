@@ -1,6 +1,6 @@
-import { PrismaService } from 'src/common/prisma.service';
-import { ValidationService } from 'src/common/validation.service';
-import { ReqCreateAturan, ReqDeleteAturan, ReqGetAturan, ReqPutAturan } from 'src/model/aturan.model';
+import { PrismaService } from '../common/prisma.service';
+import { ValidationService } from '../common/validation.service';
+import { ReqCreateAturan, ReqDeleteAturan, ReqGetAturan, ReqPutAturan } from '../model/aturan.model';
 export declare class AturanService {
     private prismaService;
     private validationService;
