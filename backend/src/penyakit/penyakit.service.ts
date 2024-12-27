@@ -1,7 +1,7 @@
 import { HttpException, Injectable } from '@nestjs/common';
 
 import { PrismaService } from 'src/common/prisma.service';
-import { ValidationService } from 'src/common/validation.service';
+import { ValidationService } from '../common/validation.service';
 import {
   PenyakitRespnse,
   ReqCreatePenyakit,

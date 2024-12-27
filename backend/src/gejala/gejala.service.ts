@@ -1,7 +1,7 @@
 import { HttpException, Inject, Injectable, Logger } from '@nestjs/common';
 import { WINSTON_MODULE_PROVIDER } from 'nest-winston';
 import { PrismaService } from 'src/common/prisma.service';
-import { ValidationService } from 'src/common/validation.service';
+import { ValidationService } from '../common/validation.service';
 
 import { Paging } from 'src/model/web.model';
 import { GejalaValidation } from './gejala.validation';

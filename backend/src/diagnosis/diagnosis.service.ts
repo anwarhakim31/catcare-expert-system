@@ -9,7 +9,7 @@ import {
   ReqPatchDiagnosis,
 } from 'src/model/diagnosis.model';
 import { AuthResponse } from 'src/model/auth.model';
-import { ValidationService } from 'src/common/validation.service';
+import { ValidationService } from '../common/validation.service';
 
 import { Paging } from 'src/model/web.model';
 import { Cron } from '@nestjs/schedule';
