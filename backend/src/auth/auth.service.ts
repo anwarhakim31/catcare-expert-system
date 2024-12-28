@@ -21,40 +21,33 @@ export class AuthService {
   ) {}
 
   async register(request: RegisterRequest): Promise<AuthResponse> {
-    try {
-      const registerRequest: RegisterRequest = this.validationService.validate(
-        AuthValidation.REGISTER,
-        request,
-      );
+    const registerRequest: RegisterRequest = this.validationService.validate(
+      AuthValidation.REGISTER,
+      request,
+    );
 
-      const totalUserWithSameUsername = await this.prismaService.user.count({
-        where: {
-          username: registerRequest.username,
-        },
-      });
+    const totalUserWithSameUsername = await this.prismaService.user.count({
+      where: {
+        username: registerRequest.username,
+      },
+    });
 
-      if (totalUserWithSameUsername != 0) {
-        throw new HttpException('Nama pengguna sudah digunakan', 400);
-      }
-
-      registerRequest.password = await bcrypt.hash(
-        registerRequest.password,
-        10,
-      );
-
-      const user = await this.prismaService.user.create({
-        data: registerRequest,
-      });
-
-      return {
-        username: user.username,
-        fullname: user.fullname,
-        photo: user.photo,
-        isAdmin: user.isAdmin,
-      };
-    } catch (error) {
-      console.log(error);
+    if (totalUserWithSameUsername != 0) {
+      throw new HttpException('Nama pengguna sudah digunakan', 400);
     }
+
+    registerRequest.password = await bcrypt.hash(registerRequest.password, 10);
+
+    const user = await this.prismaService.user.create({
+      data: registerRequest,
+    });
+
+    return {
+      username: user.username,
+      fullname: user.fullname,
+      photo: user.photo,
+      isAdmin: user.isAdmin,
+    };
   }
 
   async login(request: LoginRequest): Promise<AuthResponse> {

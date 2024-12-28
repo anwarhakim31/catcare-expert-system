@@ -54,30 +54,25 @@ let AuthService = class AuthService {
         this.prismaService = prismaService;
     }
     async register(request) {
-        try {
-            const registerRequest = this.validationService.validate(auth_validation_1.AuthValidation.REGISTER, request);
-            const totalUserWithSameUsername = await this.prismaService.user.count({
-                where: {
-                    username: registerRequest.username,
-                },
-            });
-            if (totalUserWithSameUsername != 0) {
-                throw new common_1.HttpException('Nama pengguna sudah digunakan', 400);
-            }
-            registerRequest.password = await bcrypt.hash(registerRequest.password, 10);
-            const user = await this.prismaService.user.create({
-                data: registerRequest,
-            });
-            return {
-                username: user.username,
-                fullname: user.fullname,
-                photo: user.photo,
-                isAdmin: user.isAdmin,
-            };
+        const registerRequest = this.validationService.validate(auth_validation_1.AuthValidation.REGISTER, request);
+        const totalUserWithSameUsername = await this.prismaService.user.count({
+            where: {
+                username: registerRequest.username,
+            },
+        });
+        if (totalUserWithSameUsername != 0) {
+            throw new common_1.HttpException('Nama pengguna sudah digunakan', 400);
         }
-        catch (error) {
-            console.log(error);
-        }
+        registerRequest.password = await bcrypt.hash(registerRequest.password, 10);
+        const user = await this.prismaService.user.create({
+            data: registerRequest,
+        });
+        return {
+            username: user.username,
+            fullname: user.fullname,
+            photo: user.photo,
+            isAdmin: user.isAdmin,
+        };
     }
     async login(request) {
         const LoginRequest = this.validationService.validate(auth_validation_1.AuthValidation.LOGIN, request);

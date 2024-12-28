@@ -14,8 +14,8 @@ const HeroView = () => {
   const { mutate, isPending } = usePostDiagnosis();
 
   return (
-    <section className="w-full relative h-[600px]">
-      <div className="relative md:h-[600px] py-40  flex justify-center z-10 items-center flex-col ">
+    <section className="w-full relative ">
+      <div className="relative h-[600px] py-40  flex justify-center z-10 items-center flex-col ">
         <h3
           style={inter.style}
           className="text-xl sm:text-3xl font-medium text-gray-900 tracking-wider px-4 "

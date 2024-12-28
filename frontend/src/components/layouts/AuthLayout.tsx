@@ -48,7 +48,7 @@ const AuthLayout = () => {
                 <LoginView />
               )}
             </div>
-            <figure className="w-[300px] h-full  hidden md:block">
+            <figure className="w-[300px]   hidden md:block">
               <Image
                 src={"/DSC00950.jpeg"}
                 alt="DSC00950"
