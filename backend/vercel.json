@@ -16,7 +16,7 @@
   "crons": [
     {
       "path": "/api/diagnosis/cron",
-      "schedule": "10 * * * *"
+      "schedule": "0 0 * * *"
     }
   ]
 }
