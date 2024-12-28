@@ -33,7 +33,6 @@ let AuthController = class AuthController {
             secure: true,
             httpOnly: true,
             maxAge: 1 * 60 * 60 * 1000,
-            domain: '.vercel.app',
             sameSite: 'none',
         });
         response.json({
@@ -49,7 +48,6 @@ let AuthController = class AuthController {
             secure: true,
             httpOnly: true,
             maxAge: 8 * 60 * 60 * 1000,
-            domain: '.vercel.app',
             sameSite: 'none',
         });
         response.json({

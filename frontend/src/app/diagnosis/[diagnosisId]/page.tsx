@@ -30,9 +30,14 @@ const fetchData = async (id: string, catcare: string) => {
     return redirect(notFound());
   }
 
+  const diagnosis = await resDiagnosis.json();
+  const symptoms = await resSymptomp.json();
+
+  if (symptoms?.data?.length === 0) return redirect(notFound());
+
   return {
-    diagnosis: await resDiagnosis.json(),
-    symptoms: await resSymptomp.json(),
+    diagnosis,
+    symptoms,
   };
 };
 
