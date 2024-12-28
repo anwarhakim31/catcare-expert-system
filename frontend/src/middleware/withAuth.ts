@@ -14,7 +14,6 @@ export default function withAuth(
   return async (req: NextRequest, ev: NextFetchEvent) => {
     const cookie = req.cookies.get("catcare")?.value || "";
     const pathname = req.nextUrl.pathname.split("/")[1];
-    console.log(cookie);
 
     if (!cookie) {
       if (requireAuth.includes(pathname)) {

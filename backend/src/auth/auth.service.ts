@@ -51,36 +51,40 @@ export class AuthService {
   }
 
   async login(request: LoginRequest): Promise<AuthResponse> {
-    const LoginRequest: LoginRequest = this.validationService.validate(
-      AuthValidation.LOGIN,
-      request,
-    );
+    try {
+      const LoginRequest: LoginRequest = this.validationService.validate(
+        AuthValidation.LOGIN,
+        request,
+      );
 
-    const user = await this.prismaService.user.findUnique({
-      where: {
-        username: LoginRequest.username,
-      },
-    });
+      const user = await this.prismaService.user.findUnique({
+        where: {
+          username: LoginRequest.username,
+        },
+      });
 
-    if (!user) {
-      throw new HttpException('Nama pengguna atau kata sandi salah', 401);
+      if (!user) {
+        throw new HttpException('Nama pengguna atau kata sandi salah', 401);
+      }
+
+      const isPasswordValid = await bcrypt.compare(
+        LoginRequest.password,
+        user.password,
+      );
+
+      if (!isPasswordValid) {
+        throw new HttpException('Nama pengguna atau kata sandi salah', 401);
+      }
+
+      return {
+        username: user.username,
+        fullname: user.fullname,
+        photo: user?.photo || null,
+        isAdmin: user.isAdmin,
+      };
+    } catch (error) {
+      console.log(error);
     }
-
-    const isPasswordValid = await bcrypt.compare(
-      LoginRequest.password,
-      user.password,
-    );
-
-    if (!isPasswordValid) {
-      throw new HttpException('Nama pengguna atau kata sandi salah', 401);
-    }
-
-    return {
-      username: user.username,
-      fullname: user.fullname,
-      photo: user?.photo || null,
-      isAdmin: user.isAdmin,
-    };
   }
 
   async update(request: UpdateRequest): Promise<AuthResponse> {

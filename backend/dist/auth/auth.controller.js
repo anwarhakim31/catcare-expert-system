@@ -22,38 +22,29 @@ let AuthController = class AuthController {
     constructor(authService, JwtService) {
         this.authService = authService;
         this.JwtService = JwtService;
-        this.generateToken = (payload) => {
-            return this.JwtService.sign(payload);
-        };
     }
     async register(request, response) {
         const result = await this.authService.register(request);
-        const token = this.generateToken(result);
-        response.cookie('catcare', token, {
-            secure: true,
-            httpOnly: true,
-            maxAge: 1 * 60 * 60 * 1000,
-            sameSite: 'none',
-        });
+        const token = this.JwtService.sign(result);
         response.json({
             success: true,
             message: 'Berhasil login',
-            data: result,
+            data: {
+                ...result,
+                token: token,
+            },
         });
     }
     async login(request, response) {
         const result = await this.authService.login(request);
-        const token = this.generateToken(result);
-        response.cookie('catcare', token, {
-            secure: true,
-            httpOnly: true,
-            maxAge: 8 * 60 * 60 * 1000,
-            sameSite: 'none',
-        });
+        const token = this.JwtService.sign(result);
         response.json({
             success: true,
             message: 'Berhasil login',
-            data: result,
+            data: {
+                ...result,
+                token: token,
+            },
         });
     }
     async update(request) {
@@ -65,6 +56,7 @@ let AuthController = class AuthController {
     }
     async get(req, res) {
         const user = req['user'];
+        console.log(user);
         const result = await this.authService.get(user);
         res.json({
             success: true,

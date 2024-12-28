@@ -18,7 +18,7 @@ let AuthGuard = class AuthGuard {
     }
     async canActivate(context) {
         const request = context.switchToHttp().getRequest();
-        const token = request.cookies.catcare;
+        const token = request.headers.authorization?.split(' ')[1];
         if (!token) {
             throw new common_1.HttpException('Unauthorized, Waktu sesi telah habis, silahkan login kembali', 401);
         }

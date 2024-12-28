@@ -17,4 +17,5 @@ export declare class AuthResponse {
     username: string;
     photo?: string;
     isAdmin?: boolean;
+    token?: string;
 }

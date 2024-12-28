@@ -31,10 +31,6 @@ export class AuthController {
     private JwtService: JwtService,
   ) {}
 
-  generateToken = (payload: JwtPayload) => {
-    return this.JwtService.sign(payload);
-  };
-
   @Post('/register')
   async register(
     @Body() request: RegisterRequest,
@@ -42,20 +38,15 @@ export class AuthController {
   ): Promise<void> {
     const result = await this.authService.register(request);
 
-    const token = this.generateToken(result);
-
-    response.cookie('catcare', token, {
-      secure: true,
-      httpOnly: true,
-      maxAge: 1 * 60 * 60 * 1000,
-
-      sameSite: 'none',
-    });
+    const token = this.JwtService.sign(result as JwtPayload);
 
     response.json({
       success: true,
       message: 'Berhasil login',
-      data: result,
+      data: {
+        ...result,
+        token: token,
+      },
     });
   }
 
@@ -66,20 +57,15 @@ export class AuthController {
   ): Promise<void> {
     const result = await this.authService.login(request);
 
-    const token = this.generateToken(result as JwtPayload);
-
-    response.cookie('catcare', token, {
-      secure: true,
-      httpOnly: true,
-      maxAge: 8 * 60 * 60 * 1000,
-
-      sameSite: 'none',
-    });
+    const token = this.JwtService.sign(result as JwtPayload);
 
     response.json({
       success: true,
       message: 'Berhasil login',
-      data: result,
+      data: {
+        ...result,
+        token: token,
+      },
     });
   }
 
@@ -101,6 +87,8 @@ export class AuthController {
   @HttpCode(200)
   async get(@Req() req: Request, @Res() res: Response): Promise<void> {
     const user = req['user'];
+
+    console.log(user);
 
     const result = await this.authService.get(user);
 

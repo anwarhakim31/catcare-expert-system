@@ -34,6 +34,9 @@ const RegisterView = () => {
   const onSubmit = (data: z.infer<typeof FormSchema>) => {
     mutate(data, {
       onSuccess: (user) => {
+        document.cookie = `catcare=${
+          user.data.token
+        }; sameSite=none; path=/; max-age=${60 * 60 * 1}; secure`;
         form.reset();
         router.replace("/");
         context?.setUserData(user.data);

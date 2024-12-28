@@ -33,8 +33,11 @@ const fetchUserData = async (token: string | null) => {
 
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/current`, {
-      cache: "force-cache",
-      headers: { Cookie: `catcare=${token}` },
+      cache: "no-store",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
     });
 
     return await res.json();

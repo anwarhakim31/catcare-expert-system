@@ -14,8 +14,8 @@ const HeroView = () => {
   const { mutate, isPending } = usePostDiagnosis();
 
   return (
-    <section className="w-full relative ">
-      <div className="relative h-[600px] py-40  flex justify-center z-10 items-center flex-col ">
+    <section className="w-full h-[600px] relative ">
+      <div className=" h-[600px] py-40  flex justify-center z-10 items-center flex-col ">
         <h3
           style={inter.style}
           className="text-xl sm:text-3xl font-medium text-gray-900 tracking-wider px-4 "
@@ -49,7 +49,7 @@ const HeroView = () => {
         width={500}
         height={500}
         priority
-        className="absolute top-0 object-left object-cover left-0 h-full w-[21vw]   hidden md:block "
+        className="absolute -z-[1] top-0 object-left object-cover left-0 h-full w-[21vw]   hidden md:block "
       />
       <Image
         src={"/right.jpg"}
@@ -57,7 +57,7 @@ const HeroView = () => {
         width={500}
         height={500}
         priority
-        className="absolute top-0 object-right object-cover right-0 h-full w-[21vw]  hidden md:block"
+        className="absolute -z-[1] top-0 object-right object-cover right-0 h-full w-[21vw]  hidden md:block"
       />
     </section>
   );

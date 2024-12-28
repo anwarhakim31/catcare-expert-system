@@ -5,9 +5,7 @@ import { useMutation } from "@tanstack/react-query";
 const useRegister = () => {
   return useMutation({
     mutationFn: async (data: User) => {
-      const res = await instance.post("/auth/register", data, {
-        withCredentials: true,
-      });
+      const res = await instance.post("/auth/register", data);
 
       return res.data;
     },

@@ -1,4 +1,3 @@
-"use client";
 import AuthFormControl from "@/components/fragments/AuthFormControl";
 import { Form, FormField } from "@/components/ui/form";
 import React, { useEffect } from "react";
@@ -32,6 +31,10 @@ const LoginView = () => {
   const onSumbit = (data: z.infer<typeof FormSchema>) => {
     mutate(data, {
       onSuccess: (value) => {
+        console.log(value);
+        document.cookie = `catcare=${
+          value.data.token
+        }; sameSite=none; path=/; max-age=${60 * 60 * 1}; secure`;
         context?.setUserData(value.data);
         const redirectUrl = value.data.isAdmin
           ? searchParams || "/admin/dashboard"

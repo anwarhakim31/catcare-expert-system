@@ -5,9 +5,7 @@ import { useMutation } from "@tanstack/react-query";
 const useEditProfile = () => {
   return useMutation({
     mutationFn: async (data: User) => {
-      const res = await instance.patch("/user/profile", data, {
-        withCredentials: true,
-      });
+      const res = await instance.patch("/user/profile", data);
 
       return res.data;
     },
