@@ -314,7 +314,7 @@ export class DiagnosisService {
     };
   }
 
-  @Cron('*/10 * * * *')
+  @Cron('0 0 * * *')
   async cornJob() {
     await this.prismaService.diagnosis.updateMany({
       where: {
