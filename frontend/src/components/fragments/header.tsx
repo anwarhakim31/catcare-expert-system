@@ -71,7 +71,7 @@ const Header = () => {
               isOpen
                 ? " left-0  top-[58px] z-30 bg-white   flex-col "
                 : "fixed top-[58px] -left-full   flex-col "
-            } fixed w-full flex justify-center items-center  h-[calc(100vh-64px)] gap-8 ml-auto sm:h-auto sm:w-auto order-3 sm:static sm:flex-row  sm:order-none  sm:gap-4 transition-all duration-500 ease-in-out sm:transition-none`}
+            } fixed w-full flex justify-center items-center  h-[calc(100vh-64px)] gap-8 ml-auto md:h-auto md:w-auto order-3 md:static md:flex-row  md:order-none  md:gap-4 transition-all duration-500 ease-in-out md:transition-none`}
           >
             {navheader.map((item) => (
               <Link
@@ -121,7 +121,7 @@ const Header = () => {
               aria-label="toggle"
               aria-expanded={isOpen}
               onClick={handleToggle}
-              className="flex sm:hidden justify-center items-center w-6 h-6"
+              className="flex md:hidden justify-center items-center w-6 h-6"
             >
               {isOpen ? <X /> : <AlignJustify />}
             </button>
