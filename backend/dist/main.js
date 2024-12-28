@@ -8,7 +8,7 @@ const app_module_1 = require("./app.module");
 const nest_winston_1 = require("nest-winston");
 const cookie_parser_1 = __importDefault(require("cookie-parser"));
 async function bootstrap() {
-    const app = await core_1.NestFactory.create(app_module_1.AppModule, { cors: true });
+    const app = await core_1.NestFactory.create(app_module_1.AppModule);
     const logger = app.get(nest_winston_1.WINSTON_MODULE_NEST_PROVIDER);
     app.useLogger(logger);
     app.use((0, cookie_parser_1.default)());

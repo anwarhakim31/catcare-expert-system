@@ -20,7 +20,7 @@ const InformationView = () => {
         Sistem Pakar Diagnosis Penyakit Kulit Kucing
       </p>
       <div className="flex items flex-wrap justify-center md:flex-nowrap ">
-        <figure className="w-[500px] max-h-[500px] ">
+        <figure className="w-[500px]  max-h-[500px] ">
           <Image
             src="/home/expert-system.png"
             alt="expert-system"
@@ -28,7 +28,7 @@ const InformationView = () => {
             height={500}
             quality={100}
             priority
-            className="w-full h-full object-cover"
+            className="w-full h-auto object-cover"
           />
         </figure>
 
