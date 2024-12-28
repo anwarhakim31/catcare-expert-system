@@ -1,6 +1,6 @@
 import { HttpException, Injectable } from '@nestjs/common';
 
-import { PrismaService } from 'src/common/prisma.service';
+import { PrismaService } from '../common/prisma.service';
 import { ValidationService } from '../common/validation.service';
 import {
   PenyakitRespnse,
@@ -8,9 +8,9 @@ import {
   ReqDeletePenyakit,
   ReqGetPenyakit,
   ReqPutPenyakit,
-} from 'src/model/penyakit.model';
+} from '../model/penyakit.model';
 import { PenyakitValidation } from './penyakit.validation';
-import { Paging } from 'src/model/web.model';
+import { Paging } from '../model/web.model';
 
 @Injectable()
 export class PenyakitService {

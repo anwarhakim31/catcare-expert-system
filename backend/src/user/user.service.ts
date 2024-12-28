@@ -1,5 +1,5 @@
 import { HttpException, Injectable } from '@nestjs/common';
-import { PrismaService } from 'src/common/prisma.service';
+import { PrismaService } from '../common/prisma.service';
 import { ValidationService } from '../common/validation.service';
 import {
   ReqDeletePengguna,
@@ -8,10 +8,10 @@ import {
   ReqGetAllUser,
   ReqPutPengguna,
   UserResponse,
-} from 'src/model/user.model';
+} from '../model/user.model';
 import { UserValidation } from './user.validation';
 import * as bcrypt from 'bcrypt';
-import { Paging } from 'src/model/web.model';
+import { Paging } from '../model/web.model';
 
 @Injectable()
 export class UserService {

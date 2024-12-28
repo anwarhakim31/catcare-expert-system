@@ -1,9 +1,9 @@
 import { HttpException, Inject, Injectable, Logger } from '@nestjs/common';
 import { WINSTON_MODULE_PROVIDER } from 'nest-winston';
-import { PrismaService } from 'src/common/prisma.service';
+import { PrismaService } from '../common/prisma.service';
 import { ValidationService } from '../common/validation.service';
 
-import { Paging } from 'src/model/web.model';
+import { Paging } from '../model/web.model';
 import { GejalaValidation } from './gejala.validation';
 import {
   GejalaRespnse,
@@ -11,7 +11,7 @@ import {
   ReqDeleteGejala,
   ReqGetGejala,
   ReqPutGejala,
-} from 'src/model/gejala.module';
+} from '../model/gejala.module';
 
 @Injectable()
 export class GejalaService {

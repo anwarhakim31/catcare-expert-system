@@ -3,13 +3,13 @@ import { HttpException, Injectable } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
 
 import { ValidationService } from '../common/validation.service';
-import { PrismaService } from 'src/common/prisma.service';
+import { PrismaService } from '../common/prisma.service';
 import {
   AuthResponse,
   LoginRequest,
   RegisterRequest,
   UpdateRequest,
-} from 'src/model/auth.model';
+} from '../model/auth.model';
 import { AuthValidation } from './auth.validation';
 
 @Injectable()

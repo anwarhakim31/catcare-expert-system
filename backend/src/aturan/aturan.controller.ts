@@ -12,16 +12,16 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { AturanService } from './aturan.service';
-import { AuthGuard } from 'src/guards/authGuard';
-import { AdminGuard } from 'src/guards/adminGuard';
+import { AuthGuard } from '../guards/authGuard';
+import { AdminGuard } from '../guards/adminGuard';
 import {
   AturanRespnse,
   ReqCreateAturan,
   ReqDeleteAturan,
   ReqGetAturan,
   ReqPutAturan,
-} from 'src/model/aturan.model';
-import { WebResponse } from 'src/model/web.model';
+} from '../model/aturan.model';
+import { WebResponse } from '../model/web.model';
 
 @Controller('api/rules')
 export class AturanController {

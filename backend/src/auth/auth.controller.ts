@@ -16,13 +16,13 @@ import {
   LoginRequest,
   RegisterRequest,
   UpdateRequest,
-} from 'src/model/auth.model';
+} from '../model/auth.model';
 
 import { JwtService } from '@nestjs/jwt';
 import { Request, Response } from 'express';
-import { AuthGuard } from 'src/guards/authGuard';
-import { JwtPayload } from 'src/model/payload.model';
-import { WebResponse } from 'src/model/web.model';
+import { AuthGuard } from '../guards/authGuard';
+import { JwtPayload } from '../model/payload.model';
+import { WebResponse } from '../model/web.model';
 
 @Controller('api/auth')
 export class AuthController {

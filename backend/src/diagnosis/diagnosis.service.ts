@@ -1,17 +1,17 @@
 import { HttpException, Injectable } from '@nestjs/common';
 import { DiagnosisValidation } from './dignosis.validation';
-import { PrismaService } from 'src/common/prisma.service';
+import { PrismaService } from '../common/prisma.service';
 import {
   DiagnosisRespnse,
   jsonDiagnosis,
   ReqDeleteDiagnosis,
   ReqGetDiagnosis,
   ReqPatchDiagnosis,
-} from 'src/model/diagnosis.model';
-import { AuthResponse } from 'src/model/auth.model';
+} from '../model/diagnosis.model';
+import { AuthResponse } from '../model/auth.model';
 import { ValidationService } from '../common/validation.service';
 
-import { Paging } from 'src/model/web.model';
+import { Paging } from '../model/web.model';
 import { Cron } from '@nestjs/schedule';
 
 @Injectable()

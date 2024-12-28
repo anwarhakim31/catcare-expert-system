@@ -1,12 +1,12 @@
 import { HttpException, Injectable } from '@nestjs/common';
-import { PrismaService } from 'src/common/prisma.service';
+import { PrismaService } from '../common/prisma.service';
 import { ValidationService } from '../common/validation.service';
 import {
   ReqCreateAturan,
   ReqDeleteAturan,
   ReqGetAturan,
   ReqPutAturan,
-} from 'src/model/aturan.model';
+} from '../model/aturan.model';
 import { AturanValidation } from './aturan.validation';
 
 @Injectable()

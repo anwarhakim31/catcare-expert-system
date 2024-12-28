@@ -17,12 +17,12 @@ import {
   ReqDeleteDiagnosis,
   ReqGetDiagnosis,
   ReqPatchDiagnosis,
-} from 'src/model/diagnosis.model';
-import { AuthGuard } from 'src/guards/authGuard';
-import { User } from 'src/decorators/user.decorator';
-import { AuthResponse } from 'src/model/auth.model';
-import { WebResponse } from 'src/model/web.model';
-import { AdminGuard } from 'src/guards/adminGuard';
+} from '../model/diagnosis.model';
+import { AuthGuard } from '../guards/authGuard';
+import { User } from '../decorators/user.decorator';
+import { AuthResponse } from '../model/auth.model';
+import { WebResponse } from '../model/web.model';
+import { AdminGuard } from '../guards/adminGuard';
 
 @Controller('api/diagnosis')
 export class DiagnosisController {

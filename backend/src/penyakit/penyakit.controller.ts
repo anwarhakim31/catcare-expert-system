@@ -17,10 +17,10 @@ import {
   ReqDeletePenyakit,
   ReqGetPenyakit,
   ReqPutPenyakit,
-} from 'src/model/penyakit.model';
-import { AuthGuard } from 'src/guards/authGuard';
-import { WebResponse } from 'src/model/web.model';
-import { AdminGuard } from 'src/guards/adminGuard';
+} from '../model/penyakit.model';
+import { AuthGuard } from '../guards/authGuard';
+import { WebResponse } from '../model/web.model';
+import { AdminGuard } from '../guards/adminGuard';
 
 @Controller('api/disease')
 export class PenyakitController {

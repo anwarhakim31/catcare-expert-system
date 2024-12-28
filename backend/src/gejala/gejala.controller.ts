@@ -17,11 +17,11 @@ import {
   ReqCreateGejala,
   ReqGetGejala,
   ReqPutGejala,
-} from 'src/model/gejala.module';
-import { AdminGuard } from 'src/guards/adminGuard';
-import { AuthGuard } from 'src/guards/authGuard';
-import { WebResponse } from 'src/model/web.model';
-import { ReqDeletePenyakit } from 'src/model/penyakit.model';
+} from '../model/gejala.module';
+import { AdminGuard } from '../guards/adminGuard';
+import { AuthGuard } from '../guards/authGuard';
+import { WebResponse } from '../model/web.model';
+import { ReqDeletePenyakit } from '../model/penyakit.model';
 
 @Controller('api/symptom')
 export class GejalaController {
