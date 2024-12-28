@@ -37,7 +37,11 @@ const DashboardView = ({ data }: { data: Statistic }) => {
               className=" rounded-md h-max  p-2 bg-white shadow-md flex gap-4"
             >
               <div
-                className={`w-14 h-14 rounded-md flex justify-center items-center ${item.color}`}
+                className={`w-14 h-14 rounded-md flex justify-center items-center ${
+                  item.title === "Gejala" && "bg-red-500 "
+                } ${item.title === "Penyakit" && "bg-blue-500 "} ${
+                  item.title === "Pengguna" && "bg-purple-500 "
+                } ${item.title === "Diagnosis" && "bg-green-500 "}`}
               >
                 <item.icon size={20} className="text-white" />
               </div>
@@ -74,7 +78,6 @@ const DashboardView = ({ data }: { data: Statistic }) => {
           <LineChartComp statistic={data.last3month} />
         </div>
       </div>
-      <div className="bg-orange-100 h-20 w-full mt-8"></div>
     </Fragment>
   );
 };

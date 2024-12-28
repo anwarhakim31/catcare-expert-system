@@ -12,6 +12,7 @@ import { AuthResponse } from 'src/model/auth.model';
 import { ValidationService } from 'src/common/validation.service';
 
 import { Paging } from 'src/model/web.model';
+import { Cron } from '@nestjs/schedule';
 
 @Injectable()
 export class DiagnosisService {
@@ -311,5 +312,22 @@ export class DiagnosisService {
       disease: diagnosis.disease as unknown as JSON,
       symptoms: diagnosis.symptoms as unknown as [] | jsonDiagnosis[],
     };
+  }
+
+  @Cron('*/10 * * * *')
+  async cornJob() {
+    await this.prismaService.diagnosis.updateMany({
+      where: {
+        expired: {
+          lte: Math.floor(new Date().getTime() / 1000),
+        },
+        status: 'pending',
+      },
+      data: {
+        status: 'cancel',
+      },
+    });
+
+    return true;
   }
 }

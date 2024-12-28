@@ -69,7 +69,7 @@ export class AuthController {
     response.cookie('catcare', token, {
       secure: true,
       httpOnly: true,
-      maxAge: 1 * 60 * 60 * 1000,
+      maxAge: 8 * 60 * 60 * 1000,
     });
 
     response.json({

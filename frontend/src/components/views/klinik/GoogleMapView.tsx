@@ -8,6 +8,7 @@ import {
   OverlayView,
 } from "@react-google-maps/api";
 import { LocateFixed, X } from "lucide-react";
+import { toast } from "sonner";
 
 type LatLngLiteral = google.maps.LatLngLiteral;
 type DirectionsResult = google.maps.DirectionsResult;
@@ -139,8 +140,13 @@ const GoogleMapView = () => {
         <button
           className="flex items-center gap-2 btn"
           onClick={() => {
-            map?.panTo(userLocation || defaultCenter);
-            map?.setZoom(15);
+            if (!userLocation) {
+              toast.warning("Aktifkan lokasi di perangkat Anda");
+              return;
+            } else {
+              map?.panTo(userLocation || defaultCenter);
+              map?.setZoom(15);
+            }
           }}
         >
           <LocateFixed size={18} strokeWidth={1.5} />

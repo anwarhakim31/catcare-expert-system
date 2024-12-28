@@ -124,4 +124,9 @@ export class DiagnosisController {
       data: result,
     };
   }
+
+  @Get('/cron')
+  async cornJob() {
+    await this.dignosisService.cornJob();
+  }
 }
