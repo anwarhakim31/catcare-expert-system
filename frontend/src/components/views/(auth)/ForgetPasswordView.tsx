@@ -27,9 +27,11 @@ const ForgetPasswordView = () => {
     defaultValues: { username: "", password: "", fullname: "" },
   });
   const router = useRouter();
-  const { mutate, isPending } = useForget();
+  const { mutate } = useForget();
+  const [isLoading, setIsLoading] = React.useState(false);
 
   const onSubmit = (data: z.infer<typeof FormSchema>) => {
+    setIsLoading(true);
     mutate(data, {
       onSuccess: () => {
         form.reset();
@@ -37,6 +39,7 @@ const ForgetPasswordView = () => {
         toast.success("Kata sandi berhasil diubah");
       },
       onError: (err) => {
+        setIsLoading(false);
         return ResponseError(err);
       },
     });
@@ -72,7 +75,7 @@ const ForgetPasswordView = () => {
         />
 
         <LoadingButton
-          loading={isPending}
+          loading={isLoading}
           type="submit"
           aria-label="Masuk"
           className="w-full mt-4"

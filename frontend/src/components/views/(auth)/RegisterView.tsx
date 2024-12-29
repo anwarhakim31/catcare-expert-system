@@ -28,10 +28,12 @@ const RegisterView = () => {
     resolver: zodResolver(FormSchema),
     defaultValues: { username: "", password: "", fullname: "" },
   });
+  const [isLoading, setIsLoading] = React.useState(false);
 
-  const { mutate, isPending } = useRegister();
+  const { mutate } = useRegister();
 
   const onSubmit = (data: z.infer<typeof FormSchema>) => {
+    setIsLoading(true);
     mutate(data, {
       onSuccess: (user) => {
         document.cookie = `catcare=${
@@ -42,6 +44,7 @@ const RegisterView = () => {
         context?.setUserData(user.data);
       },
       onError: (err) => {
+        setIsLoading(false);
         if (err instanceof AxiosError && err?.response?.data.code === 400) {
           return form.setError("username", {
             message: err?.response?.data.message,
@@ -79,7 +82,7 @@ const RegisterView = () => {
         />
 
         <LoadingButton
-          loading={isPending}
+          loading={isLoading}
           type="submit"
           aria-label="Masuk"
           className="w-full mt-8 "

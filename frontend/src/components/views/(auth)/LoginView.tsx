@@ -25,13 +25,14 @@ const LoginView = () => {
     defaultValues: { username: "", password: "" },
   });
   const context = useAuthContext();
-  const { mutate, isPending } = useLogin();
+  const { mutate } = useLogin();
   const searchParams = useSearchParams().get("callbackUrl");
+  const [isLoading, setIsLoading] = React.useState(false);
 
   const onSumbit = (data: z.infer<typeof FormSchema>) => {
+    setIsLoading(true);
     mutate(data, {
       onSuccess: (value) => {
-        console.log(value);
         document.cookie = `catcare=${
           value.data.token
         }; sameSite=none; path=/; max-age=${60 * 60 * 1}; secure`;
@@ -45,6 +46,7 @@ const LoginView = () => {
         form.reset();
       },
       onError: (err) => {
+        setIsLoading(false);
         return ResponseError(err);
       },
     });
@@ -117,7 +119,7 @@ const LoginView = () => {
           </Link>
         </div>
         <LoadingButton
-          loading={isPending}
+          loading={isLoading}
           type="submit"
           aria-label="Masuk"
           className="w-full mt-4"
