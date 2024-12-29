@@ -9,9 +9,7 @@ const usePostRule = (onClose: () => void) => {
 
   return useMutation({
     mutationFn: async (data: Rule) => {
-      const res = await instance.post("/rules", data, {
-        withCredentials: true,
-      });
+      const res = await instance.post("/rules", data);
 
       return res.data;
     },

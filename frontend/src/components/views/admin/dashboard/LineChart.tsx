@@ -30,7 +30,6 @@ export function LineChartComp({
 }: {
   statistic: { month: string; count: number }[];
 }) {
-  console.log(statistic);
   return (
     <Card className="rounded-md">
       <CardHeader>

@@ -10,13 +10,7 @@ const usePostDiagnosis = () => {
 
   return useMutation({
     mutationFn: async () => {
-      const res = await instance.post(
-        "/diagnosis",
-        {},
-        {
-          withCredentials: true,
-        }
-      );
+      const res = await instance.post("/diagnosis", {});
 
       return res.data.data;
     },

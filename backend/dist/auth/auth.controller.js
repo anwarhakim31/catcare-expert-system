@@ -64,13 +64,6 @@ let AuthController = class AuthController {
             data: result,
         });
     }
-    async delete(res) {
-        res.clearCookie('catcare');
-        res.json({
-            success: true,
-            message: 'Berhasil logout',
-        });
-    }
 };
 exports.AuthController = AuthController;
 __decorate([
@@ -107,14 +100,6 @@ __decorate([
     __metadata("design:paramtypes", [Object, Object]),
     __metadata("design:returntype", Promise)
 ], AuthController.prototype, "get", null);
-__decorate([
-    (0, common_1.Delete)('/logout'),
-    (0, common_1.HttpCode)(200),
-    __param(0, (0, common_1.Res)()),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
-    __metadata("design:returntype", Promise)
-], AuthController.prototype, "delete", null);
 exports.AuthController = AuthController = __decorate([
     (0, common_1.Controller)('api/auth'),
     __metadata("design:paramtypes", [auth_service_1.AuthService,

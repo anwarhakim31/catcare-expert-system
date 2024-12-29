@@ -18,9 +18,7 @@ const useFetchSymptom = (
   return useQuery({
     queryKey: ["symptom", search, page, limit],
     queryFn: async () => {
-      const res = await instance.get(`/symptom?${params.toString()}`, {
-        withCredentials: true,
-      });
+      const res = await instance.get(`/symptom?${params.toString()}`);
       return res.data;
     },
     staleTime: 1000 * 60 * 5,

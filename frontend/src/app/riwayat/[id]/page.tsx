@@ -15,7 +15,7 @@ const fetchData = async (id: string, catcare: string) => {
     `${process.env.NEXT_PUBLIC_API_URL}/diagnosis/${id}`,
     {
       headers: {
-        cookie: `catcare=${catcare}`,
+        Authorization: `Bearer ${catcare}`,
       },
     }
   );

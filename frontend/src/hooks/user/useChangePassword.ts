@@ -9,9 +9,7 @@ const useChangePassword = () => {
       newPassword: string;
       confPassword: string;
     }) => {
-      const res = await instance.patch("/user/password", data, {
-        withCredentials: true,
-      });
+      const res = await instance.patch("/user/password", data);
 
       return res.data;
     },

@@ -49,9 +49,10 @@ export function ProfileSheet() {
   const onSubmit = (data: z.infer<typeof FormSchema>) => {
     mutate(data, {
       onSuccess: () => {
-        form.reset();
         toast.success("Profil berhasil diubah");
         setIsProfile(false);
+
+        context?.setUserData({ ...context?.userData, ...data });
       },
       onError: (err) => {
         return ResponseError(err);
@@ -93,7 +94,11 @@ export function ProfileSheet() {
               className="space-y-4 mt-4"
               onSubmit={form.handleSubmit(onSubmit)}
             >
-              <ProfilePhoto form={form} isEdit={true} setLoading={setLoading} />
+              <ProfilePhoto
+                form={form}
+                isEdit={isProfile}
+                setLoading={setLoading}
+              />
               <FormField
                 control={form.control}
                 name="username"

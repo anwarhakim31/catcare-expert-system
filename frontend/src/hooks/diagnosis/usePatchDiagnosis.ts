@@ -5,9 +5,7 @@ import { useMutation } from "@tanstack/react-query";
 const usePatchDiagnosis = (diagnosis: Diagnosis) => {
   return useMutation({
     mutationFn: async (data: Diagnosis) => {
-      const res = await instance.patch(`/diagnosis/${diagnosis.id}`, data, {
-        withCredentials: true,
-      });
+      const res = await instance.patch(`/diagnosis/${diagnosis.id}`, data);
       return res.data.data;
     },
   });

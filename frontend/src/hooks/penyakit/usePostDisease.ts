@@ -11,9 +11,7 @@ const usePostDisease = () => {
 
   return useMutation({
     mutationFn: async (data: Disease) => {
-      const res = await instance.post("/disease", data, {
-        withCredentials: true,
-      });
+      const res = await instance.post("/disease", data);
 
       return res.data;
     },

@@ -10,10 +10,9 @@ const fetchData = async (catcare: string) => {
     cache: "no-store",
     method: "GET",
     headers: {
-      cookie: `catcare=${catcare}`,
+      Authorization: `Bearer ${catcare}`,
     },
   });
-  console.log(res);
 
   if (!res.ok) {
     return redirect("/error");

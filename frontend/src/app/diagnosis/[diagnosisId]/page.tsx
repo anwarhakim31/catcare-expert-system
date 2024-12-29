@@ -16,12 +16,12 @@ const fetchData = async (id: string, catcare: string) => {
   const [resDiagnosis, resSymptomp] = await Promise.all([
     fetch(`${process.env.NEXT_PUBLIC_API_URL}/diagnosis/${id}`, {
       headers: {
-        cookie: `catcare=${catcare}`,
+        Authorization: `Bearer ${catcare}`,
       },
     }),
     fetch(`${process.env.NEXT_PUBLIC_API_URL}/symptom`, {
       headers: {
-        cookie: `catcare=${catcare}`,
+        Authorization: `Bearer ${catcare}`,
       },
     }),
   ]);

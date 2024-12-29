@@ -8,9 +8,7 @@ const usePutSymptom = (id: string, onClose: () => void) => {
   const query = useQueryClient();
   return useMutation({
     mutationFn: async (data: Symptom) => {
-      const res = await instance.put("/symptom/" + id, data, {
-        withCredentials: true,
-      });
+      const res = await instance.put("/symptom/" + id, data);
 
       return res.data;
     },

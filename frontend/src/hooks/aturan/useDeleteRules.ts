@@ -6,7 +6,6 @@ const useDeleteRules = () => {
     mutationFn: async (data: { selected: string[] }) => {
       const res = await instance.delete("/rules", {
         data,
-        withCredentials: true,
       });
 
       return res.data;

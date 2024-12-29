@@ -1,13 +1,15 @@
 "use client";
-import useLogout from "@/hooks/auth/useLogout";
+
+import { useAuthContext } from "@/context/AuthContext";
 import { History, LogOut, User } from "lucide-react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import React from "react";
 
 const ProfileLayout = ({ children }: { children: React.ReactNode }) => {
   const pathname = usePathname();
-  const { mutate, isPending } = useLogout();
+  const router = useRouter();
+  const context = useAuthContext();
 
   return (
     <main className="container flex  gap-8  pt-32 pb-20 flex-col md:flex-row">
@@ -36,8 +38,12 @@ const ProfileLayout = ({ children }: { children: React.ReactNode }) => {
         </Link>
         <button
           type="button"
-          onClick={() => mutate()}
-          disabled={isPending}
+          onClick={() => {
+            context?.setUserData(null);
+            router.replace("/login");
+            document.cookie =
+              "catcare=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/";
+          }}
           className="px-4 py-2.5 rounded-md  transition-all ease-in-out duration-300 text-gray-700 hover:bg-orange-50 border flex item-center gap-2 w-full text-sm"
         >
           <LogOut size={20} />

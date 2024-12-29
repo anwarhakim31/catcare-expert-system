@@ -8,9 +8,7 @@ const usePutUser = (onClose: () => void) => {
   const query = useQueryClient();
   return useMutation({
     mutationFn: async (data: User) => {
-      const res = await instance.put("/user", data, {
-        withCredentials: true,
-      });
+      const res = await instance.put("/user", data);
 
       return res.data;
     },

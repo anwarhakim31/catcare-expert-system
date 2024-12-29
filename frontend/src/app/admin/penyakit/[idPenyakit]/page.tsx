@@ -9,7 +9,7 @@ const getData = async (idPenyakit: string, catcare: string) => {
     `${process.env.NEXT_PUBLIC_API_URL}/disease/${idPenyakit}`,
     {
       headers: {
-        cookie: `catcare=${catcare}`,
+        Authorization: `Bearer ${catcare}`,
       },
     }
   );

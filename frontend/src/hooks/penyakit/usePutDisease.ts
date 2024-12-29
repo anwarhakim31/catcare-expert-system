@@ -10,9 +10,7 @@ const usePutDisease = (id: string) => {
   const query = useQueryClient();
   return useMutation({
     mutationFn: async (data: Disease) => {
-      const res = await instance.put("/disease/" + id, data, {
-        withCredentials: true,
-      });
+      const res = await instance.put("/disease/" + id, data);
 
       return res.data;
     },

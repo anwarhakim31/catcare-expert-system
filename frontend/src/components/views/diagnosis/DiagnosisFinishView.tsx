@@ -45,77 +45,96 @@ const DiagnosisFinishView = ({ diagnosis }: { diagnosis: Diagnosis }) => {
           <h5 className="font-semibold mb-2 text-base text-orange-500">
             Gejala
           </h5>
-          <ol className="list-decimal list-inside  w-full text-sm text-gray-700">
-            {diagnosis?.symptoms
-              ?.filter((symptom) => symptom.answer)
-              .map((symptom) => (
-                <li key={symptom.id} className="capitalize">
-                  {symptom.symptom}
-                </li>
-              ))}
-          </ol>
+          {diagnosis.symptoms &&
+          diagnosis.symptoms.filter((symptom) => symptom.answer).length > 0 ? (
+            <ol className="list-decimal list-inside  w-full text-sm text-gray-700">
+              {diagnosis?.symptoms
+                ?.filter((symptom) => symptom.answer)
+                .map((symptom) => (
+                  <li key={symptom.id} className="capitalize">
+                    {symptom.symptom}
+                  </li>
+                ))}
+            </ol>
+          ) : (
+            <p className="text-gray-700 text-sm">Tidak ada gejala</p>
+          )}
           <h5 className="font-semibold my-2 text-base text-orange-500">
             Penyakit
           </h5>
-          <p className="text-gray-700 text-sm">
-            Bedasarkan gejala dari diagnosis yang anda lakukan, Kucing anda
-            terdeteksi memiliki penyakit{" "}
-            {diagnosis?.disease && diagnosis.disease.length === 1 ? (
-              <span className="font-semibold">{diagnosis.disease[0].name}</span>
-            ) : diagnosis?.disease?.length === 2 ? (
-              diagnosis?.disease?.map((disease, index) => {
-                return (
-                  <Fragment key={disease.id}>
-                    <span className="font-bold capitalize">{disease.name}</span>
-                    {diagnosis?.disease &&
-                      index !== diagnosis?.disease?.length - 1 &&
-                      " dan "}
-                  </Fragment>
-                );
-              })
-            ) : (
-              diagnosis?.disease?.map((disease, index) => {
-                return (
-                  <Fragment key={disease.id}>
-                    <span className="font-bold capitalize">{disease.name}</span>
-                    {diagnosis?.disease &&
-                      index < diagnosis?.disease?.length - 1 &&
-                      ", "}
-                    {diagnosis?.disease &&
-                      index !== diagnosis?.disease?.length - 1 &&
-                      " dan "}
-                  </Fragment>
-                );
-              })
-            )}{" "}
-            dengan tingkat keparahan{" "}
-            <span className="font-semibold">{diagnosis?.scor}</span>%.
-          </p>
+          {diagnosis?.disease && diagnosis?.disease?.length > 0 ? (
+            <p className="text-gray-700 text-sm">
+              Bedasarkan gejala dari diagnosis yang anda lakukan, Kucing anda
+              terdeteksi memiliki penyakit{" "}
+              {diagnosis?.disease && diagnosis.disease.length === 1 ? (
+                <span className="font-semibold">
+                  {diagnosis.disease[0].name}
+                </span>
+              ) : diagnosis?.disease?.length === 2 ? (
+                diagnosis?.disease?.map((disease, index) => {
+                  return (
+                    <Fragment key={disease.id}>
+                      <span className="font-bold capitalize">
+                        {disease.name}
+                      </span>
+                      {diagnosis?.disease &&
+                        index !== diagnosis?.disease?.length - 1 &&
+                        " dan "}
+                    </Fragment>
+                  );
+                })
+              ) : (
+                diagnosis?.disease?.map((disease, index) => {
+                  return (
+                    <Fragment key={disease.id}>
+                      <span className="font-bold capitalize">
+                        {disease.name}
+                      </span>
+                      {diagnosis?.disease &&
+                        index < diagnosis?.disease?.length - 1 &&
+                        ", "}
+                      {diagnosis?.disease &&
+                        index !== diagnosis?.disease?.length - 1 &&
+                        " dan "}
+                    </Fragment>
+                  );
+                })
+              )}{" "}
+              dengan tingkat keparahan{" "}
+              <span className="font-semibold">{diagnosis?.scor}</span>%.
+            </p>
+          ) : (
+            <p className="text-gray-700 text-sm">Tidak ada penyakit</p>
+          )}
         </div>
-        <h3 className="mt-8 w-full text-base  tracking-wider text-orange-500 text-center font-semibold">
-          Solusi
-        </h3>
-        <div
-          className={`min-h-56 border-t-2 rounded-xl border-orange-500 p-4 mt-2 grid ${
-            diagnosis?.disease && diagnosis?.disease?.length > 1
-              ? "md:grid-cols-2"
-              : "md:grid-cols-1"
-          } gap-4 `}
-        >
-          {diagnosis?.disease?.map((disease) => (
-            <div className="w-full" key={disease.id}>
-              <div className="flex gap-2 items-center">
-                <h5 className="font-semibold my-2 text-base capitalize text-orange-500">
-                  {disease.name}
-                </h5>
-                <ModalDetailDisease disease={disease} />
-              </div>
-              <p className="text-gray-700 text-sm whitespace-pre-line">
-                {disease.solution}
-              </p>
+        {diagnosis?.disease && diagnosis?.disease?.length > 0 && (
+          <>
+            <h3 className="mt-8 w-full text-base  tracking-wider text-orange-500 text-center font-semibold">
+              Solusi
+            </h3>
+            <div
+              className={`min-h-56 border-t-2 rounded-xl border-orange-500 p-4 mt-2 grid ${
+                diagnosis?.disease && diagnosis?.disease?.length > 1
+                  ? "md:grid-cols-2"
+                  : "md:grid-cols-1"
+              } gap-4 `}
+            >
+              {diagnosis?.disease?.map((disease) => (
+                <div className="w-full" key={disease.id}>
+                  <div className="flex gap-2 items-center">
+                    <h5 className="font-semibold my-2 text-base capitalize text-orange-500">
+                      {disease.name}
+                    </h5>
+                    <ModalDetailDisease disease={disease} />
+                  </div>
+                  <p className="text-gray-700 text-sm whitespace-pre-line">
+                    {disease.solution}
+                  </p>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
+          </>
+        )}
         <div className=" w-full text-sm flex gap-4 justify-center items-center mt-4 border-t-2 border-orange-500 pt-10">
           <PushButton
             loading={false}

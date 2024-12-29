@@ -8,9 +8,7 @@ const usePutRules = (id: string, onClose: () => void) => {
   const query = useQueryClient();
   return useMutation({
     mutationFn: async (data: Rule) => {
-      const res = await instance.put("/rules/" + id, data, {
-        withCredentials: true,
-      });
+      const res = await instance.put("/rules/" + id, data);
 
       return res.data;
     },

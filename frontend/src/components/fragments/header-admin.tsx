@@ -12,8 +12,6 @@ import { CommandSearch } from "./CommndSearch";
 import BreadCrumb from "./breadcrumb";
 import { Separator } from "../ui/separator";
 
-import useLogout from "@/hooks/auth/useLogout";
-import { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
 import { ProfileSheet } from "../views/admin/profile/ProfileSheet";
 
@@ -26,7 +24,6 @@ const HeaderAdmin = ({
 }) => {
   const context = useAuthContext();
   const router = useRouter();
-  const { mutate, isPending } = useLogout();
 
   return (
     <header
@@ -79,17 +76,11 @@ const HeaderAdmin = ({
               aria-label="Logout"
               type="button"
               onClick={() => {
-                mutate(undefined, {
-                  onError: (err) => {
-                    if (
-                      err instanceof AxiosError &&
-                      err?.response?.data.code === 401
-                    )
-                      return router.push("/login");
-                  },
-                });
+                context?.setUserData(null);
+                router.replace("/login");
+                document.cookie =
+                  "catcare=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/";
               }}
-              disabled={isPending}
             >
               Keluar
             </button>

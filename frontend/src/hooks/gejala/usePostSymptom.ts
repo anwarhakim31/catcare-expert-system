@@ -9,9 +9,7 @@ const usePostSymptom = (onClose: () => void) => {
 
   return useMutation({
     mutationFn: async (data: Symptom) => {
-      const res = await instance.post("/symptom", data, {
-        withCredentials: true,
-      });
+      const res = await instance.post("/symptom", data);
 
       return res.data;
     },

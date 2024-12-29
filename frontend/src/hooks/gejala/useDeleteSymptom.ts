@@ -6,7 +6,6 @@ const useDeleteSymptom = () => {
     mutationFn: async (data: { selected: string[] }) => {
       const res = await instance.delete("/symptom", {
         data,
-        withCredentials: true,
       });
 
       return res.data;

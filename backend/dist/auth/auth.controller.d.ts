@@ -11,5 +11,4 @@ export declare class AuthController {
     login(request: LoginRequest, response: Response): Promise<void>;
     update(request: UpdateRequest): Promise<WebResponse<AuthResponse>>;
     get(req: Request, res: Response): Promise<void>;
-    delete(res: Response): Promise<void>;
 }

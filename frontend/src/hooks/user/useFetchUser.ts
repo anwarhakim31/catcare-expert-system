@@ -18,9 +18,7 @@ const useFetchUser = (
   return useQuery({
     queryKey: ["user", { search, page, limit }],
     queryFn: async () => {
-      const res = await instance.get(`/user?${params.toString()}`, {
-        withCredentials: true,
-      });
+      const res = await instance.get(`/user?${params.toString()}`);
       return res.data;
     },
     staleTime: 0,

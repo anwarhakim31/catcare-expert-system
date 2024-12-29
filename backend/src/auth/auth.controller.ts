@@ -7,7 +7,6 @@ import {
   Res,
   UseGuards,
   Req,
-  Delete,
   Patch,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
@@ -99,14 +98,14 @@ export class AuthController {
     });
   }
 
-  @Delete('/logout')
-  @HttpCode(200)
-  async delete(@Res() res: Response): Promise<void> {
-    res.clearCookie('catcare');
+  // @Delete('/logout')
+  // @HttpCode(200)
+  // async delete(@Res() res: Response): Promise<void> {
+  //   res.clearCookie('catcare');
 
-    res.json({
-      success: true,
-      message: 'Berhasil logout',
-    });
-  }
+  //   res.json({
+  //     success: true,
+  //     message: 'Berhasil logout',
+  //   });
+  // }
 }

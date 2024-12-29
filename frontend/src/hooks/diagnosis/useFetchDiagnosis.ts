@@ -20,9 +20,7 @@ const useFetchDiagnosis = (
   return useQuery({
     queryKey: ["diagnosis", { search, page, limit, status }],
     queryFn: async () => {
-      const res = await instance.get(`/diagnosis?${params.toString()}`, {
-        withCredentials: true,
-      });
+      const res = await instance.get(`/diagnosis?${params.toString()}`);
       return res.data;
     },
     staleTime: 0,

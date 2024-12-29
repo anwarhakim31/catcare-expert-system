@@ -18,9 +18,7 @@ const useFetchRules = (
   return useQuery({
     queryKey: ["rules", { search, page, limit }],
     queryFn: async () => {
-      const res = await instance.get(`/rules?${params.toString()}`, {
-        withCredentials: true,
-      });
+      const res = await instance.get(`/rules?${params.toString()}`);
       return res.data;
     },
     staleTime: 1000 * 60 * 5,

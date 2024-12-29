@@ -111,7 +111,7 @@ const Header = () => {
             ) : (
               <Link
                 href="/login"
-                className="text-sm bg-orange-500 text-white py-0.5  px-4 rounded-2xl font-light hover:bg-orange-400 transition-colors duration-500 ease-in-out"
+                className="text-sm bg-orange-500 text-white py-0.5  px-4 rounded-2xl font-light hover:bg-orange-400 transition-none"
               >
                 Masuk
               </Link>
