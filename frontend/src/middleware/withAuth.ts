@@ -16,15 +16,6 @@ export default function withAuth(
     const cookie = req.cookies.get("catcare")?.value || "";
     const pathname = req.nextUrl.pathname.split("/")[1];
 
-    if (!cookie) {
-      if (requireAuth.includes(pathname)) {
-        const url = new URL("/login", req.url);
-        url.searchParams.set("callbackUrl", encodeURI(req.url));
-
-        return NextResponse.redirect(url);
-      }
-    }
-
     return mainMiddleware(req, ev);
   };
 }

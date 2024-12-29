@@ -24,7 +24,7 @@ const FormSchema = z.object({
   solution: z.string().min(1, { message: "Solusi harus diisi" }),
 });
 
-const FormPenyakitView = ({ dataEdit }: { dataEdit: Disease }) => {
+const FormPenyakitView = ({ dataEdit }: { dataEdit: Disease | null }) => {
   const router = useRouter();
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
