@@ -113,7 +113,6 @@ function GejalaForm({
       Put(values);
     } else {
       Post(values);
-      onClose();
     }
   }
 

@@ -10,13 +10,12 @@ const usePostSymptom = (onClose: () => void) => {
   return useMutation({
     mutationFn: async (data: Symptom) => {
       const res = await instance.post("/symptom", data);
-
       return res.data;
     },
     onSuccess: () => {
       toast.success("Berhasil menambahkan penyakit");
-      onClose();
       query.invalidateQueries({ queryKey: ["symptom"] });
+      onClose();
     },
     onError: (err) => {
       ResponseError(err);
