@@ -14,7 +14,17 @@ const inter = Inter({
   subsets: ["latin"],
 });
 
-const FaqView = () => {
+const getData = async () => {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/statistic/home`, {
+    cache: "no-store",
+  });
+  return res.json();
+};
+
+const FaqView = async () => {
+  const data = await getData();
+
+  const items = accordionItems(data?.data);
   return (
     <section className="flex  gap-8 pt-36 pb-30 container">
       <figure className="hidden lg:block lg:w-1/2 aspect-square">
@@ -37,7 +47,7 @@ const FaqView = () => {
           Paling Sering Ditanyakan di Catcare
         </h3>
         <Accordion type="single" collapsible className="space-y-4">
-          {accordionItems.map((item) => (
+          {items.map((item) => (
             <AccordionItem value={item.value} key={item.value}>
               <AccordionTrigger className="text-base px-4 border border-b-0  rounded-tl-md rounded-tr-md font-medium">
                 {item.title}

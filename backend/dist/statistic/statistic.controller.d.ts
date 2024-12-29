@@ -26,20 +26,8 @@ export declare class StatisticController {
         success: boolean;
         message: string;
         data: {
-            total: {
-                disease: number;
-                symptom: number;
-                user: number;
-                diagnosis: number;
-            };
-            last3month: {
-                month: string;
-                count: any;
-            }[];
-            detailedSymptoms: {
-                disease: string;
-                symptoms: string[];
-            }[];
+            disease: number;
+            symptom: number;
         };
     }>;
 }

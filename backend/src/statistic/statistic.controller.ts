@@ -18,7 +18,7 @@ export class StatisticController {
   @Get('/home')
   @HttpCode(200)
   async getStatisticHome() {
-    const statistic = await this.statisticService.getStatistic();
+    const statistic = await this.statisticService.getHome();
     return {
       success: true,
       message: 'Berhasil mengambil data',

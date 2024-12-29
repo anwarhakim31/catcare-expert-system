@@ -105,7 +105,7 @@ const FormPenyakitView = ({ dataEdit }: { dataEdit: Disease | null }) => {
               <AreaFormControl
                 field={field}
                 placeholder="Masukkan solusi"
-                label="Solution"
+                label="Solusi"
               />
             )}
           />

@@ -43,6 +43,9 @@ export class StatisticService {
           ),
           lte: new Date(now.getFullYear(), now.getMonth() + 1, 0),
         },
+        user: {
+          isAdmin: false,
+        },
       },
     });
 
@@ -106,5 +109,12 @@ export class StatisticService {
       last3month: chartData,
       detailedSymptoms,
     };
+  }
+
+  async getHome() {
+    const disease = await this.prismaService.disease.count();
+    const symptom = await this.prismaService.symptom.count();
+
+    return { disease, symptom };
   }
 }

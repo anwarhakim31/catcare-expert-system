@@ -18,4 +18,8 @@ export declare class StatisticService {
             symptoms: string[];
         }[];
     }>;
+    getHome(): Promise<{
+        disease: number;
+        symptom: number;
+    }>;
 }

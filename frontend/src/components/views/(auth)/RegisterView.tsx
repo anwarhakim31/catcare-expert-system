@@ -38,7 +38,7 @@ const RegisterView = () => {
       onSuccess: (user) => {
         document.cookie = `catcare=${
           user.data.token
-        }; sameSite=none; path=/; max-age=${60 * 60 * 1}; secure`;
+        }; sameSite=none; path=/; max-age=${60 * 60 * 8}; secure`;
         form.reset();
         router.replace("/");
         context?.setUserData(user.data);

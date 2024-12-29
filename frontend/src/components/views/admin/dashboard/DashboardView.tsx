@@ -59,7 +59,10 @@ const DashboardView = ({ data }: { data: Statistic }) => {
           <div className="rounded-md h-[160px] col-span-2  p-3 shadow-md bg-gradient-to-tr from-blue-400 via-blue-500 to-blue-700">
             <h3 className="text-sm text-white">Gejala Pada Setiap Penyakit</h3>
             <Separator className="my-2" />
-            <ScrollArea className="min-h-full grid grid-cols-1 xs:grid-cols-2">
+            <ScrollArea
+              type="scroll"
+              className="h-[100px]  grid grid-cols-1 xs:grid-cols-2"
+            >
               {data.detailedSymptoms.map((item) => (
                 <div
                   key={item.disease}

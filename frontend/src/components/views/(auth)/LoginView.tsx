@@ -35,7 +35,7 @@ const LoginView = () => {
       onSuccess: (value) => {
         document.cookie = `catcare=${
           value.data.token
-        }; sameSite=none; path=/; max-age=${60 * 60 * 1}; secure`;
+        }; sameSite=none; path=/; max-age=${60 * 60 * 8}; secure`;
         context?.setUserData(value.data);
         const redirectUrl = value.data.isAdmin
           ? searchParams || "/admin/dashboard"
