@@ -44,13 +44,13 @@ const fetchData = async (id: string, catcare: string) => {
 export default async function DiagnosisPage({
   params,
 }: {
-  params: { diagnosisId: string };
+  params: { id: string };
 }) {
-  const { diagnosisId } = params;
+  const { id } = params;
   const cookieStore = cookies();
   const catcare = cookieStore.get("catcare")?.value;
 
-  const { diagnosis, symptoms } = await fetchData(diagnosisId, catcare || "");
+  const { diagnosis, symptoms } = await fetchData(id, catcare || "");
 
   return (
     <Fragment>
