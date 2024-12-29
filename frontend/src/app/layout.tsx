@@ -36,7 +36,6 @@ const fetchUserData = async (token: string | null) => {
       cache: "no-store",
       headers: {
         Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
       },
     });
 
