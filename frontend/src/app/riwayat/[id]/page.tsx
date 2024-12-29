@@ -24,7 +24,7 @@ const fetchData = async (id: string, catcare: string) => {
     return redirect(notFound());
   }
 
-  return res.json();
+  return await res.json();
 };
 
 const RiwayatDiagnosisPage = async ({ params }: { params: { id: string } }) => {
