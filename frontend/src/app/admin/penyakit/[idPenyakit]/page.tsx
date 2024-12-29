@@ -6,17 +6,26 @@ import { cookies } from "next/headers";
 
 const getData = async (idPenyakit: string, catcare: string) => {
   if (!catcare) return redirect("/admin/penyakit");
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/disease/${idPenyakit}`,
-    {
-      cache: "no-store",
-      headers: {
-        Authorization: `Bearer ${catcare}`,
-      },
-    }
-  );
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/disease/${idPenyakit}`,
+      {
+        cache: "no-store",
+        headers: {
+          Authorization: `Bearer ${catcare}`,
+        },
+      }
+    );
 
-  return await res.json();
+    if (!res.ok) {
+      return redirect("/admin/penyakit"); // or return some error page
+    }
+
+    return await res.json();
+  } catch (error) {
+    console.error(error);
+    return redirect("/admin/penyakit"); // Handle network error or unexpected issues
+  }
 };
 
 const TambahPenyakitPage = async ({
