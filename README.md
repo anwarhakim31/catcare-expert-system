@@ -2,10 +2,12 @@
 
 Catcare is a project designed to provide comprehensive solutions for cat owners, focusing on easy diagnosis and tracking nearby veterinary clinics. The platform aims to enhance the health and well-being of cats
 
-## TeckStack
+## TechStack
 
 - NextJs
 - Shadcn/ui
+- TanStack Query
+- React Hook Form
 - Prisma
 - PostgreSQL
 - NestJS
