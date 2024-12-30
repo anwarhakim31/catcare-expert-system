@@ -1,8 +1,9 @@
 import { Disease } from "@/types/model";
-import Image from "next/image";
+
 import React from "react";
 
 import { Inter } from "next/font/google";
+import ImageBlurDisease from "./ImageBlurDisease";
 
 const inter = Inter({
   weight: ["400", "500", "600", "700", "800"],
@@ -28,20 +29,16 @@ const PenyakitMainView = ({ data }: { data: Disease[] }) => {
               key={item.id}
               className=" sm:col-span-2 md:col-span-4 lg:col-span-3 shadow-md  rounded-md  overflow-hidden"
             >
-              <figure className="h-[175px]">
-                <Image
-                  src={item?.image}
-                  alt={item.name}
-                  width={500}
-                  height={500}
-                  className="object-cover w-full h-full object-center"
-                />
+              <figure className="h-[175px] w-full">
+                <ImageBlurDisease item={item} />
               </figure>
               <div className="px-4 py-6">
                 <h1 className="text-base  font-medium capitalize">
                   {item.name}
                 </h1>
-                <p className="line-clamp-5 mt-2">{item.description}</p>
+                <p className="line-clamp-5 mt-2 text-sm text-gray-700">
+                  {item.description}
+                </p>
               </div>
             </div>
           ))
