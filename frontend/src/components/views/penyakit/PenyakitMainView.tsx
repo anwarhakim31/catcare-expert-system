@@ -22,14 +22,14 @@ const PenyakitMainView = ({ data }: { data: Disease[] }) => {
         </span>
       </h3>
 
-      <div className="grid sm:grid-cols-4 md:grid-cols-12  gap-8 mt-14">
+      <div className="grid sm:grid-cols-4 md:grid-cols-12 lg:grid-cols-9 xl:grid-cols-12  gap-8 mt-14">
         {data.length > 0 ? (
           data?.map((item: Disease) => (
             <div
               key={item.id}
               className=" sm:col-span-2 md:col-span-4 lg:col-span-3 shadow-md  rounded-md  overflow-hidden"
             >
-              <figure className="h-[175px] w-full">
+              <figure className="aspect-video relative ">
                 <ImageBlurDisease item={item} />
               </figure>
               <div className="px-4 py-6">
