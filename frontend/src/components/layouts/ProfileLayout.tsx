@@ -22,7 +22,7 @@ const ProfileLayout = ({ children }: { children: React.ReactNode }) => {
           } px-4 py-2.5 rounded-md  transition-all ease-in-out duration-300   border w-full flex item-center gap-2 text-center text-sm`}
           href="/profil"
         >
-          <User size={20} />
+          <User size={18} strokeWidth={1.5} />
           Profil
         </Link>
         <Link
@@ -33,7 +33,7 @@ const ProfileLayout = ({ children }: { children: React.ReactNode }) => {
           } px-4 py-2.5 rounded-md  transition-all ease-in-out duration-300  border w-full flex item-center gap-2 text-center text-sm`}
           href="/riwayat"
         >
-          <History size={20} />
+          <History size={18} strokeWidth={1.5} />
           Riwayat
         </Link>
         <button
@@ -46,7 +46,7 @@ const ProfileLayout = ({ children }: { children: React.ReactNode }) => {
           }}
           className="px-4 py-2.5 rounded-md  transition-all ease-in-out duration-300 text-gray-700 hover:bg-orange-50 border flex item-center gap-2 w-full text-sm"
         >
-          <LogOut size={20} />
+          <LogOut size={18} strokeWidth={1.5} />
           Logout
         </button>
       </div>

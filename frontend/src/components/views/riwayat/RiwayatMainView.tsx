@@ -22,17 +22,17 @@ export const RiwayatMainView = ({ data }: { data: Diagnosis[] }) => {
               href={`/riwayat/${item.id}`}
               className="min-h-[75px] border border-l-2 border-l-orange-500 p-4"
             >
-              <div className="flex text-sm items-center">
+              <div className="flex text-sm ">
                 <p className=" w-[80px]">Tanggal </p>
                 <span>: {formatDateIndo(item.createdAt as Date)}</span>
               </div>
-              <div className="flex text-sm items-center">
+              <div className="flex text-sm ">
                 <p className=" w-[80px]">penyakit</p>
                 <span>: {item?.disease?.map((d) => d.name).join(", ")}</span>
               </div>
-              <div className="flex text-sm items-center">
+              <div className="flex text-sm">
                 <p className=" w-[80px]">Kepastian</p>
-                <span>: Penyakit 1</span>
+                <span>: {item.scor}</span>
               </div>
             </Link>
           ))
