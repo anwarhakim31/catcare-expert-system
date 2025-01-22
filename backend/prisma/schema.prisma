@@ -43,7 +43,7 @@ model Disease{
     solution String
 
     rules Rule[]
-
+  modus  Int @default(0)
    @@map("diseases")
 }
 

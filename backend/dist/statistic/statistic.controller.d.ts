@@ -30,4 +30,13 @@ export declare class StatisticController {
             symptom: number;
         };
     }>;
+    getModule(): Promise<{
+        success: boolean;
+        message: string;
+        data: {
+            disease: string;
+            modus: number;
+            fill: string;
+        }[];
+    }>;
 }

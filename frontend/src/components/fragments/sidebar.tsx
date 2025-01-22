@@ -128,7 +128,7 @@ const Sidebar = ({
                 className={`${
                   pathname === item.path
                     ? "bg-orange-600 text-white"
-                    : "text-black hover:bg-orange-100"
+                    : "text-gray-900 hover:bg-orange-100"
                 } flex items-center  text-sm px-3 py-2  gap-2 rounded-md relative`}
                 onMouseEnter={() => setHover(item.name)}
                 onMouseLeave={() => setHover("")}

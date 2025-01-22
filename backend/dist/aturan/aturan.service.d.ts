@@ -19,6 +19,7 @@ export declare class AturanService {
                 image: string;
                 description: string;
                 solution: string;
+                modus: number;
             };
         } & {
             createdAt: Date;

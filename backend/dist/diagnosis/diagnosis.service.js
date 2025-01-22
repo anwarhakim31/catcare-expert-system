@@ -227,6 +227,20 @@ let DiagnosisService = class DiagnosisService {
                     status: reqDiagnosis.status,
                 },
             });
+            if (Array.isArray(updated.disease) && updated.disease.length > 0) {
+                await this.prismaService.disease.updateMany({
+                    where: {
+                        id: {
+                            in: updated.disease,
+                        },
+                    },
+                    data: {
+                        modus: {
+                            increment: 1,
+                        },
+                    },
+                });
+            }
             const diseases = await this.prismaService.disease.findMany({
                 where: {
                     id: {

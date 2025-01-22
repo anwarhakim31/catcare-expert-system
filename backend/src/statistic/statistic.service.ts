@@ -117,4 +117,29 @@ export class StatisticService {
 
     return { disease, symptom };
   }
+  async getModule() {
+    const diseases = await this.prismaService.disease.findMany({
+      select: {
+        name: true,
+        modus: true,
+      },
+    });
+
+    const colors = [
+      'hsl(var(--chart-1))',
+      'hsl(var(--chart-2))',
+      'hsl(var(--chart-3))',
+      'hsl(var(--chart-4))',
+      'hsl(var(--chart-5))',
+    ];
+
+    // Format data menjadi chartData
+    const chartData = diseases.map((disease, index) => ({
+      disease: disease.name,
+      modus: disease.modus,
+      fill: colors[index % colors.length],
+    }));
+
+    return chartData;
+  }
 }

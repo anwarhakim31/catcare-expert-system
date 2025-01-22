@@ -25,4 +25,15 @@ export class StatisticController {
       data: statistic,
     };
   }
+
+  @Get('/moduse')
+  @HttpCode(200)
+  async getModule() {
+    const statistic = await this.statisticService.getModule();
+    return {
+      success: true,
+      message: 'Berhasil mengambil data',
+      data: statistic,
+    };
+  }
 }

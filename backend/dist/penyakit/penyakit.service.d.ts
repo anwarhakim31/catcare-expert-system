@@ -18,6 +18,7 @@ export declare class PenyakitService {
         image: string;
         description: string;
         solution: string;
+        modus: number;
     }>;
     put(request: ReqPutPenyakit, id: string): Promise<{
         createdAt: Date;
@@ -26,6 +27,7 @@ export declare class PenyakitService {
         image: string;
         description: string;
         solution: string;
+        modus: number;
     }>;
     delete(request: ReqDeletePenyakit): Promise<import(".prisma/client").Prisma.BatchPayload>;
 }

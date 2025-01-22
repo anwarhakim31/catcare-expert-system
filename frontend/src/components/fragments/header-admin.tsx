@@ -75,13 +75,6 @@ const HeaderAdmin = ({
               className="text-sm text-left w-full p-2 block hover:bg-orange-50 transition-all duration-200 ease-in-out"
               aria-label="Logout"
               type="button"
-              onClick={() => {
-                setIsOpen(false);
-                router.replace("/login");
-                document.cookie =
-                  "catcare=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/";
-                context?.setUserData(null);
-              }}
             >
               Keluar
             </button>

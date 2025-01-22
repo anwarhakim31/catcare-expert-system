@@ -31,7 +31,7 @@ export function LineChartComp({
   statistic: { month: string; count: number }[];
 }) {
   return (
-    <Card className="rounded-md">
+    <Card className="rounded-md shadow-md">
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
           <AreaChartIcon strokeWidth={1.5} size={18} />
@@ -42,7 +42,7 @@ export function LineChartComp({
         </CardDescription>
       </CardHeader>
       <CardContent className="">
-        <ChartContainer config={chartConfig} className="h-56 w-full">
+        <ChartContainer config={chartConfig} className="h-[300px] w-full">
           <LineChart
             accessibilityLayer
             data={statistic}

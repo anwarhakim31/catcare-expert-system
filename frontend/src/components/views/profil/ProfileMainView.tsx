@@ -66,7 +66,7 @@ const AkunMainView = () => {
           htmlFor="edit"
           className="text text-xs font-medium text-gray-500"
         >
-          Edit Profil
+          Ganti Profil
         </Label>
         <Switch
           onCheckedChange={() => setIsEdit(!isEdit)}
@@ -124,7 +124,7 @@ const AkunMainView = () => {
           htmlFor="password"
           className="text text-xs font-medium text-gray-500"
         >
-          Ganti Password
+          Ganti Sandi
         </Label>
         <Switch
           onCheckedChange={() => setIsPassword(!isPassword)}

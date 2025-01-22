@@ -22,4 +22,9 @@ export declare class StatisticService {
         disease: number;
         symptom: number;
     }>;
+    getModule(): Promise<{
+        disease: string;
+        modus: number;
+        fill: string;
+    }[]>;
 }

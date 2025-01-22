@@ -32,6 +32,14 @@ let StatisticController = class StatisticController {
             data: statistic,
         };
     }
+    async getModule() {
+        const statistic = await this.statisticService.getModule();
+        return {
+            success: true,
+            message: 'Berhasil mengambil data',
+            data: statistic,
+        };
+    }
 };
 exports.StatisticController = StatisticController;
 __decorate([
@@ -48,6 +56,13 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], StatisticController.prototype, "getStatisticHome", null);
+__decorate([
+    (0, common_1.Get)('/moduse'),
+    (0, common_1.HttpCode)(200),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], StatisticController.prototype, "getModule", null);
 exports.StatisticController = StatisticController = __decorate([
     (0, common_1.Controller)('/api/statistic'),
     __metadata("design:paramtypes", [statistic_service_1.StatisticService])
