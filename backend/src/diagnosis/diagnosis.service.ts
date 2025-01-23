@@ -221,6 +221,7 @@ export class DiagnosisService {
   async patch(
     id: string,
     request: ReqPatchDiagnosis,
+    user: AuthResponse,
   ): Promise<DiagnosisRespnse> {
     const reqDiagnosis: ReqPatchDiagnosis = this.validationService.validate(
       DiagnosisValidation.PATCH,
@@ -280,18 +281,20 @@ export class DiagnosisService {
         },
       });
       if (Array.isArray(updated.disease) && updated.disease.length > 0) {
-        await this.prismaService.disease.updateMany({
-          where: {
-            id: {
-              in: updated.disease as string[],
+        if (!user.isAdmin) {
+          await this.prismaService.disease.updateMany({
+            where: {
+              id: {
+                in: updated.disease as string[],
+              },
             },
-          },
-          data: {
-            modus: {
-              increment: 1,
+            data: {
+              modus: {
+                increment: 1,
+              },
             },
-          },
-        });
+          });
+        }
       }
 
       const diseases = await this.prismaService.disease.findMany({

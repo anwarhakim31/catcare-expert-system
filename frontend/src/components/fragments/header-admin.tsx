@@ -22,8 +22,8 @@ const HeaderAdmin = ({
   isOpen: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
-  const context = useAuthContext();
   const router = useRouter();
+  const context = useAuthContext();
 
   return (
     <header
@@ -75,6 +75,12 @@ const HeaderAdmin = ({
               className="text-sm text-left w-full p-2 block hover:bg-orange-50 transition-all duration-200 ease-in-out"
               aria-label="Logout"
               type="button"
+              onClick={() => {
+                context?.setUserData(null);
+                document.cookie =
+                  "catcare=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+                router.push("/login");
+              }}
             >
               Keluar
             </button>

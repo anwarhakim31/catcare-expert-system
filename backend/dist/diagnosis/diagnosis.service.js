@@ -183,7 +183,7 @@ let DiagnosisService = class DiagnosisService {
             console.log(error);
         }
     }
-    async patch(id, request) {
+    async patch(id, request, user) {
         const reqDiagnosis = this.validationService.validate(dignosis_validation_1.DiagnosisValidation.PATCH, request);
         const answer = reqDiagnosis.symptoms
             .filter((s) => s.answer)
@@ -228,18 +228,20 @@ let DiagnosisService = class DiagnosisService {
                 },
             });
             if (Array.isArray(updated.disease) && updated.disease.length > 0) {
-                await this.prismaService.disease.updateMany({
-                    where: {
-                        id: {
-                            in: updated.disease,
+                if (!user.isAdmin) {
+                    await this.prismaService.disease.updateMany({
+                        where: {
+                            id: {
+                                in: updated.disease,
+                            },
                         },
-                    },
-                    data: {
-                        modus: {
-                            increment: 1,
+                        data: {
+                            modus: {
+                                increment: 1,
+                            },
                         },
-                    },
-                });
+                    });
+                }
             }
             const diseases = await this.prismaService.disease.findMany({
                 where: {

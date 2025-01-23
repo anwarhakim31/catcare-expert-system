@@ -70,8 +70,8 @@ let DiagnosisController = class DiagnosisController {
             data: result,
         };
     }
-    async patch(params, request) {
-        const result = await this.dignosisService.patch(params.id, request);
+    async patch(user, params, request) {
+        const result = await this.dignosisService.patch(params.id, request, user);
         return {
             success: true,
             message: 'Berhasil membuat diagnosis',
@@ -132,10 +132,11 @@ __decorate([
 __decorate([
     (0, common_1.Patch)('/:id'),
     (0, common_1.UseGuards)(authGuard_1.AuthGuard),
-    __param(0, (0, common_1.Param)()),
-    __param(1, (0, common_1.Body)()),
+    __param(0, (0, user_decorator_1.User)()),
+    __param(1, (0, common_1.Param)()),
+    __param(2, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object, diagnosis_model_1.ReqPatchDiagnosis]),
+    __metadata("design:paramtypes", [auth_model_1.AuthResponse, Object, diagnosis_model_1.ReqPatchDiagnosis]),
     __metadata("design:returntype", Promise)
 ], DiagnosisController.prototype, "patch", null);
 __decorate([

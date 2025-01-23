@@ -31,7 +31,7 @@ const AuthLayout = () => {
             <div className="py-14 px-10 flex-1">
               <div className=" mb-8">
                 <h1 className="text-lg font-semibold">Selamat Datang</h1>
-                <p className="text-sm text-gray-700">
+                <p className="text-sm mt-1 text-gray-700">
                   {pathname === "/register"
                     ? "Silahkan daftar untuk membuat akun"
                     : pathname === "/forget-password"

@@ -113,10 +113,11 @@ export class DiagnosisController {
   @Patch('/:id')
   @UseGuards(AuthGuard)
   async patch(
+    @User() user: AuthResponse,
     @Param() params: { id: string },
     @Body() request: ReqPatchDiagnosis,
   ): Promise<WebResponse<DiagnosisRespnse>> {
-    const result = await this.dignosisService.patch(params.id, request);
+    const result = await this.dignosisService.patch(params.id, request, user);
 
     return {
       success: true,

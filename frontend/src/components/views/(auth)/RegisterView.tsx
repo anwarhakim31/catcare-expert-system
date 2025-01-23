@@ -15,11 +15,22 @@ import useRegister from "@/hooks/auth/useRegister";
 import { useAuthContext } from "@/context/AuthContext";
 import { AxiosError } from "axios";
 
-const FormSchema = z.object({
-  username: z.string().min(5, { message: "Nama pengguna minimal 5 karakter" }),
-  fullname: z.string().min(5, { message: "Nama lengkap minimal 5 karakter" }),
-  password: z.string().min(5, { message: "Kata sandi minimal 5 karakter" }),
-});
+const FormSchema = z
+  .object({
+    username: z
+      .string()
+      .min(5, { message: "Nama pengguna minimal 5 karakter" }),
+    fullname: z.string().min(5, { message: "Nama lengkap minimal 5 karakter" }),
+    password: z.string().min(5, { message: "Kata sandi minimal 5 karakter" }),
+  })
+  .refine((data) => data.username !== data.password, {
+    path: ["password"],
+    message: "Kata sandi tidak boleh sama dengan nama pengguna",
+  })
+  .refine((data) => data.username !== data.fullname, {
+    path: ["fullname"],
+    message: "Nama lengkap tidak boleh sama dengan nama pengguna",
+  });
 
 const RegisterView = () => {
   const context = useAuthContext();

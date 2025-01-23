@@ -14,7 +14,7 @@ export declare class DiagnosisController {
     get(params: {
         id: string;
     }): Promise<WebResponse<DiagnosisRespnse>>;
-    patch(params: {
+    patch(user: AuthResponse, params: {
         id: string;
     }, request: ReqPatchDiagnosis): Promise<WebResponse<DiagnosisRespnse>>;
     cornJob(): Promise<void>;
