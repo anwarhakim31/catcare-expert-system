@@ -12,7 +12,7 @@ const InformationView = () => {
     <section className="pt-36 pb-30 container ">
       <h3
         style={inter.style}
-        className="text-3xl  text-gray-900 tracking-wider px-4 text-center mb-4 font-bold"
+        className=" text-xl md:text-2xl lg:text-3xl  text-gray-900 tracking-wider px-4 text-center mb-4 font-bold"
       >
         Tentang Sistem
       </h3>
@@ -32,8 +32,8 @@ const InformationView = () => {
           />
         </figure>
 
-        <p className="pt-8 max-w-[400px] mx-auto leading-7 text-sm md:text-base ">
-          <span className="font-semibold ">Sistem Pakar </span>
+        <p className="pt-8 max-w-[400px] mx-auto leading-7 text-sm md:text-base text-gray-700">
+          <span className="font-semibold text-gr">Sistem Pakar </span>
           adalah sebuah program komputer yang dirancang untuk meniru kemampuan
           seorang pakar dalam suatu bidang tertentu. Sistem ini menggunakan
           pengetahuan dan aturan yang telah dikumpulkan untuk memberikan solusi,

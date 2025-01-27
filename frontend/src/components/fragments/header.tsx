@@ -80,7 +80,7 @@ const Header = () => {
                 className={`${
                   pathname === item.path
                     ? "text-orange-500"
-                    : "  transition-colors duration-300 ease-in-out  after:h-0.5 after:w-0 after:bg-orange-500 after:absolute after:bottom-0 after:left-0 after:transition-all after:duration-300 after:ease-in-out hover:after:w-full text-gray-700"
+                    : "  transition-colors duration-300 ease-in-out text-gray-700  after:h-0.5 after:w-0 after:bg-orange-500 after:absolute after:bottom-0 after:left-0 after:transition-all after:duration-300 after:ease-in-out hover:after:w-full text-gray-700"
                 } block text-sm  font-medium  px-2 py-0.5 relative `}
               >
                 {item.name}

@@ -15,17 +15,17 @@ const HeroView = () => {
 
   return (
     <section className="w-full h-[600px] relative ">
-      <div className=" h-[600px] py-40  flex justify-center z-10 items-center flex-col ">
+      <div className=" h-[600px] py-40 container flex justify-center z-10 items-center flex-col ">
         <h3
           style={inter.style}
-          className="text-xl sm:text-3xl font-medium text-gray-900 tracking-wider px-4 "
+          className="text-xl sm:text-3xl font-medium text-gray-900 text-center tracking-wider px-4 "
         >
           Memperkenalkan{" "}
           <span className="text-orange-500 font-medium">Catcare.</span>
         </h3>
         <h1
           style={inter.style}
-          className="text-3xl sm:text-5xl font-bold mt-3 text-center sm:max-w-[700px] 
+          className=" text-2xl md:text-3xl lg:text-5xl font-bold mt-3 text-center sm:max-w-[700px] 
          tracking-wider"
         >
           Sistem Pakar Diagnosis Penyakit Kulit Kucing

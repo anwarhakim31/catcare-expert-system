@@ -18,7 +18,7 @@ const TentangMainView = () => {
           Tentang Kami
         </span>
       </h3>
-      <p className="w-full max-w-[700px] mx-auto rounded-tl-lg rounded-tr-lg border-t-2 border-orange-500 mt-20 p-4 border-b-2 ">
+      <p className="w-full max-w-[700px] container text-gray-700 text-center mx-auto rounded-tl-lg rounded-tr-lg border-t-2 border-orange-500 mt-20 p-4 border-b-2 ">
         Sistem Pakar Diagnosis Penyakit Kulit Kucing adalah sebuah program
         komputer yang dirancang untuk meniru kemampuan seorang pakar dalam suatu
         bidang tertentu. Sistem pakar merupakan bagian dari kecerdasan buatan
