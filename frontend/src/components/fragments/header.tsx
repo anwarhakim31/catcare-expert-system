@@ -43,8 +43,8 @@ const Header = () => {
   }, [isScrolled]);
 
   return (
-    <header>
-      <div
+    <div className="relative">
+      <header
         className={`fixed top-0 left-0 w-full z-[1000] bg-white py-1 ${
           isScrolled ? "shadow-[0_5px_20px_0_rgba(0,0,0,0.1)]" : ""
         }`}
@@ -53,7 +53,7 @@ const Header = () => {
           <Link
             href="/"
             prefetch
-            className="flex gap-2 items-center"
+            className="flex gap-1 items-center"
             onClick={handleToggle}
           >
             <Image
@@ -63,7 +63,7 @@ const Header = () => {
               height={50}
               priority
             />
-            <h3 className="text-xl text-gray-700  font-bold">Catcare.</h3>
+            <h3 className="text-xl text-gray-900  font-bold">Catcare.</h3>
           </Link>
 
           <nav
@@ -80,7 +80,7 @@ const Header = () => {
                 className={`${
                   pathname === item.path
                     ? "text-orange-500"
-                    : "  transition-colors duration-300 ease-in-out text-gray-700  after:h-0.5 after:w-0 after:bg-orange-500 after:absolute after:bottom-0 after:left-0 after:transition-all after:duration-300 after:ease-in-out hover:after:w-full text-gray-700"
+                    : "  transition-colors duration-300 ease-in-out text-gray-600  after:h-0.5 after:w-0 after:bg-orange-500 after:absolute after:bottom-0 after:left-0 after:transition-all after:duration-300 after:ease-in-out hover:after:w-full "
                 } block text-sm  font-medium  px-2 py-0.5 relative `}
               >
                 {item.name}
@@ -111,7 +111,7 @@ const Header = () => {
             ) : (
               <Link
                 href="/login"
-                className="text-sm bg-orange-500 text-white py-0.5  px-4 rounded-2xl font-light hover:bg-orange-400 transition-none"
+                className="text-xs md:text-sm bg-orange-500 text-white py-0.5  px-4 rounded-2xl font-light hover:bg-orange-400 transition-none"
               >
                 Masuk
               </Link>
@@ -127,8 +127,8 @@ const Header = () => {
             </button>
           </div>
         </div>
-      </div>
-    </header>
+      </header>
+    </div>
   );
 };
 

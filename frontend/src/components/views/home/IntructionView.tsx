@@ -27,7 +27,7 @@ const data = [
 
 const IntructionView = () => {
   return (
-    <section className="pt-36 pb-30 container ">
+    <section className="pt-28 pb-30 container ">
       <h3
         style={inter.style}
         className="text-xl md:text-2xl lg:text-3xl  text-gray-900 tracking-wider px-4 text-center mb-4 font-bold"
@@ -37,22 +37,34 @@ const IntructionView = () => {
       <p className="text-center mb-14 text-gray-500 text-xs tracking-wider">
         Intruksi penggunaan dalam menggunakan aplikasi Catcare.
       </p>
-      <div className="grid grid-cols-1 md:grid-cols-3  gap-4 ">
+      <div className="grid grid-cols-1 lg:grid-cols-3  gap-4 ">
         {data.map((item) => (
           <div
             key={item.id}
-            className="flex justify-center items-center flex-col p-4"
+            className="rounded-lg p-2.5 border border-orange-300 border-dashed hover:border-solid hover:border-orange-500 flex flex-col h-full"
           >
-            <Image
-              src={item.image}
-              alt={`intruction-${item.id}`}
-              width={250}
-              height={250}
-              quality={100}
-              priority
-              className=" lg:w-[250px] lg:h-[250px] w-[200px] h-[200px] object-cover"
-            />
-            <p className="text-center text-sm md:text-base mt-4">{item.text}</p>
+            <div className="flex gap-2 items-center">
+              <div className="w-8 h-8 rounded-full bg-orange-500 flex items-center justify-center relative">
+                <p className="text-white">{item.id}</p>
+              </div>
+              <h1 className="text-sm md:text-base font-semibold">
+                Langkah {item.id}
+              </h1>
+            </div>
+            <div className="text-gray-700 text-sm mt-4 flex-grow">
+              <p>{item.text}</p>
+            </div>
+            <div className="mt-6">
+              <Image
+                src={item.image}
+                alt={`intruction-${item.id}`}
+                width={250}
+                height={250}
+                quality={100}
+                priority
+                className="mx-auto lg:w-[150px] lg:h-[150px] w-[100px] h-[100px] object-cover"
+              />
+            </div>
           </div>
         ))}
       </div>

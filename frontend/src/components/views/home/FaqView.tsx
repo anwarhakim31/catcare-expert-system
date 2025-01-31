@@ -42,14 +42,14 @@ const FaqView = async () => {
       <div className="w-full lg:w-1/2">
         <h3
           style={inter.style}
-          className="text-xl sm:text-3xl  text-gray-900 tracking-wider  font-bold mb-14"
+          className="text-xl md:text-2xl lg:text-3xl  text-gray-900 tracking-wider  font-bold mb-14"
         >
           Paling Sering Ditanyakan di Catcare
         </h3>
         <Accordion type="single" collapsible className="space-y-4">
           {items.map((item) => (
             <AccordionItem value={item.value} key={item.value}>
-              <AccordionTrigger className="text-base px-4 border border-b-0  rounded-tl-md rounded-tr-md font-medium">
+              <AccordionTrigger className="text-sm md:text-base px-4 border border-b-0  rounded-tl-md rounded-tr-md font-medium">
                 {item.title}
               </AccordionTrigger>
               <AccordionContent className="p-4 border-x rounded-bl-md rounded-br-md text-gray-700">

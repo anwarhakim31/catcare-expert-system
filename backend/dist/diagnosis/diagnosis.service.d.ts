@@ -16,12 +16,12 @@ export declare class DiagnosisService {
     get(id: string): Promise<{
         disease: JSON;
         symptoms: [] | jsonDiagnosis[];
-        id: string;
-        scor: number | null;
-        expired: number;
         status: import(".prisma/client").$Enums.DiagnosisStatus;
-        createdAt: Date;
         username: string;
+        createdAt: Date;
+        id: string;
+        expired: number;
+        scor: number | null;
     }>;
     getDiagnosis(user: AuthResponse): Promise<DiagnosisRespnse[]>;
     patch(id: string, request: ReqPatchDiagnosis, user: AuthResponse): Promise<DiagnosisRespnse>;

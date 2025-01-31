@@ -15,7 +15,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="relative mt-10 p-4 bg-gradient-to-r from-orange-400 via-orange-500 to-orange-700 ">
+    <footer className="relative  p-4 bg-gradient-to-r from-orange-400 via-orange-500 to-orange-700 ">
       <button
         type="button"
         onClick={handleClick}
@@ -43,7 +43,7 @@ const Footer = () => {
         </div>
         <Separator className="my-4" />
 
-        <p className="text-sm text-white text-center">
+        <p className="text-xs text-white text-center">
           Copyright &copy; 2024 Catcare.
         </p>
       </div>

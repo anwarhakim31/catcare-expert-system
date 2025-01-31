@@ -4,6 +4,7 @@ import usePostDiagnosis from "@/hooks/diagnosis/usePostDiagnosis";
 import React from "react";
 import { Inter } from "next/font/google";
 import Image from "next/image";
+import { Separator } from "@/components/ui/separator";
 
 const inter = Inter({
   weight: ["400", "500", "600", "700", "800"],
@@ -31,14 +32,18 @@ const HeroView = () => {
           Sistem Pakar Diagnosis Penyakit Kulit Kucing
         </h1>
 
-        <div className="my-8 h-0.5 w-full max-w-[400px] md:max-w-[600px] bg-gray-300"></div>
+        <Separator className="max-w-[400px] md:max-w-[600px] my-4" />
+
+        <h4 className="text-sm md:text-base text-gray-600 text-center mb-10">
+          Diagnosis Untuk Mendapatkan Solusi Penanganan Dan Penyebab Penyakit{" "}
+        </h4>
         <PushButton
           bgColor="bg-orange-500"
           shadowColor="shadow-orange-700"
           onClick={() => mutate()}
           loading={isPending}
         >
-          <span className="w-full  text-white h-10 flex justify-center items-center z-1">
+          <span className="w-full  text-white h-12 flex justify-center items-center z-1">
             Diagnosis
           </span>
         </PushButton>
@@ -49,7 +54,7 @@ const HeroView = () => {
         width={500}
         height={500}
         priority
-        className="absolute -z-[1] top-0 object-left object-cover left-0 h-full w-[21vw]   hidden md:block "
+        className="absolute -z-[1] top-0 object-left object-cover left-0 h-full w-[21vw]   hidden lg:block "
       />
       <Image
         src={"/right.jpg"}
@@ -57,7 +62,7 @@ const HeroView = () => {
         width={500}
         height={500}
         priority
-        className="absolute -z-[1] top-0 object-right object-cover right-0 h-full w-[21vw]  hidden md:block"
+        className="absolute -z-[1] top-0 object-right object-cover right-0 h-full w-[21vw]  hidden lg:block"
       />
     </section>
   );

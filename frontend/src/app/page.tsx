@@ -7,6 +7,7 @@ import IntructionView from "@/components/views/home/IntructionView";
 import { Fragment } from "react";
 
 import { Metadata } from "next";
+import JoinView from "@/components/views/home/JoinView";
 
 export const metadata: Metadata = {
   description: `Sistem Pakar Diagnosis Penyakit Kulit Kucing`,
@@ -29,6 +30,7 @@ export default function Home() {
         <InformationView />
         <FaqView />
       </main>
+      <JoinView />
       <Footer />
     </Fragment>
   );
