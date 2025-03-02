@@ -7,7 +7,7 @@ const JoinView = () => {
   const router = useRouter();
 
   return (
-    <div className="relative  w-full aspect-[2/1] max-h-[400px] overflow-hidden  bg-[url('/tentang.jpg')] mt-28  bg-[position:center_-100px] lg:bg-[position:center_-300px] bg-no-repeat bg-cover ">
+    <div className="relative  w-full h-[275px] md:aspect-[2/1] overflow-hidden  bg-[url('/tentang.jpg')] mt-28  md:bg-[position:center_-100px] lg:bg-[position:center_-300px] bg-no-repeat bg-cover ">
       <div className="absolute inset-0 z- bg-black/60"></div>
       <div className=" container flex items-center justify-center flex-col h-full">
         <h1 className="relative z-10 text-center text-orange-500 font-semibold text-lg md:text-2xl lg:text-3xl ">

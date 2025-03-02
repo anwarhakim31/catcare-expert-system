@@ -71,7 +71,7 @@ const Header = () => {
               isOpen
                 ? " left-0  top-[58px] z-30 bg-white   flex-col "
                 : "fixed top-[58px] -left-full   flex-col "
-            } fixed w-full flex justify-center items-center  h-[calc(100vh-64px)] gap-8 ml-auto md:h-auto md:w-auto order-3 md:static md:flex-row  md:order-none  md:gap-4 transition-all duration-500 ease-in-out md:transition-none`}
+            } fixed w-full flex justify-center items-center  h-[calc(100vh-60px)] gap-8 ml-auto md:h-auto md:w-auto order-3 md:static md:flex-row  md:order-none  md:gap-4 transition-all duration-500 ease-in-out md:transition-none`}
           >
             {navheader.map((item) => (
               <Link
